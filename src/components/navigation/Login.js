@@ -68,7 +68,7 @@ class Login extends Component {
 //   error: state.user.user.error,
 //   loggedIn: state.user.user.loggedIn
 // })
-const mapStateToProps = ({user: {user: authenticatingUser, failedLogin, error, loggedIn}}) => ({
+const mapStateToProps = ({loginReducer: {user: authenticatingUser, failedLogin, error, loggedIn}}) => ({
   authenticatingUser,
   failedLogin,
   error,
