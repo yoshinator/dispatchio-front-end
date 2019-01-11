@@ -9,9 +9,12 @@ class JSONAPIAdapter {
     }
   }
   getAll() {
-    return fetch(this.endpoint)
+    return fetch(this.endpoint,{
+      headers: this.headers
+    })
       .then(response => response.json())
   }
+  
   getSingle(id) {
     return fetch(`${this.endpoint}/${id}`)
       .then(response => response.json())
