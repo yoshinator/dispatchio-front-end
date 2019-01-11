@@ -1,23 +1,20 @@
-import {ADD_USER, ADD_COMPANY, ADD_LOCATION, ADD_CUSTOMER } from './types'
+import { ADD_COMPANY, ADD_LOCATION, ADD_CUSTOMER , } from './types'
 
 const initialState = {
-  authToken: "",
   users: [],
-  user: {},
   jobs: [],
   customers: [],
-  customer: {},
+  customer: null,
   teams: [],
-  team: {},
-  company: {},
+  team: null,
+  company: null,
   locations: [],
-  location: {}
+  location: null
 };
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
-    case ADD_USER:
-      return {...state, users: [...state.users, action.payload]}
+
     
     case ADD_COMPANY: 
       return {...state, company: action.payload}
@@ -27,6 +24,7 @@ export default function reducer(state = initialState, action) {
     
     case ADD_CUSTOMER:
       return {...state, customers: [...state.customers, action.payload]}
+
     
     default: 
       return state

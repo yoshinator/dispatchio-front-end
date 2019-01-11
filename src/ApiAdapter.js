@@ -39,3 +39,6 @@ class JSONAPIAdapter {
     })
   }
 }
+
+export default JSONAPIAdapter;
+

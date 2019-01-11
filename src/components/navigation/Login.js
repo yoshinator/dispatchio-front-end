@@ -1,18 +1,54 @@
-import React from 'react'
-import { connect } from  'redux'
+import React, {Component} from 'react'
+import { connect } from  'react-redux'
+import {withRouter, Redirect } from 'react-router'
 
-export function Login() {
+import { loginAction } from '../../actions/actions'
+
+
+
+
+class Login extends Component {
+  state ={ 
+    email: "",
+    password: ""
+  }
+  
+  
+  handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(this.props)
+    this.props.login(this.state.email, this.state.password)
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+  
+  handleError = () => {
+    if(this.props.failedLogin) {
+      return <h3 className="card-title text-white bg-danger text-center">
+          {this.props.error}
+        </h3>; 
+    } else {
+      return null
+    }
+  }
+
+  render(){
   return <div className="card">
       <div className="card-body">
-        <form>
+        {/* { this.handleError()} */}
+        <form onSubmit={this.handleSubmit} autoComplete="on">
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            <input onChange={this.handleChange} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} name="email" />
           </div>
 
           <div className="form-group">
             <label htmlFor="input-password">Password</label>
-            <input type="password" class="form-control" id="input-password" placeholder="Password" />
+            <input onChange={this.handleChange} type="password" className="form-control" id="input-password" placeholder="Password" value={this.state.password} name="password" autoComplete="password" />
           </div>
 
           <button type="submit" className="btn btn-primary">
@@ -21,13 +57,23 @@ export function Login() {
         </form>
       </div>
     </div>;
-}
-
-
-function mapStateToProps(state) {
-  return {
-    user: state.user
   }
 }
 
-export default connect(mapStateToProps)(Signup)
+const mapStateToProps = (state) => ({
+  authenticatingUser: state.user.user.authenticatingUser,
+  failedLogin: state.user.user.failedLogin,
+  error: state.user.user.error,
+  loggedIn: state.user.user.loggedIn
+})
+
+
+
+function mapDispatchToProps(dispatch){
+  return {
+    login: (email, password) => dispatch(loginAction(email,password))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

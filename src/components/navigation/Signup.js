@@ -7,19 +7,19 @@ export function Signup() {
 
   return <div className="card">
       <div className="card-body">
-        <form>
+        <form autoComplete="one">
           <div className="form-group">
             <label htmlFor="sign-up-f-name">First Name</label>
-            <input type="email" className="form-control" id="sign-up-f-name" placeholder="First " />
+          <input type="email" className="form-control" id="sign-up-f-name" placeholder="First " />
           </div>
           <div className="form-group">
             <label htmlFor="sign-up-l-name">Last Name</label>
-            <input type="email" className="form-control" id="sign-up-l-name" placeholder="Last " />
+          <input type="email" className="form-control" id="sign-up-l-name" placeholder="Last "  />
           </div>
 
           <div className="form-group">
             <label htmlFor="sign-up-email">Email address</label>
-            <input type="email" className="form-control" id="sign-up-email" aria-describedby="emailHelp" placeholder="Enter email" />
+          <input type="email" className="form-control" id="sign-up-email" aria-describedby="emailHelp" placeholder="Enter email" />
             <small id="emailHelp" className="form-text text-muted">
               We'll never share your email with anyone else.
             </small>
@@ -27,12 +27,12 @@ export function Signup() {
 
           <div className="form-group">
             <label htmlFor="input-password">Password</label>
-            <input type="password" className="form-control" id="input-password" placeholder="Password" />
+          <input type="password" className="form-control" id="input-password" placeholder="Password" />
           </div>
 
           <div className="form-group">
             <label htmlFor="input-password">Password Confirmation</label>
-            <input type="password" className="form-control" id="input-password" placeholder="Confirm Password" />
+            <input type="password" className="form-control" id="input-password-confim" placeholder="Confirm Password"  />
           </div>
 
           <div className="form-group form-check">
