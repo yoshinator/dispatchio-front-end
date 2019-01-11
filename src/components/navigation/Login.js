@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from  'react-redux'
 import {withRouter, Redirect } from 'react-router'
 
-import { loginAction } from '../../actions/actions'
+import { loginAction } from '../../actions/user'
 
 
 
@@ -16,7 +16,7 @@ class Login extends Component {
   
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.props)
+    console.log(this.props.login)
     this.props.login(this.state.email, this.state.password)
   }
 
@@ -37,9 +37,11 @@ class Login extends Component {
   }
 
   render(){
-  return <div className="card">
+  return this.props.loggedIn ? (
+  <Redirect to="/home"/> ) : (
+  <div className="card">
       <div className="card-body">
-        {/* { this.handleError()} */}
+        { this.handleError()}
         <form onSubmit={this.handleSubmit} autoComplete="on">
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
@@ -56,24 +58,31 @@ class Login extends Component {
           </button>
         </form>
       </div>
-    </div>;
+  </div>);
   }
 }
 
-const mapStateToProps = (state) => ({
-  authenticatingUser: state.user.user.authenticatingUser,
-  failedLogin: state.user.user.failedLogin,
-  error: state.user.user.error,
-  loggedIn: state.user.user.loggedIn
+// const mapStateToProps = (state) => ({
+//   authenticatingUser: state.user.user.authenticatingUser,
+//   failedLogin: state.user.user.failedLogin,
+//   error: state.user.user.error,
+//   loggedIn: state.user.user.loggedIn
+// })
+const mapStateToProps = ({user: {user: authenticatingUser, failedLogin, error, loggedIn}}) => ({
+  authenticatingUser,
+  failedLogin,
+  error,
+  loggedIn
 })
 
 
 
 function mapDispatchToProps(dispatch){
   return {
-    login: (email, password) => dispatch(loginAction(email,password))
+    login: (email, password) => {
+      dispatch(loginAction(email,password))
+    }
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

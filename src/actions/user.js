@@ -1,11 +1,15 @@
 import JSONAPIAdapter from '../ApiAdapter'
-const ApiAdapter = new JSONAPIAdapter("api/v1/users");
-export const loginUser = (email, password) => {
+const LOGINAdapter = new JSONAPIAdapter("api/v1/users/login");
+
+
+
+export const loginAction = (email, password) => {
   return  (dispatch) => { //thunk
 
     dispatch({ type: 'AUTHENTICATING_USER' })
 
-    ApiAdapter.createItem(body)
+    const body = { user: {email: email, password: password}}
+    LOGINAdapter.createItem(body)
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -13,21 +17,13 @@ export const loginUser = (email, password) => {
           throw response
         }
       })
-      /* { user:
-        { email: 'chandler bing', bio: '', avatar: ''},
-        jwt: 'aaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccc'
-      } */
       .then(JSONResponse => {
-        console.log('%c INSIDE YE OLDE .THEN', 'color: navy')
+        console.log('%c INSIDE YE OLDE .THEN', 'color: navy', JSONResponse)
         localStorage.setItem('jwt', JSONResponse.jwt)
         dispatch({ type: 'SET_CURRENT_USER', payload: JSONResponse.user })
         // dispatch(setCurrentUser(JSONResponse.user))
       })
       .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
-    // .then((jsonResponse) => {
-    //   localStorage.setItem('jwt', jsonResponse.jwt)
-    //   dispatch(setCurrentUser(jsonResponse.user))
-    // })
   }
 }
 
@@ -35,7 +31,7 @@ export const fetchCurrentUser = () => {
   // takes the token in localStorage and finds out who it belongs to
   return (dispatch) => {
     dispatch(authenticatingUser()) //tells the app we are fetching
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/profile`, {
+    fetch(`http://localhost:3000/api/v1/profile`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
