@@ -38,7 +38,7 @@ class Login extends Component {
 
   render(){
   return this.props.loggedIn ? (
-  <Redirect to="/home"/> ) : (
+  <Redirect to="/"/> ) : (
   <div className="card">
       <div className="card-body">
         { this.handleError()}

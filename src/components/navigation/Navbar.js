@@ -10,7 +10,6 @@ import Login from './Login'
 import Home from '../Home'
 
 
-
 function Navbar(props) {
 
   const handleLogout = () => {
@@ -20,7 +19,6 @@ function Navbar(props) {
 
   const logInToggle = () => {
     if (props.loginReducer.loggedIn) {
-      console.log("In first if statement", props.loginReducer)
       return <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link className="navbar-brand" to="/">
           Dispatchio
@@ -44,8 +42,8 @@ function Navbar(props) {
           </ul>
         </div>
       </nav>;
-    } else {
-      console.log("in else statement", props.loginReducer)
+    } // END IF
+    else {
       return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand" to="/">Dispatchio</Link>
@@ -67,16 +65,17 @@ function Navbar(props) {
           </div>
         </nav>
       )
-    }
+    }//END ELSE 
   }
 
+  //RETURN FOR Navbar
   return <div>
       {logInToggle(props)}
       <Route path="/" exact component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
     </div>;
-}
+}//END Navbar()
 
 const mapStateToProps = state => ({
   loginReducer: state.loginReducer
@@ -89,6 +88,5 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
-
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
