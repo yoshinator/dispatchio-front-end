@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
-// import * as actions from '../actions'
 import { fetchCurrentUser } from "../actions/user";
-import { Loader } from "semantic-ui-react";
 
 const withAuth = /*FUNCTION*/ WrappedComponent => {
   class AuthorizedComponent extends React.Component {
@@ -29,7 +27,9 @@ const withAuth = /*FUNCTION*/ WrappedComponent => {
         (this.props.authenticatingUser || !this.props.loggedIn)
       ) {
         //we're currently fetching, show a loading spinner
-        return <Loader active inline="centered" />;
+        return <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       } else {
         //user is not AUTHORIZED to see this component
         return <Redirect to="/login" />;
@@ -37,11 +37,14 @@ const withAuth = /*FUNCTION*/ WrappedComponent => {
     }
   }
 
-  const mapStateToProps = /*FUNCTION*/ reduxStoreState => {
-    return {
-      loggedIn: reduxStoreState.usersReducer.loggedIn,
-      authenticatingUser: reduxStoreState.usersReducer.authenticatingUser
-    };
+  const mapStateToProps = state => {
+
+    return (
+      {
+      loggedIn: state.loginReducer.loggedIn,
+      authenticatingUser: state.loginReducer.authenticatingUser
+      }
+    )
   };
 
   // const mapDispatchToProps = /*FUNCTION*/ (dispatch) => {

@@ -1,13 +1,9 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import {  Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import "./navigation.css";
 
 import { logOutAction } from '../../actions/user'
-import { Signup }  from './Signup'
-import Login from './Login'
-import Home from '../Home'
 
 
 function Navbar(props) {
@@ -71,9 +67,6 @@ function Navbar(props) {
   //RETURN FOR Navbar
   return <div>
       {logInToggle(props)}
-      <Route path="/" exact component={Home} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
     </div>;
 }//END Navbar()
 
@@ -89,4 +82,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

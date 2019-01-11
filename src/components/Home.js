@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router'
 import { connect } from 'react-redux';
+import withAuth from '../hocs/withAuth'
+
+import Employee from './employee/Employee'
 
 class Home extends Component {
   render() {
     if(!this.props.user.user){
-      return <Redirect to="/login" />
+      return <h1>1</h1>
     }
     if(this.props.user.user.user_type === "employee" ){
-      return <div>
-              <h1>Employee Panel</h1>
-             </div>;
-
+      return <Employee />
     }
     if(this.props.user.user.user_type === "manager"){
       return <div> 
@@ -43,4 +42,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(Home));

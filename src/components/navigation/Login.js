@@ -5,18 +5,14 @@ import {withRouter, Redirect } from 'react-router'
 import { loginAction } from '../../actions/user'
 
 
-
-
 class Login extends Component {
   state ={ 
     email: "",
     password: ""
   }
   
-  
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.props.login)
     this.props.login(this.state.email, this.state.password)
   }
 
