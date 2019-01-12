@@ -33,6 +33,7 @@ class Login extends Component {
   }
 
   render(){
+    console.log(this.props.loggedIn, this.props)
   return this.props.loggedIn ? (
   <Redirect to="/"/> ) : (
   <div className="card">
@@ -64,6 +65,8 @@ class Login extends Component {
 //   error: state.user.user.error,
 //   loggedIn: state.user.user.loggedIn
 // })
+
+// TODO:::: For some reason when this component is rendered from the address bar loggedIn false so we do not redirect to home :(
 const mapStateToProps = ({loginReducer: {user: authenticatingUser, failedLogin, error, loggedIn}}) => ({
   authenticatingUser,
   failedLogin,
@@ -81,4 +84,4 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

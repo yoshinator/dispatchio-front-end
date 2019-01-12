@@ -1,5 +1,6 @@
 import JSONAPIAdapter from '../adapters/ApiAdapter'
 const LOGINAdapter = new JSONAPIAdapter("api/v1/users/login");
+const CURRENTUserAdapter = new JSONAPIAdapter("api/v1/users/current")
 
 
 
@@ -29,14 +30,11 @@ export const fetchCurrentUser = () => {
   // takes the token in localStorage and finds out who it belongs to
   return (dispatch) => {
     dispatch(authenticatingUser()) //tells the app we are fetching
-    fetch(`http://localhost:3000/api/v1/users`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    })
-      .then(response => response.json())
-      .then((JSONResponse) => dispatch(setCurrentUser(JSONResponse.user)))
+    CURRENTUserAdapter.getAll()
+      .then((JSONResponse) => {
+        console.log("in FetchCurrentUser", JSONResponse)
+        return  dispatch(setCurrentUser(JSONResponse))
+        })
   }
 }
 
