@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from  'react-redux'
-import {withRouter, Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 
 import { loginAction } from '../../actions/user'
 
@@ -33,7 +33,8 @@ class Login extends Component {
   }
 
   render(){
-    console.log(this.props.loggedIn, this.props)
+  //TODO ::::   CHECK LINE 70 loggedIn wrong state. Also this state is changing for almost every action.
+    console.log(this.props.loggedIn)
   return this.props.loggedIn ? (
   <Redirect to="/"/> ) : (
   <div className="card">
@@ -66,7 +67,7 @@ class Login extends Component {
 //   loggedIn: state.user.user.loggedIn
 // })
 
-// TODO:::: For some reason when this component is rendered from the address bar loggedIn false so we do not redirect to home :(
+// TODO :::: For some reason when this component is rendered from the address bar loggedIn false so we do not redirect to home :(
 const mapStateToProps = ({loginReducer: {user: authenticatingUser, failedLogin, error, loggedIn}}) => ({
   authenticatingUser,
   failedLogin,

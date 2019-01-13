@@ -1,8 +1,8 @@
 import React from 'react'
-import Jobs from './Jobs'
+import JobsSearch from './JobsSearch'
 
 export default function Employee() {
   return (
-    <Jobs />
+    <JobsSearch />
   )
 }
