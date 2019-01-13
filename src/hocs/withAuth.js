@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { fetchCurrentUser } from "../actions/user";
 
-const withAuth = /*FUNCTION*/ WrappedComponent => {
+const withAuth = WrappedComponent => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
       console.log(
@@ -27,8 +27,8 @@ const withAuth = /*FUNCTION*/ WrappedComponent => {
         (this.props.authenticatingUser || !this.props.loggedIn)
       ) {
         //we're currently fetching, show a loading spinner
-        return <div class="spinner-border text-primary" role="status">
-          <span class="sr-only">Loading...</span>
+        return <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Loading...</span>
         </div>
       } else {
         //user is not AUTHORIZED to see this component
