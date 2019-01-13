@@ -7,7 +7,8 @@ const CURRENTUserAdapter = new JSONAPIAdapter("api/v1/users/current")
 export const loginAction = (email, password) => {
   return  (dispatch) => { 
 
-    dispatch({ type: 'AUTHENTICATING_USER' })
+    // dispatch({ type: 'AUTHENTICATING_USER' })
+    dispatch(authenticatingUser())
     const body = { user: {email: email, password: password}}
 
     LOGINAdapter.createItem(body)
