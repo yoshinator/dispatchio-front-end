@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+
 
 import Job from './Job'
 
@@ -16,8 +16,4 @@ import Job from './Job'
   
 }
 
-const mapStateToProps = ({jobsReducer}) => ({
-  jobs: jobsReducer.jobs[0]
-})
-
-export default connect(mapStateToProps)(Jobs);
+export default Jobs;
