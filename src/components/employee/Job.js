@@ -7,6 +7,7 @@ import JobUpdater from "./JobUpdater"
 class Job extends Component {
 
   jsxBuilder = () => {
+    console.log("ERROR", this.props.jobs)
     if (this.props.jobs){
       
     return this.props.jobs.map(job => {
@@ -51,14 +52,13 @@ class Job extends Component {
   }
 
   render() {
-    
   return this.jsxBuilder()
   }
 }
 
 
 const mapStateToProps = ({ jobsReducer }) => ({
-  jobs: jobsReducer.jobs[0]
+  jobs: jobsReducer.jobs
 })
 
 export default connect(mapStateToProps)(Job);
