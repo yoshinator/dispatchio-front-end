@@ -13,7 +13,7 @@ const jobsReducer = (state = initialState, action) => {
       return { ...state, jobs: [...state.jobs.slice(0), action.payload] };
     case GET_JOBS:
       console.log(" In Get jobs of jobsReducer")
-      return { ...state, jobs: [...state.jobs.slice(0), action.payload] };
+      return { ...initialState, jobs: action.payload };
     default:
       return state;
   }
