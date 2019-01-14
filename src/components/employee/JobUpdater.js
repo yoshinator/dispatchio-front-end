@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-
 import { getJobsAction } from '../../actions/job'
 import JSONAPIAdapter from '../../adapters/ApiAdapter'
 const JOBAdapter = new JSONAPIAdapter("api/v1/jobs")
@@ -31,19 +30,25 @@ class JobUpdater extends Component {
 
   //THIS IS WHERE WE NEED UPDATE THE DB
   success = (pos) => {
-    const crd = pos.coords;
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    const time = this.getCurrentFormattedTime()
-    const delimiter = "\n-------------------\n"
-    // Builds the body with status as the current status and description as the previous description plus the description that is being added with a time stamp and employee name.
-    const body = { status: this.state.status, 
-      description: this.props.description + delimiter + " \nUpdated at: " + time + " \n "+ "By: "+ this.props.user.f_name + " " + this.props.user.l_name + this.state.description +delimiter}
-    JOBAdapter.updateItem(body, this.props.job.id)
-    .then(response => console.log(response))
-  }
+                       const crd = pos.coords;
+                       console.log("Your current position is:");
+                       console.log(`Latitude : ${crd.latitude}`);
+                       console.log(`Longitude: ${crd.longitude}`);
+                       console.log(`More or less ${crd.accuracy} meters.`);
+                       const time = this.getCurrentFormattedTime();
+                       const delimiter = "\n-------------------\n";
+                       // Builds the body with status as the current status and description as the previous description plus the description that is being added with a time stamp and employee name.
+                       const body = { status: this.state.status, description: this.props.job.description + delimiter + " \nUpdated at: " + time + " \n " + "By: " + this.props.user.f_name + " " + this.props.user.l_name + this.state.description + delimiter };
+                       JOBAdapter.updateItem(body, this.props.job.id)
+                      .then(response => {if(response.ok)
+                        {
+                          this.props.getJobs(this.props.job.schedule_date, this.props.user.id)
+                        }
+                        else{
+                          console.error(response.error)
+                        }
+                      })
+                     }
 
   //UPDATE HERE ALSO INCASE OF NAVIGATOR ISSUE
   error(err) {
@@ -89,8 +94,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getJobs: (day, id) => {
-      dispatch(getJobsAction(day, id))
+    getJobs: (day, user_id) => {
+      dispatch(getJobsAction(day, user_id))
     }
   }
 }
