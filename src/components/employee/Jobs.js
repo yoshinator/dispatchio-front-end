@@ -7,7 +7,7 @@ import Job from './Job'
 
   render(){
     return (
-    <div className="accordion" id="accordionJobs">
+      <div className="accordion" id="accordionExample">
       <Job/>
       </div>
       )

@@ -12,26 +12,27 @@ const initialState = {
     state: "",
     street_1: "",
     street_2: "",
-    zip: ""},
+    zip: ""
+  },
   customer_id: null,
-  description: null,
-  end_time: null,
+  description: "",
+  end_time: "",
   id: null,
   images: [],
   location: { 
-    id: 1, 
+    id: null, 
     nickname: "", 
     city: "" 
   },
-  location_id: 1,
+  location_id: null,
   paid: false,
-  payment_type: null,
-  price: null,
+  payment_type: "",
+  price: "",
   schedule_date: "",
   schedule_time: "",
-  start_time: null,
+  start_time: "",
   state: "",
-  status: null,
+  status: "",
   street_1: "",
   street_2: "",
   team: { 
@@ -47,7 +48,7 @@ const jobsReducer = (state = initialState, action) => {
   switch (action.type) {
     //expecting job object this is the job object that manager and owner will have access when updating a job or creating a new job. 
     case ADD_JOB:
-      return action.payload;
+      return {...initialState, ...action.payload}
     default:
       return state;
   }

@@ -33,16 +33,19 @@ class JobsSearch extends React.Component{
 
 
   render() {
+
     return (
-      <div>
-        JOB SEARCH
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} type="date" name="date"/>
+      <>
+        <h2 className="justify-content-center d-flex p-2 ">JOB SEARCH</h2>
+        <div className="justify-content-center d-flex p-2 ">
+        <form className="justify-content-center d-flex p-2" onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange} type="date" name="date" />
           <button>Submit</button>
         </form>
-        <Jobs />
       </div>
-    )
+        <Jobs />
+      </>
+      )
   }
 }
 
