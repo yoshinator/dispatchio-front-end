@@ -11,7 +11,6 @@ class Job extends Component {
     if (this.props.jobs){
       
     return this.props.jobs.map(job => {
-      console.log("JOB DESCRIPTION", job.description);
       return <div className="card" key={job.id}>
           <div className="card-header" id={`heading${job.id}`}>
             <h2 className="mb-0">
