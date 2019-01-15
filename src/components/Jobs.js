@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Sidebar from './Sidebar'
+import Job from './Job'
 import { getJobsAction } from '../actions/job'
+import { setJobAction } from '../actions/job'
 import { addWeekAction } from '../actions/weekview'
 
 
 class Jobs extends Component {
+  state = {
+    weekView: true
+  }
 
   // Returns an array of weeks. 
   //TODO SEND UP A WEEK START DATE AND RENDER THAT WEEK INSTEAD OF GETTING CURRENT DAY AND WEEK
@@ -32,19 +37,43 @@ class Jobs extends Component {
     this.props.addWeek(this.getWeek())
   }
 
+  handleClick =(id)=> {
+    const job = this.props.jobs.jobs.filter(job => job.id === id)
+    this.props.setJob(job[0])
+    this.setState({
+      weekView: !this.state.weekView
+    })
+  }
 
   // Takes a day as a string in the form "1/25/1990" 
   renderJobsJsx = (day) => {
     const filteredJobs = this.props.jobs.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
       return (
-        
-        <a key={job.id} href="#" class="list-group-item">
+        <a key={job.id} href="#" onClick={() => this.handleClick(job.id)} class="list-group-item">
             {job.city}  {job.customer.name} {job.customer.phone}
           </a>
 
       )
     })
+  }
+
+  renderMain = () => {
+    if (this.state.weekView){
+      return this.getWeek().map(day => {
+        return (
+          <div className="col-sm">
+            <div class="list-group">
+              <span class="list-group-item list-group-item-action active">{day} </span>
+              {this.renderJobsJsx(day)}
+            </div>
+          </div>
+        )
+      })
+    }else {
+     return <Job />
+    }
+
   }
 
 
@@ -56,52 +85,7 @@ class Jobs extends Component {
         <main className="col">
           <div className="container">
             <div className="row">
-              <div className="col-sm">
-                <div class="list-group">
-                <span class="list-group-item list-group-item-action active">{this.getWeek()[0]} </span>
-                  {this.renderJobsJsx(this.getWeek()[0])}
-                </div>
-              </div>
-
-              <div className="col-sm">
-                <div class="list-group">
-                <span class="list-group-item list-group-item-action active">{this.getWeek()[1]} </span>
-                  {this.renderJobsJsx(this.getWeek()[1])}
-                </div>
-              </div>
-
-              <div className="col-sm">
-                <div class="list-group">
-                <span class="list-group-item list-group-item-action active">{this.getWeek()[2]} </span>
-                  {this.renderJobsJsx(this.getWeek()[2])}
-                </div>
-              </div>
-
-              <div className="col-sm">
-                <div class="list-group">
-                <span class="list-group-item list-group-item-action active">{this.getWeek()[3]} </span>
-                  {this.renderJobsJsx(this.getWeek()[3])}
-                </div>
-              </div>
-              <div className="col-sm">
-                <div class="list-group">
-                <span class="list-group-item list-group-item-action active">{this.getWeek()[4]} </span>
-                  {this.renderJobsJsx(this.getWeek()[4])}
-                </div>
-              </div>
-              <div className="col-sm">
-                <div class="list-group">
-                <span class="list-group-item list-group-item-action active">{this.getWeek()[5]} </span>
-                  {this.renderJobsJsx(this.getWeek()[5])}
-                </div>
-              </div>
-
-              <div className="col-sm">
-              <div class="list-group">
-                <span class="list-group-item list-group-item-action active">{this.getWeek()[6]} </span>
-                {this.renderJobsJsx(this.getWeek()[6])}
-              </div>
-              </div>
+              {this.renderMain()}
             </div>
           </div>
         </main>
@@ -120,7 +104,9 @@ const mapDispatchToProps = (dispatch) => {
       },
       addWeek: (week) => {
         dispatch(addWeekAction(week))
-      }
+      },
+      setJob: (job) =>
+        dispatch(setJobAction(job))
     };
 }
 

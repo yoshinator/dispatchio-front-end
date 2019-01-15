@@ -4,7 +4,7 @@ const JOBSAdapter = new JSONAPIAdapter("api/v1/jobs/date");
 
 
 
-
+// ONLY FOR TO RENDER EMPLOYEE JOBS FOR THE DAY
 export const getEmployeeJobsAction = (day, id) => {
   console.log("job Action getJobsAction")
   return (dispatch) => {
@@ -32,13 +32,12 @@ export const getEmployeeJobsAction = (day, id) => {
           dispatch({type: "GET_JOBS", payload: JSONResponse})
       })
   }
-}
+}// END getEmployeeJobsAction
 
+//======================
 export const getJobsAction = (day) => {
 
   return (dispatch) => {
-
-    console.log("IN ACTION CREATOR")
     // I WOULD LIKE TO PUT A SPINNER HERE OF SOMEKIND WHILE WE LOAD.
     dispatch({ type: 'AUTHENTICATING USER' })
 
@@ -58,9 +57,13 @@ export const getJobsAction = (day) => {
       }
     })
     .then(JSONResponse => {
-      console.log(JSONResponse)
       dispatch({ type: "GET_JOBS", payload: JSONResponse })
     })
   }
+}// END GET JOBS ACTION 
 
+
+// SETS THE JOB MANAGER AND EMPLOYEES ARE VIEWING TO EDIT OR CHANGE
+export const setJobAction = (job) => {
+  return ({type: "ADD_JOB", payload: job})
 }
