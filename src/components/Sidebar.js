@@ -1,26 +1,32 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Sidebar() {
-  return (
-    <div class="container-fluid h-100">
-      <div class="row h-100">
-        <aside class="col-12 col-md-2 p-0 bg-dark">
-          <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start">
-            <div class="collapse navbar-collapse">
-              <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                <li class="nav-item">
-                  <a class="nav-link pl-0" href="#">Link</a>
+
+export default function Sidebar({children}) {
+  return <div className="container-fluid h-100">
+      <div className="row h-100">
+        <aside className="col-12 col-md-2 p-0 bg-dark">
+          <nav className="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start">
+            <div className="collapse navbar-collapse">
+              <ul className="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+                <li className="nav-item">
+                <Link className="nav-link pl-0" to="/jobs">
+                  Jobs
+                </Link>
+                <Link className="nav-link pl-0" to="/">
+                  Home
+                </Link>
+                <Link className="nav-link pl-0" to="/">
+                  Home
+                </Link>
+
                 </li>
                 ..
-                    </ul>
+              </ul>
             </div>
           </nav>
         </aside>
-        <main class="col">
-          ..
-        </main>
+        {children}
       </div>
-    </div>
-
-  )
+    </div>;
 }
