@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import withAuth from '../hocs/withAuth'
 
 import Employee from './employee/Employee'
+import Sidebar from './Sidebar'
+import Manager from './manager/Manager';
+import Owner from './owner/Owner';
 
 class Home extends Component {
   render() {
@@ -13,14 +16,18 @@ class Home extends Component {
       return <Employee />
     }
     if(this.props.user.user.user_type === "manager"){
-      return <div> 
-              <h1>Manager Panel</h1>
-            </div>
+      return (
+      <>
+          <Manager />
+      </>
+      )
     }
     if(this.props.user.user.user_type === "owner"){
-      return <div>
-                <h1>Owner Panel</h1>
-            </div>
+      return (
+        <>
+          <Owner />
+        </>
+      )
     }
     else{
       return <div>
