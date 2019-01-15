@@ -6,7 +6,7 @@ jobs: []
 
 
 const jobsReducer = (state = initialState, action) => {
-  console.log("In jobsReducer")
+  console.log("In jobsReducer", action.payload)
   switch (action.type) {
     //expecting job object
     case ADD_JOB:

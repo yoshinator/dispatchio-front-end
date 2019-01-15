@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getJobsAction} from '../../actions/job'
+import { getEmployeeJobsAction} from '../../actions/job'
 import Jobs from './Jobs'
 
 
@@ -54,7 +54,7 @@ const mapStateToProps = (state)=> ({
 const mapDispatchToProps = (dispatch)=> {
   return {
     getJobs: (day, id) => {
-      dispatch(getJobsAction(day, id))
+      dispatch(getEmployeeJobsAction(day, id))
     }
   }
 }

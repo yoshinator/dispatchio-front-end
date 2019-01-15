@@ -20,3 +20,7 @@ export const ADD_NOTE       = "ADD_NOTE";
 //JOBS REDUCER 
 export const GET_JOBS       = "GET_JOBS";
 export const ADD_JOB        = "ADD_JOB"
+
+//WEEK VIEW REDUCER
+export const ADD_DAY     = "ADD_DAY"
+export const CLEAR_WEEK  = "CLEAR_WEEK"
