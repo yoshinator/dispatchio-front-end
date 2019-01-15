@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getJobsAction } from '../../actions/job'
+import { getEmployeeJobsAction } from '../../actions/job'
 import JSONAPIAdapter from '../../adapters/ApiAdapter'
 const JOBAdapter = new JSONAPIAdapter("api/v1/jobs")
 
@@ -95,7 +95,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     getJobs: (day, user_id) => {
-      dispatch(getJobsAction(day, user_id))
+      dispatch(getEmployeeJobsAction(day, user_id))
     }
   }
 }
