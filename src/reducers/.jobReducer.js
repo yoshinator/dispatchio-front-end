@@ -1,4 +1,4 @@
-import { ADD_JOB, UPDATE_JOB } from './types'
+import { SHOW_JOB, UPDATE_JOB } from './types'
 
 const initialState = {
   city: "",
@@ -46,7 +46,7 @@ const initialState = {
 const jobsReducer = (state = initialState, action) => {
   console.log("In JOBReducer", action.payload)
   switch (action.type) {
-    case ADD_JOB:
+    case SHOW_JOB:
       return {...initialState, ...action.payload}
     case UPDATE_JOB:
       return { ...initialState, ...action.payload }

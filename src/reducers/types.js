@@ -14,7 +14,7 @@ export const LOG_OUT              = "LOG_OUT";
 //JOB REDUCER 
 export const ADD_NOTE       = "ADD_NOTE";
 export const ADD_DAY        = "ADD_DAY";
-export const ADD_JOB        = "ADD_JOB";
+export const SHOW_JOB        = "SHOW_JOB";
 export const UPDATE_JOB     = "UPDATE_JOB"
 
 //JOBS REDUCER 

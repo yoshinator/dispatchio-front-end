@@ -272,9 +272,11 @@ const mapDispatchToProps =(dispatch) =>{
   }
 }
 
-const mapStateToProps = (state) => ({
-job: state.jobReducer
-})
+const mapStateToProps = (state) => {
+  return {
+    job: state.jobReducer
+  }
+}
  
 export default connect(mapStateToProps, mapDispatchToProps)(Job)
 

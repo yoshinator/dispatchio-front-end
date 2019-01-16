@@ -81,5 +81,5 @@ export const updateJobAction = (body, jobId, cb) => {
 
 // SETS THE JOB MANAGER AND EMPLOYEES ARE VIEWING TO EDIT OR CHANGE
 export const setJobAction = (job) => {
-  return ({type: "ADD_JOB", payload: job})
+  return ({type: "SHOW_JOB", payload: job})
 }

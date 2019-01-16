@@ -22,7 +22,7 @@ class Jobs extends Component {
   }
 
 
-  handleClick =(id)=> {
+  handleClick = (id) => {
     const job = this.props.jobs.jobs.filter(job => job.id === id)
     this.props.setJob(job[0])
     this.setState({
@@ -93,10 +93,12 @@ class Jobs extends Component {
 }
 
 
-const mapStateToProps = (state) => ({
-  jobs: state.weekViewReducer,
-  user: state.loginReducer.user
-})
+const mapStateToProps = (state) => {
+  return {
+    jobs: state.weekViewReducer,
+    user: state.loginReducer.user
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return { getJobs: (day, location_id) => {
