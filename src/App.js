@@ -3,12 +3,13 @@ import {connect} from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 
 import Navbar from './components/navigation/Navbar'
-import { Signup } from './components/navigation/Signup'
+import Signup from './components/navigation/Signup'
 import Login from './components/navigation/Login'
 import Home from './components/Home'
 import Jobs from './components/Jobs'
 import Locations from './components/Locations'
 import NoMatch from './components/Nomatch'
+import Teams from './components/teams/Teams'
 
 class App extends Component {
   renderRoutes = () => {
@@ -18,6 +19,7 @@ class App extends Component {
          <>
        <Route path="/jobs" component={Jobs}></Route>
        <Route path="/locations" component={Locations}></Route>
+       <Route path="/teams" component={Teams}></Route>
        </>
        )
      }
