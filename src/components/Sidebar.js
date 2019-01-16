@@ -16,8 +16,8 @@ export default function Sidebar({children}) {
                 <Link className="nav-link pl-0" to="/teams">
                   Teams
                 </Link>
-                <Link className="nav-link pl-0" to="/">
-                  Home
+                <Link className="nav-link pl-0" to="/teammembers">
+                  Team Members
                 </Link>
 
                 </li>

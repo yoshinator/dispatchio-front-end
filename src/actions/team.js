@@ -1,7 +1,8 @@
 import JSONAPIAdapter from "../adapters/ApiAdapter";
-const TeamAdapter = new JSONAPIAdapter();
+const TeamAdapter = new JSONAPIAdapter('api/v1/teams/location');
+const TeamMemberAdapter = new JSONAPIAdapter('api/v1/users/location')
 
-export const getLocationTeamsAction =(locationId) => {
+export const getTeamsAction =(locationId) => {
   return (dispatch) => {
       // I WOULD LIKE TO PUT A SPINNER HERE OF SOMEKIND WHILE WE LOAD.
       dispatch({type: "AUTHENTICATING USER"});
@@ -12,7 +13,6 @@ export const getLocationTeamsAction =(locationId) => {
 
       }
     }
-
     TeamAdapter.createItem(body)
       .then(response => {
         if (response.ok) {
@@ -22,10 +22,33 @@ export const getLocationTeamsAction =(locationId) => {
         }
       })
       .then(JSONResponse => {
-        console.log(JSONResponse)
-        dispatch({ type: "GET_JOBS", payload: JSONResponse })
+        console.log("TEAMS RESPONSE JSON", JSONResponse)
+        dispatch({ type: "GET_TEAMS", payload: JSONResponse })
       })
+    }
+}
+export const getTeamMembersAction =(locationId) => {
+  return (dispatch) => {
+      // I WOULD LIKE TO PUT A SPINNER HERE OF SOMEKIND WHILE WE LOAD.
+      dispatch({type: "AUTHENTICATING USER"});
 
+    const body = {
+      "user": {
+        "location_id": locationId
 
+      }
+    }
+    TeamMemberAdapter.createItem(body)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(JSONResponse => {
+        console.log("TEAMS RESPONSE JSON", JSONResponse);
+        dispatch({ type: "GET_TEAM_MEMBERS", payload: JSONResponse });
+      });
     }
 }

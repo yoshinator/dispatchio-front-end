@@ -10,6 +10,7 @@ import Jobs from './components/Jobs'
 import Locations from './components/Locations'
 import NoMatch from './components/Nomatch'
 import Teams from './components/teams/Teams'
+import TeamMembers from './components/teams/TeamMembers'
 
 class App extends Component {
   renderRoutes = () => {
@@ -20,6 +21,7 @@ class App extends Component {
        <Route path="/jobs" component={Jobs}></Route>
        <Route path="/locations" component={Locations}></Route>
        <Route path="/teams" component={Teams}></Route>
+       <Route path="/teammembers" component={TeamMembers}></Route>
        </>
        )
      }

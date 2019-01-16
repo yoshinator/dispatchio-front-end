@@ -7,13 +7,17 @@ import companyReducer from './reducers/companyReducer';
 import weekViewReducer from "./reducers/weekViewReducer";
 import jobsReducer from  './reducers/jobsReducer'
 import jobReducer from  './reducers/jobReducer'
+import teamReducer from './reducers/teamReducer'
+import teamMemberReducer from './reducers/teamMemberReducer'
 
 const rootReducer = combineReducers({
   companyReducer,
   jobsReducer,
   loginReducer,
   weekViewReducer,
-  jobReducer
+  jobReducer,
+  teamReducer,
+  teamMemberReducer
 });
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

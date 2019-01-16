@@ -11,13 +11,16 @@ const YOANHelper = new YOANHelpers();
 
 class Jobs extends Component {
   state = {
-    weekView: true
+    weekView: true,
+    createJob: false,
   }
+
 
   componentDidMount(){
     console.log("IN COMPONENT DID MOUNT",this.props.user.location.id)
     this.props.addWeek(YOANHelper.getWeek(), this.props.user.location.id);
   }
+
 
   handleClick =(id)=> {
     const job = this.props.jobs.jobs.filter(job => job.id === id)
@@ -56,7 +59,7 @@ class Jobs extends Component {
      return (
        <>
          <h2 onClick={() => this.setState({ weekView: !this.state.weekView})}>Back</h2>
-         <Job/>
+         <Job changeView={() => this.setState({ weekView: !this.state.weekView })}/>
        </>
      )
     }
@@ -64,9 +67,19 @@ class Jobs extends Component {
   }
 
 
+  createJobButton= () => {
+    //change state and render form
+    this.setState({
+      createJob: true
+    })
+  }
+
+
 
   render() {
-    return <Sidebar>
+    return <>
+    <button onClick={this.createJobButton} className="mx-auto" style={{display: "block"}} >Create New Job</button>
+    <Sidebar>  
         <main className="col">
           <div className="container">
             <div className="row">
@@ -74,7 +87,8 @@ class Jobs extends Component {
             </div>
           </div>
         </main>
-      </Sidebar>;
+      </Sidebar>
+      </>;
   }
 }
 

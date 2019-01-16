@@ -1,6 +1,7 @@
 import JSONAPIAdapter from '../adapters/ApiAdapter'
 const JOBAdapter = new JSONAPIAdapter("api/v1/jobs/user_date");
 const JOBSAdapter = new JSONAPIAdapter("api/v1/jobs/date");
+const JOBUpdater = new JSONAPIAdapter("api/v1/jobs")
 
 
 
@@ -60,6 +61,23 @@ export const getJobsAction = (day, location_id) => {
 }// END GET JOBS ACTION 
 
 
+export const updateJobAction = (body, jobId, cb) => {
+  return (dispatch) => {
+    JOBUpdater.updateItem(body, jobId)
+      .then(response => {
+        if (response.ok) {
+          cb()
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(JSONResponse => {
+        console.log(JSONResponse);
+        dispatch({ type: "UPDATE_JOB", payload: JSONResponse });
+      });
+  }
+}
 
 // SETS THE JOB MANAGER AND EMPLOYEES ARE VIEWING TO EDIT OR CHANGE
 export const setJobAction = (job) => {
