@@ -13,8 +13,8 @@ export default function Sidebar({children}) {
                 <Link className="nav-link pl-0" to="/jobs">
                   Jobs
                 </Link>
-                <Link className="nav-link pl-0" to="/">
-                  Home
+                <Link className="nav-link pl-0" to="/teams">
+                  Teams
                 </Link>
                 <Link className="nav-link pl-0" to="/">
                   Home

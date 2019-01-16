@@ -60,13 +60,6 @@ class Login extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   authenticatingUser: state.user.user.authenticatingUser,
-//   failedLogin: state.user.user.failedLogin,
-//   error: state.user.user.error,
-//   loggedIn: state.user.user.loggedIn
-// })
-
 // TODO :::: For some reason when this component is rendered from the address bar loggedIn false so we do not redirect to home :(
 const mapStateToProps = ({loginReducer: {user: authenticatingUser, failedLogin, error, loggedIn}}) => ({
   authenticatingUser,
@@ -74,8 +67,6 @@ const mapStateToProps = ({loginReducer: {user: authenticatingUser, failedLogin, 
   error,
   loggedIn
 })
-
-
 
 function mapDispatchToProps(dispatch){
   return {
