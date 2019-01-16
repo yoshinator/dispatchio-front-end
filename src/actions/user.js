@@ -1,6 +1,7 @@
 import JSONAPIAdapter from '../adapters/ApiAdapter'
 const LOGINAdapter = new JSONAPIAdapter("api/v1/users/login");
 const CURRENTUserAdapter = new JSONAPIAdapter("api/v1/users/current")
+const CREATEUserAdpater = new JSONAPIAdapter("api/v1/users")
 
 
 
@@ -24,6 +25,33 @@ export const loginAction = (email, password) => {
         dispatch(setCurrentUser(JSONResponse.user));
       })
       .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+  }
+}
+export const createUserAction = ({user_type, f_name, l_name, email, phone, password, company_id, location_id}) => {
+  return  (dispatch) => { 
+
+    // dispatch({ type: 'AUTHENTICATING_USER' })
+    dispatch(authenticatingUser())
+    const body = { user: { user_type, f_name, l_name, email, phone, password, company_id, location_id}}
+//  debugger
+    CREATEUserAdpater.createItem(body)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(JSONResponse => {
+        // debugger;
+        localStorage.setItem("jwt", JSONResponse.jwt);
+        dispatch(setCurrentUser(JSONResponse.user));
+      })
+      .catch(r =>
+        r
+          .json()
+          .then(e => dispatch({ type: "FAILED_LOGIN", payload: e.message }))
+      );
   }
 }
 
