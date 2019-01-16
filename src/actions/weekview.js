@@ -2,9 +2,7 @@ import JSONAPIAdapter from "../adapters/ApiAdapter";
 
 const JOBSAdapter = new JSONAPIAdapter("api/v1/jobs/week");
 
-export const addWeekAction = (week) =>{
-
-
+export const addWeekAction = (week, location_id) =>{
   return (dispatch) => {
 
     console.log("IN ACTION CREATOR")
@@ -13,7 +11,8 @@ export const addWeekAction = (week) =>{
 
     const body = {
       "job": {
-        "week": week
+        "week": week,
+        "location_id": location_id
       }
     }
 
@@ -32,3 +31,22 @@ export const addWeekAction = (week) =>{
       })
   }
 }
+
+
+//NOT BEING USED AT THE MOMENT MAYBE CAN REMOVE THIS CODE FROM JOBS COMPONENT LATER
+// export const getWeekAction = () => {
+//   const week = []
+//   for (let i = 0; i < 7; i++) {
+//     const day = new Date()
+//     const a = new Date(day.setDate(day.getDate() + i))
+//     week.push(a.toLocaleString(
+//       "en-US",
+//       {
+//         month: "numeric",
+//         day: "numeric",
+//         year: "numeric"
+//       }
+//     ))
+//   }
+//   return ({type: "ADD_WEEK", payload: week})
+// }
