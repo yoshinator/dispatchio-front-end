@@ -5,6 +5,8 @@ import Job from './Job'
 import { getJobsAction } from '../actions/job'
 import { setJobAction } from '../actions/job'
 import { addWeekAction } from '../actions/weekview'
+import YOANHelpers from '../helpers/helpers'
+const YOANHelper = new YOANHelpers();
 
 
 class Jobs extends Component {
@@ -12,28 +14,9 @@ class Jobs extends Component {
     weekView: true
   }
 
-  // Returns an array of weeks. 
-  //TODO SEND UP A WEEK START DATE AND RENDER THAT WEEK INSTEAD OF GETTING CURRENT DAY AND WEEK
-  getWeek = () => {
-    const week = []
-    for (let i = 0;  i < 7; i++){
-    const day = new Date()
-     const a = new Date(day.setDate(day.getDate() + i))
-     week.push(a.toLocaleString(
-       "en-US",
-       {
-         month: "numeric",
-         day: "numeric",
-         year: "numeric"
-       }
-     ))
-    }
-    return week
-  }
-
   componentDidMount(){
-    console.log("IN COMPONENT DID MOUNT",this.props)
-    this.props.addWeek(this.getWeek())
+    console.log("IN COMPONENT DID MOUNT",this.props.user.location.id)
+    this.props.addWeek(YOANHelper.getWeek(), this.props.user.location.id);
   }
 
   handleClick =(id)=> {
@@ -59,21 +42,21 @@ class Jobs extends Component {
 
   renderMain = () => {
     if (this.state.weekView){
-      return this.getWeek().map(day => {
-        return (
-          <div key={day} className="col-sm">
+      return YOANHelper.getWeek().map(day => {
+        return <div key={day} className="col-sm">
             <div className="list-group">
-              <span className="list-group-item list-group-item-action active">{day} </span>
+              <span className="list-group-item list-group-item-action active">
+                {day}{" "}
+              </span>
               {this.renderJobsJsx(day)}
             </div>
-          </div>
-        )
-      })
+          </div>;
+      });
     }else {
      return (
        <>
          <h2 onClick={() => this.setState({ weekView: !this.state.weekView})}>Back</h2>
-        <Job />
+         <Job/>
        </>
      )
     }
@@ -83,8 +66,6 @@ class Jobs extends Component {
 
 
   render() {
-    console.log(this.props.jobs.jobs)
-    //TODO refactor to DRY this up when you get a chance
     return <Sidebar>
         <main className="col">
           <div className="container">
@@ -99,15 +80,16 @@ class Jobs extends Component {
 
 
 const mapStateToProps = (state) => ({
-  jobs: state.weekViewReducer
+  jobs: state.weekViewReducer,
+  user: state.loginReducer.user
 })
 
 const mapDispatchToProps = (dispatch) => {
-  return { getJobs: (day) => {
-        dispatch(getJobsAction(day));
+  return { getJobs: (day, location_id) => {
+        dispatch(getJobsAction(day, location_id));
       },
-      addWeek: (week) => {
-        dispatch(addWeekAction(week))
+      addWeek: (week, location_id) => {
+        dispatch(addWeekAction(week, location_id))
       },
       setJob: (job) =>
         dispatch(setJobAction(job))
