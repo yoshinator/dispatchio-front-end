@@ -18,5 +18,31 @@ export default class YOANHelpers {
     return week
   }
 
+  getDay = () => {
+    const day = new Date()
+    return day.toLocaleString(
+      "en-US",
+      {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric"
+      }
+    )
+  }
+
+  getFormattedDay = () => {
+    const day = new Date();
+    const year = day.toLocaleString("en-US", {
+      year: "numeric"
+    });
+    const month = day.toLocaleString("en-US", {
+      month: "2-digit"
+    });
+    const today = day.toLocaleString("en-US", {
+      day: "2-digit"
+    });
+    return `${year}/${month}/${today}`
+  }
+
 
 }

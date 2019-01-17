@@ -139,116 +139,62 @@ class Job extends Component {
   };
 
   componentDidMount() {
-    this.setState(
-      {
-        ...this.state,
-        ...this.props.job
-      },
-      () => console.log("IN COMPONENT DID MOUNT", this.state)
-    );
+    this.setState({
+      ...this.state,
+      ...this.props.job.editingJob
+    })
+      
   }
 
   render() {
-    console.log("RRRRRENNNNDERING",this.state);
-    return (
-      <>
+
+    return <>
         <div className="card inner-card">
           <h2 className="job-edit-title">
-            {this.props.job.city}, {this.props.job.customer.name}{" "}
-            {this.props.job.customer.phone}, {this.props.job.status}
+          {this.props.job.editingJob.city}, {this.props.job.editingJob.customer.name} {this.props.job.editingJob.customer.phone}, {this.props.job.editingJob.status}
           </h2>
           <div className="card-body">
             <form onSubmit={this.handleSubmit} autoComplete="one">
               <div className="form-group">
                 <label htmlFor="street_1">Street 1</label>
-                <input
-                  onChange={this.handleChange}
-                  type="text"
-                  className="form-control"
-                  name="street_1"
-                  id="street_1"
-                  value={this.state.street_1}
-                />
+                <input onChange={this.handleChange} type="text" className="form-control" name="street_1" id="street_1" value={this.state.street_1} />
               </div>
               <div className="form-group">
                 <label htmlFor="street_2">Street 2</label>
-                <input
-                  onChange={this.handleChange}
-                  type="text"
-                  className="form-control"
-                  name="street_2"
-                  id="street_2"
-                  value={this.state.street_2}
-                />
+                <input onChange={this.handleChange} type="text" className="form-control" name="street_2" id="street_2" value={this.state.street_2} />
               </div>
               <div className="form-group">
                 <label htmlFor="city">City</label>
-                <input
-                  onChange={this.handleChange}
-                  type="text"
-                  className="form-control"
-                  name="city"
-                  id="city"
-                  value={this.state.city}
-                />
+                <input onChange={this.handleChange} type="text" className="form-control" name="city" id="city" value={this.state.city} />
               </div>
               <div className="form-group">
                 <label htmlFor="state">State</label>
-                <input
-                  onChange={this.handleChange}
-                  type="text"
-                  className="form-control"
-                  name="state"
-                  id="state"
-                  value={this.state.state}
-                />
+                <input onChange={this.handleChange} type="text" className="form-control" name="state" id="state" value={this.state.state} />
               </div>
               <div className="form-group">
                 <label htmlFor="zip">Zip</label>
-                <input
-                  onChange={this.handleChange}
-                  type="text"
-                  className="form-control"
-                  name="zip"
-                  id="zip"
-                  value={this.state.zip}
-                />
+                <input onChange={this.handleChange} type="text" className="form-control" name="zip" id="zip" value={this.state.zip} />
               </div>
               <div className="form-group">
-                <label htmlFor={`add-to-description${this.props.job.id}`}>
+                <label
+                  htmlFor={`add-to-description${
+                    this.props.job.editingJob.id
+                  }`}
+                >
                   Description
                 </label>
-                <textarea
-                  onChange={this.handleChange}
-                  name="description"
-                  className="form-control"
-                  id={`add-to-description${this.props.job.id}`}
-                  rows="2"
-                  value={this.state.description}
-                />
+                <textarea onChange={this.handleChange} name="description" className="form-control" id={`add-to-description${this.props.job.id}`} rows="2" value={this.state.description} />
               </div>
               <div className="form-group">
                 <label htmlFor="jobStatusSelect">Change Status</label>
-                <select
-                  onChange={this.handleChange}
-                  className="form-control"
-                  name="status"
-                  id={`jobStatusSelect${this.props.job.id}`}
-                  value={this.state.status}
-                >
+                <select onChange={this.handleChange} className="form-control" name="status" id={`jobStatusSelect${this.props.job.editingJob.id}`} value={this.state.status}>
                   {this.selectionOptionStatus()}
                 </select>
               </div>
 
               <div className="form-group">
                 <label htmlFor="jobPaymentSelect">Change Status</label>
-                <select
-                  onChange={this.handleChange}
-                  className="form-control"
-                  name="payment_type"
-                  id={`jobPaymentSelect${this.props.job.id}`}
-                  value={this.state.payment_type}
-                >
+                <select onChange={this.handleChange} className="form-control" name="payment_type" id={`jobPaymentSelect${this.props.job.editingJob.id}`} value={this.state.payment_type}>
                   {this.selectionOptionPayment()}
                 </select>
               </div>
@@ -259,8 +205,7 @@ class Job extends Component {
             </form>
           </div>
         </div>
-      </>
-    );
+      </>;
   }
 }
 

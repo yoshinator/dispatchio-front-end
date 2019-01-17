@@ -2,29 +2,25 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Sidebar from './Sidebar'
 import Job from './Job'
-import { getJobsAction } from '../actions/job'
-import { setJobAction } from '../actions/job'
-import { addWeekAction } from '../actions/weekview'
+import { editJobAction } from '../actions/job'
+import { addWeekAction } from '../actions/job'
 import YOANHelpers from '../helpers/helpers'
 const YOANHelper = new YOANHelpers();
 
 
 class Jobs extends Component {
   state = {
-    weekView: true,
-    createJob: false,
+    weekView: true
   }
 
-
   componentDidMount(){
-    console.log("IN COMPONENT DID MOUNT",this.props.user.location.id)
     this.props.addWeek(YOANHelper.getWeek(), this.props.user.location.id);
   }
 
 
   handleClick = (id) => {
     const job = this.props.jobs.jobs.filter(job => job.id === id)
-    this.props.setJob(job[0])
+    this.props.editJob(job[0])
     this.setState({
       weekView: !this.state.weekView
     })
@@ -66,15 +62,12 @@ class Jobs extends Component {
 
   }
 
-
   createJobButton= () => {
     //change state and render form
     this.setState({
       createJob: true
     })
   }
-
-
 
   render() {
     return <>
@@ -95,20 +88,18 @@ class Jobs extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    jobs: state.weekViewReducer,
+    jobs: state.jobReducer,
     user: state.loginReducer.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { getJobs: (day, location_id) => {
-        dispatch(getJobsAction(day, location_id));
-      },
+  return { 
       addWeek: (week, location_id) => {
         dispatch(addWeekAction(week, location_id))
       },
-      setJob: (job) =>
-        dispatch(setJobAction(job))
+      editJob: (job) =>
+        dispatch(editJobAction(job))
     };
 }
 

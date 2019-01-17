@@ -48,7 +48,7 @@ class Teams extends Component {
 
 const mapStateToProps = (state) => ({
   teams: state.teamReducer,
-  jobs: state.weekViewReducer,
+  jobs: state.jobReducer,
   user: state.loginReducer.user
 })
 

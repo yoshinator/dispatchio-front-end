@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withAuth from '../hocs/withAuth'
 
+import {addWeekAction} from '../actions/job'
 import Employee from './employee/Employee'
-import Sidebar from './Sidebar'
 import Manager from './manager/Manager';
 import Owner from './owner/Owner';
+import YOANHelpers from '../helpers/helpers';
+
+const timeHelper = new YOANHelpers ();
 
 class Home extends Component {
+
+  componentDidMount(){
+    this.props.addWeek(timeHelper.getWeek(), this.props.user.user.location.id)
+  }
+
   render() {
     if(!this.props.user.user){
-      return <h1>1</h1>
+      return <h1> </h1>
     }
     if(this.props.user.user.user_type === "employee" ){
       return <Employee />
@@ -45,8 +53,9 @@ const mapStateToProps = ( loginReducer ) => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    //
+    addWeek: (week, location_id) => {
+      dispatch(addWeekAction(week, location_id))
+    }
   }
 }
-
 export default withAuth(connect(mapStateToProps, mapDispatchToProps)(Home));

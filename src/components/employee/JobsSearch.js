@@ -2,11 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getEmployeeJobsAction} from '../../actions/job'
 import Jobs from './Jobs'
-
+import YOANHelpers from '../../helpers/helpers'
+const timeHelper = new YOANHelpers();
 
 class JobsSearch extends React.Component{
   state = {
-    date: {}
+    date: {},
+  }
+
+  componentDidMount() {
+    this.props.getJobs(timeHelper.getDay(), this.props.user.id)
   }
 
   handleSubmit = (event) => {
@@ -33,13 +38,13 @@ class JobsSearch extends React.Component{
 
 
   render() {
-
+    console.log(this.state)
     return (
       <>
         <h2 className="justify-content-center d-flex p-2 ">JOB SEARCH</h2>
         <div className="justify-content-center d-flex p-2 ">
         <form className="justify-content-center d-flex p-2" onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} type="date" name="date" />
+          <input onChange={this.handleChange} type="date" name="date" min={timeHelper.getFormattedDay()}/>
           <button>Submit</button>
         </form>
       </div>

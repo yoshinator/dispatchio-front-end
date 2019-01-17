@@ -56,8 +56,8 @@ class Job extends Component {
 }
 
 
-const mapStateToProps = ({ jobsReducer }) => ({
-  jobs: jobsReducer.jobs
+const mapStateToProps = ({ jobReducer }) => ({
+  jobs: jobReducer.jobs
 })
 
 export default connect(mapStateToProps)(Job);

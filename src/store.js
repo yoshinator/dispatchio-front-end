@@ -4,17 +4,17 @@ import thunk from "redux-thunk";
 
 import loginReducer from './reducers/loginReducer';
 import companyReducer from './reducers/companyReducer';
-import weekViewReducer from "./reducers/weekViewReducer";
-import jobsReducer from  './reducers/jobsReducer'
+// import weekViewReducer from "./reducers/weekViewReducer";
+// import jobsReducer from  './reducers/jobsReducer'
 import jobReducer from  './reducers/jobReducer'
 import teamReducer from './reducers/teamReducer'
 import teamMemberReducer from './reducers/teamMemberReducer'
 
 const rootReducer = combineReducers({
   companyReducer,
-  jobsReducer,
+  // jobsReducer,
   loginReducer,
-  weekViewReducer,
+  // weekViewReducer,
   jobReducer,
   teamReducer,
   teamMemberReducer
