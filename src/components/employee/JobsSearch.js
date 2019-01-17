@@ -7,7 +7,7 @@ const timeHelper = new YOANHelpers();
 
 class JobsSearch extends React.Component{
   state = {
-    date: {},
+    date: "",
   }
 
   componentDidMount() {
@@ -44,7 +44,7 @@ class JobsSearch extends React.Component{
         <h2 className="justify-content-center d-flex p-2 ">JOB SEARCH</h2>
         <div className="justify-content-center d-flex p-2 ">
         <form className="justify-content-center d-flex p-2" onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} type="date" name="date" min={timeHelper.getFormattedDay()}/>
+          <input onChange={this.handleChange} type="date" name="date" min={timeHelper.dateTransform(timeHelper.getFormattedDay())}/>
           <button>Submit</button>
         </form>
       </div>
