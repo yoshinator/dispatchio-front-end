@@ -31,9 +31,9 @@ class Jobs extends Component {
     const filteredJobs = this.props.jobs.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
       return (
-        <a key={job.id} href="#" onClick={() => this.handleClick(job.id)} className="list-group-item">
+        <p key={job.id} onClick={() => this.handleClick(job.id)} className="list-group-item">
             {job.city}  {job.customer.name} {job.customer.phone}
-          </a>
+          </p>
 
       )
     })
@@ -62,14 +62,8 @@ class Jobs extends Component {
 
   }
 
-  createJobButton= () => {
-    //change state and render form
-    this.setState({
-      createJob: true
-    })
-  }
-
   render() {
+
     return <>
     <button onClick={this.createJobButton} className="mx-auto" style={{display: "block"}} >Create New Job</button>
     <Sidebar>  
