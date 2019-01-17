@@ -49,8 +49,6 @@ const mapStateToProps = ( loginReducer ) => ({
   user: loginReducer.loginReducer
 })
 
-
-
 function mapDispatchToProps(dispatch) {
   return {
     addWeek: (week, location_id) => {
@@ -58,4 +56,5 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
+
 export default withAuth(connect(mapStateToProps, mapDispatchToProps)(Home));
