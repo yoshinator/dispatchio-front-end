@@ -11,6 +11,7 @@ import Locations from './components/Locations'
 import NoMatch from './components/Nomatch'
 import Teams from './components/teams/Teams'
 import TeamMembers from './components/teams/TeamMembers'
+import {fetchCurrentUser} from './actions/user'
 
 class App extends Component {
   renderRoutes = () => {
@@ -26,6 +27,10 @@ class App extends Component {
        )
      }
     }
+  }
+
+  componentDidMount() { 
+    this.props.fetchCurrentUser()
   }
 
   render() {
@@ -46,4 +51,11 @@ class App extends Component {
     user: state.loginReducer.user
   })
 
-export default withRouter(connect(mapsStateToProps)(App));
+  const mapDispatchToProps = (dispatch) => {
+    return { 
+      fetchCurrentUser: () => dispatch(fetchCurrentUser()) 
+    };
+  }
+
+export default withRouter(connect(mapsStateToProps, mapDispatchToProps)(App));
+
