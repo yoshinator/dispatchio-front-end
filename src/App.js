@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   componentDidMount() { 
-    this.props.fetchCurrentUser()
+    return this.props.user
   }
 
   render() {
