@@ -30,6 +30,15 @@ export default class YOANHelpers {
     )
   }
 
+  //takes a date in the format 1/9/2020 m/d/yyyy and return it in 2020-01-09 yyyy-mm-dd
+  dateTransform = (date) => {
+    const dateArray = date.split("/")
+    if (dateArray[0].length === 1  ) dateArray[0] = `0${dateArray[0]}`
+    if (dateArray[1].length === 1) dateArray[1] = `0${dateArray[1]}`
+    return dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1]
+  }
+
+  
   getFormattedDay = () => {
     const day = new Date();
     const year = day.toLocaleString("en-US", {
