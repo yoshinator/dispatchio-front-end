@@ -15,7 +15,7 @@ class TeamMembers extends Component {
     console.log("%cPROPSSSS", 'color: goldenrod', this.props)
     if (this.props.teamMembers && this.props.teamMembers.length > 0) {
       return this.props.teamMembers.map(teamMember =>
-        <a href="#" className="list-group-item">{teamMember.f_name}</a>
+        <p className="list-group-item">{teamMember.f_name}</p>
       );
     }
   }
