@@ -10,9 +10,7 @@ const YOANHelper = new YOANHelpers();
 
 
 class Jobs extends Component {
-  state = {
-    weekView: true
-  }
+
 
   componentDidMount(){
     this.props.addWeek(YOANHelper.getWeek(), this.props.user.location.id);
@@ -22,9 +20,6 @@ class Jobs extends Component {
   handleClick = (id) => {
     const job = this.props.jobs.jobs.filter(job => job.id === id)
     this.props.editJob(job[0])
-    this.setState({
-      weekView: !this.state.weekView
-    })
   }
 
   // Takes a day as a string in the form "1/25/1990" 
@@ -41,7 +36,8 @@ class Jobs extends Component {
   }
 
   renderMain = () => {
-    if (this.state.weekView){
+
+    if (!this.props.jobs.jobForm){
       return YOANHelper.getWeek().map(day => {
         return <div key={day} className="col-sm">
             <div className="list-group">
@@ -55,8 +51,7 @@ class Jobs extends Component {
     }else {
      return (
        <>
-         <h2 onClick={() => this.setState({ weekView: !this.state.weekView})}>Back</h2>
-         <Job changeView={() => this.setState({ weekView: !this.state.weekView })}/>
+         <Job />
        </>
      )
     }
@@ -64,7 +59,7 @@ class Jobs extends Component {
   }
 
   render() {
-
+    
     return <>
     <button onClick={this.createJobButton} className="mx-auto" style={{display: "block"}} >Create New Job</button>
     <Sidebar>  

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import {Redirect} from 'react-router'
 import './job.css'
 
 import { updateJobAction } from '../actions/job';
 import YOANHelpers from '../helpers/helpers';
-import withRoleManager from '../hocs/withRoleManager'
+import withAuth from '../hocs/withAuth';
+import withRoleManager from '../hocs/withRoleManager';
 const timeHelper = new YOANHelpers();
 
 
@@ -20,8 +21,14 @@ class Job extends Component {
     payment_type: "",
     paid: "",
     schedule_time: "",
-    date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date)
+    date: ""
   };
+
+  componentDidMount(){
+    this.setState({
+      date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date)
+    })
+  } 
 
   handleChange = event => {
     console.log(
@@ -54,7 +61,6 @@ class Job extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.payment_type);
     const body = {
       street_1: this.state.street_1,
       street_2: this.state.street_2,
@@ -68,8 +74,7 @@ class Job extends Component {
       schedule_time: this.state.schedule_time,
       paid: this.state.paid
     };
-    this.props.updateJob(body, this.state.id, this.props.changeView);
-    this.props.history.push("/jobs");
+    this.props.updateJob(body, this.state.id);
   };
 
   handleTimeChange = (event) => {
@@ -256,13 +261,16 @@ class Job extends Component {
   };
 
   componentDidMount() {
+    console.log("JOB COMPONENET", this.props.job)
     this.setState({
       ...this.state,
       ...this.props.job.editingJob
     });
   }
 
+
   render() {
+    if (this.state.city || this.state.street_1){
     return (
       <>
         <div className="card inner-card">
@@ -412,14 +420,15 @@ class Job extends Component {
           </div>
         </div>
       </>
-    );
+    );}
+    else return <Redirect to="/"></Redirect>
   }
 }
 
 const mapDispatchToProps =(dispatch) =>{
  return {
-   updateJob: (body, jobId, callback) => {
-     dispatch(updateJobAction(body, jobId, callback))
+   updateJob: (body, jobId) => {
+     dispatch(updateJobAction(body, jobId))
     }
   }
 }
@@ -430,6 +439,6 @@ const mapStateToProps = (state) => {
   }
 }
  
-export default withRouter(withRoleManager(connect(mapStateToProps, mapDispatchToProps)(Job)))
+export default withRoleManager(withAuth(connect(mapStateToProps, mapDispatchToProps)(Job)))
 
 
