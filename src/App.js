@@ -11,6 +11,7 @@ import Locations from './components/Locations'
 import NoMatch from './components/Nomatch'
 import Teams from './components/teams/Teams'
 import TeamMembers from './components/teams/TeamMembers'
+import  withAuth from './hocs/withAuth'
 import {fetchCurrentUser} from './actions/user'
 
 class App extends Component {
@@ -19,10 +20,7 @@ class App extends Component {
      if (this.props.user.user_type === "owner" || this.props.user.user_type === "manager"){
        return (
          <>
-       <Route path="/jobs" component={Jobs}></Route>
-       <Route path="/locations" component={Locations}></Route>
-       <Route path="/teams" component={Teams}></Route>
-       <Route path="/teammembers" component={TeamMembers}></Route>
+
        </>
        )
      }
@@ -30,8 +28,9 @@ class App extends Component {
   }
 
   componentDidMount() { 
-    return this.props.user
+    this.renderRoutes()
   }
+
 
   render() {
     return <div>
@@ -40,7 +39,10 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          {this.renderRoutes()}
+          <Route path="/jobs" component={Jobs}></Route>
+          <Route path="/locations" component={Locations}></Route>
+          <Route path="/teams" component={Teams}></Route>
+          <Route path="/teammembers" component={TeamMembers}></Route>
           <Route component={NoMatch} />
         </Switch>
       </div>;
@@ -57,5 +59,11 @@ class App extends Component {
     };
   }
 
-export default withRouter(connect(mapsStateToProps, mapDispatchToProps)(App));
+export default
+  withRouter(
+    connect(
+      mapsStateToProps,
+      mapDispatchToProps
+    )(App)
+  );
 
