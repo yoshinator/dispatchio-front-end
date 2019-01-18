@@ -31,9 +31,9 @@ class Jobs extends Component {
     const filteredJobs = this.props.jobs.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
       return (
-        <p key={job.id} onClick={() => this.handleClick(job.id)} className="list-group-item">
-            {job.city}  {job.customer.name} {job.customer.phone}
-          </p>
+        <small><p key={job.id} onClick={() => this.handleClick(job.id)} className="list-group-item">
+            {job.city}  {job.customer.name} <a href={`tel:+1${job.customer.phone}`}>{job.customer.phone}</a>
+          </p></small>
 
       )
     })
