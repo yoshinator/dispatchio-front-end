@@ -5,6 +5,7 @@ import './job.css'
 
 import { updateJobAction } from '../actions/job';
 import YOANHelpers from '../helpers/helpers';
+import withRoleManager from '../hocs/withRoleManager'
 const timeHelper = new YOANHelpers();
 
 
@@ -359,7 +360,7 @@ class Job extends Component {
                 />
               </div>
               <div className="form-group">
-                Scheduled time: {this.state.schedule_time}
+                Scheduled time: {timeHelper.formatTime(this.state.schedule_time)}
                 <label htmlFor="time" />
                 <input
                   onChange={this.handleChange}
@@ -429,6 +430,6 @@ const mapStateToProps = (state) => {
   }
 }
  
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Job))
+export default withRouter(withRoleManager(connect(mapStateToProps, mapDispatchToProps)(Job)))
 
 

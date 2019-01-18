@@ -10,16 +10,15 @@ export default function Sidebar({children}) {
             <div className="collapse navbar-collapse">
               <ul className="flex-md-column flex-row navbar-nav w-100 justify-content-between">
                 <li className="nav-item">
-                <Link className="nav-link pl-0" to="/jobs">
-                  Jobs
-                </Link>
-                <Link className="nav-link pl-0" to="/teams">
-                  Teams
-                </Link>
-                <Link className="nav-link pl-0" to="/teammembers">
-                  Team Members
-                </Link>
-
+                  <Link className="nav-link pl-0" to="/jobs">
+                    Jobs
+                  </Link>
+                  <Link className="nav-link pl-0" to="/teams">
+                    Teams
+                  </Link>
+                  <Link className="nav-link pl-0" to="/teammembers">
+                    Team Members
+                  </Link>
                 </li>
                 ..
               </ul>

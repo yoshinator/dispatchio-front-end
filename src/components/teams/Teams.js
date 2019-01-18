@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Sidebar from '../Sidebar'
 import { getTeamsAction } from '../../actions/team'
+import withAuth from '../../hocs/withAuth'
+import withRoleManager from '../../hocs/withRoleManager'
 
 
 class Teams extends Component {
   componentDidMount(){
-    this.props.getTeam(this.props.user.location.id);
+    if (this.props.user){
+      this.props.getTeam(this.props.user.location.id);
+    }
   }
 
 
@@ -60,4 +64,11 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Teams)
+export default withAuth(
+  withRoleManager(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(Teams)
+  )
+);

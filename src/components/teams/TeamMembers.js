@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Sidebar from '../Sidebar';
 import { getTeamMembersAction } from '../../actions/team';
+import withAuth from '../../hocs/withAuth'
+import withRoleManager from '../../hocs/withRoleManager'
 
 class TeamMembers extends Component {
 
@@ -56,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamMembers)
+export default withAuth(withRoleManager(connect(mapStateToProps, mapDispatchToProps)(TeamMembers)))

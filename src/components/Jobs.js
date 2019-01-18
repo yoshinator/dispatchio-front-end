@@ -4,6 +4,7 @@ import Sidebar from './Sidebar'
 import Job from './Job'
 import { editJobAction } from '../actions/job'
 import { addWeekAction } from '../actions/job'
+import withRoleManager from '../hocs/withRoleManager'
 import YOANHelpers from '../helpers/helpers'
 const YOANHelper = new YOANHelpers();
 
@@ -97,4 +98,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Jobs)
+export default withRoleManager(connect(mapStateToProps, mapDispatchToProps)(Jobs))
