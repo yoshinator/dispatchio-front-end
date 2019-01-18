@@ -18,11 +18,16 @@ class Job extends Component {
     status: "",
     payment_type: "",
     paid: "",
+    schedule_time: "",
     date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date)
   };
 
   handleChange = event => {
-    console.log("INININ HANDLE CHANGE!!!!!", event.target.name, event.target.value)
+    console.log(
+      "INININ HANDLE CHANGE!!!!!",
+      event.target.name,
+      event.target.value
+    );
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -40,11 +45,10 @@ class Job extends Component {
         day: "numeric",
         year: "numeric"
       })
-    })
+    });
     this.setState({
       date: event.target.value
-    })
-      ;
+    });
   };
 
   handleSubmit = e => {
@@ -62,13 +66,17 @@ class Job extends Component {
       schedule_date: this.state.schedule_date,
       schedule_time: this.state.schedule_time,
       paid: this.state.paid
-
     };
     this.props.updateJob(body, this.state.id, this.props.changeView);
     this.props.history.push("/jobs");
   };
 
-  //PART OF FORM BUILDER RENDER RETURN 
+  handleTimeChange = (event) => {
+    console.log("%cHANDLETIME", 'color:green', event.target.name, event.target.value);
+    
+  }
+
+  //PART OF FORM BUILDER RENDER RETURN
   selectionOptionStatus = () => {
     switch (this.state.status) {
       case "IR in route":
@@ -168,42 +176,83 @@ class Job extends Component {
     }
   };
 
-  paidRadioButtons =() => {
-    if (this.state.paid === true || this.state.paid ==="true") {
-      return <>
-          {this.props.job.editingJob.paid ? <div>This bill currently paid choose no to mark unpaid</div> : <div></div>}
+  paidRadioButtons = () => {
+    if (this.state.paid === true || this.state.paid === "true") {
+      return (
+        <>
+          {this.props.job.editingJob.paid ? (
+            <div>This bill currently paid choose no to mark unpaid</div>
+          ) : (
+            <div />
+          )}
           <div className="form-check">
-            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid1" value="true" checked />
+            <input
+              onClick={this.handleChange}
+              className="form-check-input"
+              type="radio"
+              name="paid"
+              id="paid1"
+              value="true"
+              checked
+            />
             <label className="form-check-label" htmlFor="paid1">
               Yes
             </label>
           </div>
           <div className="form-check">
-            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid2" value="false" />
+            <input
+              onClick={this.handleChange}
+              className="form-check-input"
+              type="radio"
+              name="paid"
+              id="paid2"
+              value="false"
+            />
             <label className="form-check-label" htmlFor="paid2">
               No
             </label>
           </div>
-        </>;
+        </>
+      );
     } else {
-      return <>
-        {this.props.job.editingJob.paid ? <div>This bill currently paid choose 'No' to mark unpaid</div> : <div></div>}
+      return (
+        <>
+          {this.props.job.editingJob.paid ? (
+            <div>This bill currently paid choose 'No' to mark unpaid</div>
+          ) : (
+            <div />
+          )}
           <div className="form-check">
-            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid1" value="true" />
+            <input
+              onClick={this.handleChange}
+              className="form-check-input"
+              type="radio"
+              name="paid"
+              id="paid1"
+              value="true"
+            />
             <label className="form-check-label" htmlFor="paid1">
               Yes
             </label>
           </div>
           <div className="form-check">
-            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid2" value="false" checked />
+            <input
+              onClick={this.handleChange}
+              className="form-check-input"
+              type="radio"
+              name="paid"
+              id="paid2"
+              value="false"
+              checked
+            />
             <label className="form-check-label" htmlFor="paid2">
               No
             </label>
           </div>
-        </>;
+        </>
+      );
     }
-  }
-
+  };
 
   componentDidMount() {
     this.setState({
@@ -309,6 +358,20 @@ class Job extends Component {
                   max=""
                 />
               </div>
+              <div className="form-group">
+                Scheduled time: {this.state.schedule_time}
+                <label htmlFor="time" />
+                <input
+                  onChange={this.handleChange}
+                  id="time"
+                  className="form-control"
+                  value={this.state.time}
+                  type="time"
+                  name="schedule_time"
+                  min=""
+                  max=""
+                />
+              </div>
 
               <div className="form-group">
                 <label htmlFor="jobStatusSelect">Change Status</label>
@@ -324,7 +387,7 @@ class Job extends Component {
               </div>
 
               <div className="form-group">
-                <label htmlFor="jobPaymentSelect">Change  Payment Type</label>
+                <label htmlFor="jobPaymentSelect">Change Payment Type</label>
                 <select
                   onChange={this.handleChange}
                   className="form-control"
