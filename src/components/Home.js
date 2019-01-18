@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withAuth from '../hocs/withAuth'
+import { withRouter} from 'react-router-dom'
 
 import {addWeekAction} from '../actions/job'
 import Employee from './employee/Employee'
