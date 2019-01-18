@@ -4,9 +4,6 @@ const TeamMemberAdapter = new JSONAPIAdapter('api/v1/users/location')
 
 export const getTeamsAction =(locationId) => {
   return (dispatch) => {
-      // I WOULD LIKE TO PUT A SPINNER HERE OF SOMEKIND WHILE WE LOAD.
-      dispatch({type: "AUTHENTICATING USER"});
-
     const body = {
       "team": {
         "location_id": locationId
@@ -27,15 +24,12 @@ export const getTeamsAction =(locationId) => {
       })
     }
 }
+
 export const getTeamMembersAction =(locationId) => {
   return (dispatch) => {
-      // I WOULD LIKE TO PUT A SPINNER HERE OF SOMEKIND WHILE WE LOAD.
-      dispatch({type: "AUTHENTICATING USER"});
-
     const body = {
       "user": {
         "location_id": locationId
-
       }
     }
     TeamMemberAdapter.createItem(body)
