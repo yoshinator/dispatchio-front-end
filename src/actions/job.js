@@ -7,6 +7,7 @@ const JOBUpdater = new JSONAPIAdapter("api/v1/jobs")
 
 // ONLY FOR TO RENDER EMPLOYEE JOBS FOR THE DAY
 export const getEmployeeJobsAction = (day, id) => {
+  debugger
   return (dispatch) => {
     // I WOULD LIKE TO PUT A SPINNER HERE OF SOMEKIND WHILE WE LOAD.
     dispatch({ type: 'AUTHENTICATING USER' })
@@ -56,7 +57,6 @@ export const addWeekAction = (week, location_id) => {
       })
   }
 }
-
 
 export const updateJobAction = (body, jobId, cb) => {
   return (dispatch) => {
