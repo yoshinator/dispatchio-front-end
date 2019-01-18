@@ -13,7 +13,9 @@ const timeHelper = new YOANHelpers ();
 class Home extends Component {
 
   componentDidMount(){
-    this.props.addWeek(timeHelper.getWeek(), this.props.user.user.location.id)
+    if (this.props.user.user.user_type === "employee" || this.props.user.user.user_type === "owner") {
+      this.props.addWeek(timeHelper.getWeek(), this.props.user.user.location.id)
+    }
   }
 
   render() {
