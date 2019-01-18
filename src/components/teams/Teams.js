@@ -12,9 +12,9 @@ class Teams extends Component {
 
  
   teamsJsx = () => {
-    if (this.props.teams && this.props.teams.length > 0){
-      return this.props.teams.map(team => 
-          <a href="#" className="list-group-item">{team.name}</a>
+    if (this.props.teams.teams&& this.props.teams.teams.length > 0){
+      return this.props.teams.teams.map(team => 
+          <p className="list-group-item">{team.name}</p>
         );
     }
   }
