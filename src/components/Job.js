@@ -17,13 +17,34 @@ class Job extends Component {
     description: "",
     status: "",
     payment_type: "",
+    paid: "",
     date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date)
   };
 
   handleChange = event => {
+    console.log("INININ HANDLE CHANGE!!!!!", event.target.name, event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     });
+  };
+
+  handleDateChange = event => {
+    const dateArray = event.target.value.split("-");
+    const year = dateArray[0];
+    const month = parseInt(dateArray[1]) - 1;
+    const date = dateArray[2];
+    const _entryDate = new Date(year, month, date);
+    this.setState({
+      schedule_date: _entryDate.toLocaleString("en-US", {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric"
+      })
+    })
+    this.setState({
+      date: event.target.value
+    })
+      ;
   };
 
   handleSubmit = e => {
@@ -39,12 +60,15 @@ class Job extends Component {
       status: this.state.status,
       payment_type: this.state.payment_type,
       schedule_date: this.state.schedule_date,
-      schedule_time: this.state.schedule_time
+      schedule_time: this.state.schedule_time,
+      paid: this.state.paid
+
     };
     this.props.updateJob(body, this.state.id, this.props.changeView);
     this.props.history.push("/jobs");
   };
 
+  //PART OF FORM BUILDER RENDER RETURN 
   selectionOptionStatus = () => {
     switch (this.state.status) {
       case "IR in route":
@@ -93,6 +117,7 @@ class Job extends Component {
     }
   };
 
+  // PART OF FORM BUILDER IN RENDER RETURN
   selectionOptionPayment = () => {
     switch (this.state.payment_type) {
       case "CC Credit Card":
@@ -143,24 +168,42 @@ class Job extends Component {
     }
   };
 
-  handleDateChange = event => {
-    const dateArray = event.target.value.split("-");
-    const year = dateArray[0];
-    const month = parseInt(dateArray[1]) - 1;
-    const date = dateArray[2];
-    const _entryDate = new Date(year, month, date);
-    this.setState({
-      schedule_date: _entryDate.toLocaleString("en-US", {
-        month: "numeric",
-        day: "numeric",
-        year: "numeric"
-      })
-    })
-    this.setState({
-      date: event.target.value
-    })
-    ;
-  };
+  paidRadioButtons =() => {
+    if (this.state.paid === true || this.state.paid ==="true") {
+      return <>
+          {this.props.job.editingJob.paid ? <div>This bill currently paid choose no to mark unpaid</div> : <div></div>}
+          <div className="form-check">
+            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid1" value="true" checked />
+            <label className="form-check-label" htmlFor="paid1">
+              Yes
+            </label>
+          </div>
+          <div className="form-check">
+            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid2" value="false" />
+            <label className="form-check-label" htmlFor="paid2">
+              No
+            </label>
+          </div>
+        </>;
+    } else {
+      return <>
+        {this.props.job.editingJob.paid ? <div>This bill currently paid choose 'No' to mark unpaid</div> : <div></div>}
+          <div className="form-check">
+            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid1" value="true" />
+            <label className="form-check-label" htmlFor="paid1">
+              Yes
+            </label>
+          </div>
+          <div className="form-check">
+            <input onClick={this.handleChange} className="form-check-input" type="radio" name="paid" id="paid2" value="false" checked />
+            <label className="form-check-label" htmlFor="paid2">
+              No
+            </label>
+          </div>
+        </>;
+    }
+  }
+
 
   componentDidMount() {
     this.setState({
@@ -247,7 +290,7 @@ class Job extends Component {
                   name="description"
                   className="form-control"
                   id={`add-to-description${this.props.job.id}`}
-                  rows="2"
+                  rows="3"
                   value={this.state.description}
                 />
               </div>
@@ -281,7 +324,7 @@ class Job extends Component {
               </div>
 
               <div className="form-group">
-                <label htmlFor="jobPaymentSelect">Change Status</label>
+                <label htmlFor="jobPaymentSelect">Change  Payment Type</label>
                 <select
                   onChange={this.handleChange}
                   className="form-control"
@@ -291,6 +334,11 @@ class Job extends Component {
                 >
                   {this.selectionOptionPayment()}
                 </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="paid">Paid? </label>
+                {this.paidRadioButtons()}
               </div>
 
               <button type="submit" className="btn btn-primary">
