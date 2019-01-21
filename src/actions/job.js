@@ -68,7 +68,6 @@ export const updateJobAction = (body, jobId) => {
         }
       })
       .then(JSONResponse => {
-        console.log(JSONResponse);
         dispatch({ type: "UPDATE_JOB", payload: JSONResponse });
       });
   }

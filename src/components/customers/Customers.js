@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import Sidebar from "../Sidebar";
 import withAuth from "../../hocs/withAuth";
 import withRoleManager from "../../hocs/withRoleManager"
-import { editCustomerFlagAction, addCustomerToEditAction } from "../../actions/customer";
+import { editCustomerFlagAction, addCustomerToEditAction, createNewCustomerFlagAction } from "../../actions/customer";
 
 class Customers extends Component {
 
@@ -41,17 +41,28 @@ class Customers extends Component {
     this.props.editCustomerFlag()
   }
 
+  createNewCustomer = () => {
+    this.props.createNewCustomerFlag();
+  }
+
   render() {
     if (this.props.customers.editingCustomer) {
-      return <Redirect to="/teams"></Redirect>
-    }
+      return <Redirect to="/editcustomer"></Redirect>
+    }else if (this.props.customers.createCustomer){
+      return <Redirect to="/createcustomer" />;
+    } else { 
     return <Sidebar>
       <main className="col">
+        <button onClick={this.createNewCustomer} className="mx-auto create-new-job" style={{ display: "block" }}>
+          Create New Customer{" "}
+        </button>
+
         <div className="container">
           <div className="row">{this.renderCustomers()}</div>
         </div>
       </main>
     </Sidebar>;
+    }
   }
 }
 
@@ -71,6 +82,9 @@ const mapDispatchToProps = (dispatch)  => {
     },
     editCustomer: (customer) => {
       dispatch(addCustomerToEditAction(customer));
+    },
+    createNewCustomerFlag: () => {
+      dispatch(createNewCustomerFlagAction())
     }
   }
 }

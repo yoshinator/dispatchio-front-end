@@ -14,6 +14,8 @@ import Teams from './components/teams/Teams'
 import TeamMembers from './components/teams/TeamMembers'
 import Customers from './components/customers/Customers'
 import { fetchCurrentUser } from './actions/user'
+import EditCustomer from './components/customers/EditCustomer';
+import CreateCustomer from './components/customers/CreateCustomer';
 
 class App extends Component {
   renderRoutes = () => {
@@ -46,6 +48,8 @@ class App extends Component {
           <Route path="/teams" component={Teams}></Route>
           <Route path="/teammembers" component={TeamMembers}></Route>
           <Route path="/customers" component={Customers}></Route>
+          <Route path="/editcustomer" component={EditCustomer}></Route>
+          <Route path="/createcustomer" component={CreateCustomer}></Route>
           <Route component={NoMatch} />
         </Switch>
       </div>;

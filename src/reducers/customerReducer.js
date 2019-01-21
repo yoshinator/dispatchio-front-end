@@ -2,13 +2,15 @@ import {
   GET_CUSTOMERS,
   EDIT_CUSTOMER_FLAG,
   EDIT_CUSTOMER,
-  ADD_CUSTOMER_TO_EDIT
+  ADD_CUSTOMER_TO_EDIT,
+  CREATE_CUSTOMER_FLAG
 } from "./types";
 
 const initialState = {
   customers: [],
   customer: {},
-  editingCustomer: false
+  editingCustomer: false, 
+  createCustomer: false
 }
 
 
@@ -22,6 +24,8 @@ const customerReducer = (state = initialState, action) => {
       return { customers: state.customers.filter(customer => customer.id !== action.payload.id).concat(action.payload), customer: initialState.customer, editingCustomer: false }
     case ADD_CUSTOMER_TO_EDIT:
       return {...state, customer: action.payload}
+    case CREATE_CUSTOMER_FLAG: 
+      return {...state, createCustomer: true}
     default:
       return state;
   }
