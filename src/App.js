@@ -6,13 +6,14 @@ import Navbar from './components/navigation/Navbar'
 import Signup from './components/navigation/Signup'
 import Login from './components/navigation/Login'
 import Home from './components/Home'
-import Jobs from './components/Jobs'
+import Jobs from './components/jobs/Jobs'
+import CreateJob from './components/jobs/CreateJob'
 import Locations from './components/Locations'
 import NoMatch from './components/Nomatch'
 import Teams from './components/teams/Teams'
 import TeamMembers from './components/teams/TeamMembers'
-import  withAuth from './hocs/withAuth'
-import {fetchCurrentUser} from './actions/user'
+import Customers from './components/customers/Customers'
+import { fetchCurrentUser } from './actions/user'
 
 class App extends Component {
   renderRoutes = () => {
@@ -40,9 +41,11 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/jobs" component={Jobs}></Route>
+          <Route path="/createjob" component={CreateJob}></Route>
           <Route path="/locations" component={Locations}></Route>
           <Route path="/teams" component={Teams}></Route>
           <Route path="/teammembers" component={TeamMembers}></Route>
+          <Route path="/customers" component={Customers}></Route>
           <Route component={NoMatch} />
         </Switch>
       </div>;

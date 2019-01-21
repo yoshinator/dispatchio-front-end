@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Sidebar from './Sidebar'
+import {Redirect} from 'react-router-dom'
+import { editJobAction, addWeekAction, createJobAction } from '../../actions/job'
+import withRoleManager from '../../hocs/withRoleManager'
+import YOANHelpers from '../../helpers/helpers'
+import Sidebar from '../Sidebar'
 import Job from './Job'
-import { editJobAction } from '../actions/job'
-import { addWeekAction } from '../actions/job'
-import withRoleManager from '../hocs/withRoleManager'
-import YOANHelpers from '../helpers/helpers'
+import './job.css'
+
 const YOANHelper = new YOANHelpers();
 
 
 class Jobs extends Component {
-
+state = {
+  currentWeek: YOANHelper.getWeek()
+}
 
   componentDidMount(){
-    this.props.addWeek(YOANHelper.getWeek(), this.props.user.location.id);
+    this.props.addWeek(this.state.currentWeek, this.props.user.location.id);
   }
 
 
@@ -35,10 +39,13 @@ class Jobs extends Component {
     })
   }
 
-  renderMain = () => {
+  createJobButton =() => {
+    this.props.createJob()
+  }
 
+  renderMain = () => {
     if (!this.props.jobs.jobForm){
-      return YOANHelper.getWeek().map(day => {
+      return this.state.currentWeek.map(day => {
         return <div key={day} className="col-sm">
             <div className="list-group">
               <span className="list-group-item list-group-item-action active">
@@ -59,19 +66,23 @@ class Jobs extends Component {
   }
 
   render() {
-    
+    if(this.props.jobs.createJob){
+      return <Redirect to="/createjob"></Redirect>
+    } else {
     return <>
-    <button onClick={this.createJobButton} className="mx-auto" style={{display: "block"}} >Create New Job</button>
-    <Sidebar>  
-        <main className="col">
-          <div className="container">
-            <div className="row">
-              {this.renderMain()}
+        <Sidebar>
+          <main className="col">
+            <div className="container">
+             
+              <button onClick={this.createJobButton} className="mx-auto create-new-job" style={{ display: "block" }}>
+                Create New Job{" "}
+              </button>
+              <div className="row">{this.renderMain()}</div>
             </div>
-          </div>
-        </main>
-      </Sidebar>
+          </main>
+        </Sidebar>
       </>;
+    }
   }
 }
 
@@ -88,8 +99,12 @@ const mapDispatchToProps = (dispatch) => {
       addWeek: (week, location_id) => {
         dispatch(addWeekAction(week, location_id))
       },
-      editJob: (job) =>
+      editJob: (job) => {
         dispatch(editJobAction(job))
+      },
+      createJob: () => {
+         dispatch(createJobAction())
+      }
     };
 }
 

@@ -7,13 +7,15 @@ import companyReducer from './reducers/companyReducer';
 import jobReducer from  './reducers/jobReducer'
 import teamReducer from './reducers/teamReducer'
 import teamMemberReducer from './reducers/teamMemberReducer'
+import customerReducer from './reducers/customerReducer'
 
 const rootReducer = combineReducers({
   companyReducer,
   loginReducer,
   jobReducer,
   teamReducer,
-  teamMemberReducer
+  teamMemberReducer,
+  customerReducer
 });
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

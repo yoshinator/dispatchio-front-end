@@ -1,0 +1,31 @@
+.card.inner-card{
+  width: 80rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.mx-auto.create-new-job{
+  margin: 1rem;
+  border-radius: 5rem;
+  display: inline;
+}
+
+.fa-angle-left {
+  font-size: 2rem;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.week-navigator{
+  margin: auto;
+  text-align: center;
+  display: block;
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+.fa-angle-right {
+  font-size: 2rem;
+  float: right;
+  margin-bottom: 0;
+  cursor: pointer;
+}

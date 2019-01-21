@@ -15,6 +15,7 @@ export const EDIT_JOB       = "EDIT_JOB";
 export const UPDATE_JOB     = "UPDATE_JOB"
 export const GET_JOBS       = "GET_JOBS";
 export const GET_WEEK       = "GET_WEEK";
+export const CREATE_JOB     = "CREATE_JOB";
 
 //TEAMS REDUCER
 export const GET_TEAMS  = "GET_TEAMS";
@@ -23,4 +24,8 @@ export const GET_TEAMS  = "GET_TEAMS";
 export const GET_TEAM_MEMBERS = "GET_TEAM_MEMBERS";
 
 
-//GET CUSTOMERS
+//CUSTOMER REDUCER
+export const GET_CUSTOMERS = "GET_CUSTOMERS"
+export const EDIT_CUSTOMER_FLAG = "EDIT_CUSTOMER_FLAG"
+export const EDIT_CUSTOMER = "EDIT_CUSTOMER"
+export const ADD_CUSTOMER_TO_EDIT = "ADD_CUSTOMER_TO_EDIT";

@@ -16,7 +16,7 @@ const withRoleManager = WrappedComponent => {
           return <Redirect to="/" />;
         }
     }
-      }
+  }
 
   const mapStateToProps = state => {
     return {

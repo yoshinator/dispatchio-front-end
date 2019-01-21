@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import {Redirect} from 'react-router'
 import './job.css'
 
-import { updateJobAction } from '../actions/job';
-import { getTeamsAction } from '../actions/team';
-import YOANHelpers from '../helpers/helpers';
-import withAuth from '../hocs/withAuth';
-import withRoleManager from '../hocs/withRoleManager';
+import { updateJobAction } from '../../actions/job';
+import { getTeamsAction } from '../../actions/team';
+import YOANHelpers from '../../helpers/helpers';
+import withAuth from '../../hocs/withAuth';
+import withRoleManager from '../../hocs/withRoleManager';
 const timeHelper = new YOANHelpers();
 
 

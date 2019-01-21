@@ -1,3 +1,4 @@
+//JOB ACTION CREATOR 
 import JSONAPIAdapter from '../adapters/ApiAdapter'
 const JOBAdapter = new JSONAPIAdapter("api/v1/jobs/user_date");
 const JOBSAdapter = new JSONAPIAdapter("api/v1/jobs/week");
@@ -7,7 +8,6 @@ const JOBUpdater = new JSONAPIAdapter("api/v1/jobs")
 
 // ONLY FOR TO RENDER EMPLOYEE JOBS FOR THE DAY
 export const getEmployeeJobsAction = (day, id) => {
-  debugger
   return (dispatch) => {
     dispatch({ type: 'AUTHENTICATING USER' })
     const body = {
@@ -32,7 +32,7 @@ export const getEmployeeJobsAction = (day, id) => {
   }
 }// END getEmployeeJobsAction
 
-
+// takes a week array [1/19/2018,'1/20/2018',...,x/x/2018] and a location_id only for MANAGER and OWNER view.
 export const addWeekAction = (week, location_id) => {
   console.log("IN GET WEEK ACTION")
   return (dispatch) => {
@@ -78,3 +78,7 @@ export const updateJobAction = (body, jobId) => {
 export const editJobAction = (job) => {
   return ({type: "EDIT_JOB", payload: job})
 }
+
+export const createJobAction = () =>{
+  return ({type: "CREATE_JOB"})
+ }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Jobs from "../Jobs";
+import Jobs from "../jobs/Jobs";
 
 export default class Manager extends Component {
   render() {
