@@ -48,7 +48,7 @@ class Customers extends Component {
   render() {
     if (this.props.customers.editingCustomer) {
       return <Redirect to="/editcustomer"></Redirect>
-    }else if (this.props.customers.createCustomer){
+    }else if (this.props.customers.createCustomerFlag){
       return <Redirect to="/createcustomer" />;
     } else { 
     return <Sidebar>

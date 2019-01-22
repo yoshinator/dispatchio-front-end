@@ -11,7 +11,7 @@ const initialState = {
   customers: [],
   customer: {},
   editingCustomer: false, 
-  createCustomer: false
+  createCustomerFlag: false
 }
 
 
@@ -26,9 +26,9 @@ const customerReducer = (state = initialState, action) => {
     case ADD_CUSTOMER_TO_EDIT:
       return {...state, customer: action.payload}
     case CREATE_CUSTOMER_FLAG: 
-      return {...state, createCustomer: true}
+      return {...state, createCustomerFlag: true}
     case CREATE_CUSTOMER: 
-      return {...state, customers: [...state.customers, action.payload], createCustomer: false}
+      return {...state, customers: [...state.customers, action.payload], createCustomerFlag: false}
     default:
       return state;
   }
