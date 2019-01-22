@@ -39,7 +39,6 @@ class EditCustomer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log("THIS IS ", this.state.customer)
     this.props.editCustomer(this.state, this.state.id)
   }
   render() {
