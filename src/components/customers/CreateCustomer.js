@@ -44,7 +44,8 @@ class CreateCustomer extends Component {
 
 
   render() {
-    if (this.props.createCustomer) {
+
+    if (this.props.createCustomerFlag) {
       return <Sidebar>
         <div className="card inner-card">
           <h2 className="customer-title">
@@ -153,10 +154,10 @@ class CreateCustomer extends Component {
   }
 }
 
-export const mapStateTopProps = ({customerReducer: {customer, createCustomer}, loginReducer: {user} }) => {
+export const mapStateTopProps = ({customerReducer: {customer, createCustomerFlag}, loginReducer: {user} }) => {
   return {
     customer,
-    createCustomer,
+    createCustomerFlag,
     user
   }
 }
