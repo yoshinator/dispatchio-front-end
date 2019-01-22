@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Sidebar from '../Sidebar';
 import { getTeamMembersAction } from '../../actions/team';
+import { setTeamMemberAction } from "../../actions/team";
 import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
 
@@ -10,12 +12,22 @@ class TeamMembers extends Component {
   componentDidMount () {
     this.props.getTeamMembers(this.props.user.location.id);
   }
+  handleClick =(teamMember) => {
+    this.props.setTeamMemberAction(teamMember)
+  }
 
   teamMembersJsx = () => {
     if (this.props.teamMembers && this.props.teamMembers.length > 0) {
-      return this.props.teamMembers.map(teamMember =>
-        <p className="list-group-item">{teamMember.f_name}</p>
-      );
+      return this.props.teamMembers.map(teamMember => <div onClick={() => this.handleClick(teamMember)}>
+          {" "}
+          <p key={teamMember.id} className="list-group-item">
+            {teamMember.f_name} {teamMember.l_name} <Link
+              to={`/map/${teamMember.id}`}
+            >
+              Locate
+            </Link>
+          </p>
+        </div>);
     }
   }
 
@@ -53,6 +65,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTeamMembers: (location_id) => {
       dispatch(getTeamMembersAction(location_id));
+    },
+    setTeamMemberAction: (teamMember) =>{
+      dispatch(setTeamMemberAction(teamMember))
     }
   };
 }

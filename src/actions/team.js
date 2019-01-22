@@ -41,8 +41,11 @@ export const getTeamMembersAction =(locationId) => {
         }
       })
       .then(JSONResponse => {
-        console.log("TEAMS RESPONSE JSON", JSONResponse);
         dispatch({ type: "GET_TEAM_MEMBERS", payload: JSONResponse });
       });
     }
-}
+  }
+  export const setTeamMemberAction = (teamMember) => {
+  
+    return ({type: "SET_TEAM_MEMBER", payload: teamMember})
+  }

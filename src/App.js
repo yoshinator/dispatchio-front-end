@@ -9,10 +9,11 @@ import Home from './components/Home'
 import Jobs from './components/jobs/Jobs'
 import CreateJob from './components/jobs/CreateJob'
 import Locations from './components/Locations'
-import NoMatch from './components/Nomatch'
 import Teams from './components/teams/Teams'
 import TeamMembers from './components/teams/TeamMembers'
 import Customers from './components/customers/Customers'
+import GoogleMap from './components/GoogleMap'
+import NoMatch from './components/Nomatch'
 import { fetchCurrentUser } from './actions/user'
 import EditCustomer from './components/customers/EditCustomer';
 import CreateCustomer from './components/customers/CreateCustomer';
@@ -35,6 +36,7 @@ class App extends Component {
           <Route path="/customers" component={Customers}></Route>
           <Route path="/editcustomer" component={EditCustomer}></Route>
           <Route path="/createcustomer" component={CreateCustomer}></Route>
+          <Route path="/map/:id" component={GoogleMap}></Route>
           <Route component={NoMatch} />
         </Switch>
       </div>;
