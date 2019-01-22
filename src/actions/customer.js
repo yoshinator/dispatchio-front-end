@@ -42,6 +42,23 @@ export const editCustomerAction = (body, id) => {
   };
 };
 
+export const createCustomerAction = (body) => {
+  return dispatch => {
+    CUSTOMERAdapter.createItem(body)
+    .then(response => {
+      if (response.ok ){
+        return response.json();
+      } else {
+        console.log(response.json())
+        throw response;
+      }
+    })
+    .then(r => {
+        dispatch({type: "CREATE_CUSTOMER", payload: r})
+    } )
+  }
+}
+
 
 export const addCustomerToEditAction =(customer) => {
   return { type: "ADD_CUSTOMER_TO_EDIT" , payload: customer}
