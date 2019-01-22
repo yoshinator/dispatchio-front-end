@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
+import  { createCustomerAction } from '../../actions/customer'
 
 class CreateCustomer extends Component {
   state = {
@@ -35,7 +36,9 @@ class CreateCustomer extends Component {
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.createCustomer(this.state)
     return null
   }
 
@@ -159,6 +162,11 @@ export const mapStateTopProps = ({customerReducer: {customer, createCustomer}, l
 }
 
 export const mapDispatchToProps = (dispatch) => {
+  return {
+    createCustomer: (body) => {
+      dispatch(createCustomerAction(body))
+    }
+  }
 
 }
 export default withRoleManager(withAuth(connect(mapStateTopProps,mapDispatchToProps)(CreateCustomer))
