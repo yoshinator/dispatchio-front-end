@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { getEmployeeJobsAction } from '../../actions/job'
+import { updateUserAction } from '../../actions/user'
 import JSONAPIAdapter from '../../adapters/ApiAdapter'
 const JOBAdapter = new JSONAPIAdapter("api/v1/jobs")
 
@@ -30,27 +31,37 @@ class JobUpdater extends Component {
 
   //THIS IS WHERE WE NEED UPDATE THE DB
   success = (pos) => {
-                       const crd = pos.coords;
-                       console.log("Your current position is:");
-                       console.log(`Latitude : ${crd.latitude}`);
-                       console.log(`Longitude: ${crd.longitude}`);
-                       console.log(`More or less ${crd.accuracy} meters.`);
-                       const time = this.getCurrentFormattedTime();
-                       const delimiter = "\n-------------------\n";
-                       // Builds the body with status as the current status and description as the previous description plus the description that is being added with a time stamp and employee name.
-                       const body = { status: this.state.status, description: this.props.job.description + delimiter + " \nUpdated at: " + time + " \n " + "By: " + this.props.user.f_name + " " + this.props.user.l_name + this.state.description + delimiter };
-                       JOBAdapter.updateItem(body, this.props.job.id)
-                      .then(response => {if(response.ok)
-                        {
-                          this.props.getJobs(this.props.job.schedule_date, this.props.user.id)
-                        }
-                        else{
-                          console.error(response.error)
-                        }
-                      })
-                     }
+    const time = this.getCurrentFormattedTime();
+    
+    //methods available on crd: crd.latitude, crd.longtitude, crd.accuracy check console for others.
+    const crd = pos.coords;
 
-  //UPDATE HERE ALSO INCASE OF NAVIGATOR ISSUE
+    const userBody = {
+      lat: crd.latitude,
+      lon: crd.longitude,
+      upat: time
+    }
+
+    this.props.updateUser(userBody, this.props.user.id)
+
+    const delimiter = "\n-------------------\n";
+
+    // Builds the body with status as the current status and description as the previous description plus the description that is being added with a time stamp and employee name.
+    const body = { status: this.state.status, description: this.props.job.description + delimiter + " \nUpdated at: " + time + " \n  By: " + this.props.user.f_name + " " + this.props.user.l_name + this.state.description + delimiter };
+
+    // What the hell is doing here rookie! Put it where it belongs.
+    JOBAdapter.updateItem(body, this.props.job.id)
+    .then(response => {if(response.ok)
+    {
+      this.props.getJobs(this.props.job.schedule_date, this.props.user.id)
+    }
+    else{
+      console.error(response.error)
+    }
+  })
+  }
+
+  //UPDATE HERE ALSO INCASE OF NAVIGATOR ISSUE <-- UPDATE? you mean DISPATCH
   error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
@@ -59,7 +70,6 @@ class JobUpdater extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     navigator.geolocation.getCurrentPosition(this.success, this.error);
-    console.log(this.state)
   }
   render() {
     console.log(this.props)
@@ -96,6 +106,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getJobs: (day, user_id) => {
       dispatch(getEmployeeJobsAction(day, user_id))
+    },
+    updateUser: (body, user_id) => {
+      dispatch(updateUserAction(body, user_id))
     }
   }
 }

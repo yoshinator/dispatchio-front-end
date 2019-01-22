@@ -1,7 +1,8 @@
 import { GET_TEAM_MEMBERS } from './types'
 
 const initialState = {
-  team_members: []
+  team_members: [],
+  team_member: {}
 }
 
 const teamReducer = (state = initialState, action) => {

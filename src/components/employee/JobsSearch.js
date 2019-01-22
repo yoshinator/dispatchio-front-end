@@ -18,8 +18,6 @@ class JobsSearch extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.date);
-    console.log(this.props.user.id, this.props.getJobs);
     this.props.getJobs(this.state.date, this.props.user.id);
   };
 

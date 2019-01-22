@@ -3,6 +3,7 @@ export const ADD_LOCATION   = "ADD_LOCATION";
 
 // LOGIN REDUCER 
 export const ADD_USER             = "ADD_USER";
+export const UPDATE_USER          = "UPDATE_USER";
 export const SET_CURRENT_USER     = "SET_CURRENT_USER";
 export const AUTHENTICATING_USER  = "AUTHENTICATING_USER";
 export const AUTHENTICATED_USER   = "AUTHENTICATED_USER";

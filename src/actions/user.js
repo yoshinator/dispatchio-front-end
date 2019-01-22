@@ -1,17 +1,15 @@
 import JSONAPIAdapter from '../adapters/ApiAdapter'
 const LOGINAdapter = new JSONAPIAdapter("api/v1/users/login");
 const CURRENTUserAdapter = new JSONAPIAdapter("api/v1/users/current")
-const CREATEUserAdpater = new JSONAPIAdapter("api/v1/users")
+const USERAdapter = new JSONAPIAdapter("api/v1/users")
 
 
 
 export const loginAction = (email, password) => {
   return  (dispatch) => { 
-
     // dispatch({ type: 'AUTHENTICATING_USER' })
     dispatch(authenticatingUser())
     const body = { user: {email: email, password: password}}
-
     LOGINAdapter.createItem(body)
       .then(response => {
         if (response.ok) {
@@ -27,14 +25,14 @@ export const loginAction = (email, password) => {
       .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
   }
 }
+
 export const createUserAction = ({user_type, f_name, l_name, email, phone, password, company_id, location_id}) => {
   return  (dispatch) => { 
-
     // dispatch({ type: 'AUTHENTICATING_USER' })
     dispatch(authenticatingUser())
     const body = { user: { user_type, f_name, l_name, email, phone, password, company_id, location_id}}
 //  debugger
-    CREATEUserAdpater.createItem(body)
+    USERAdapter.createItem(body)
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -55,14 +53,31 @@ export const createUserAction = ({user_type, f_name, l_name, email, phone, passw
   }
 }
 
+
+  export const updateUserAction = (body, userId) => {
+    return (dispatch) => {
+      USERAdapter.updateItem(body, userId)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw response;
+          }
+        })
+        .then(JSONResponse => {
+          debugger
+          dispatch({ type: "UPDATE_USER", payload: JSONResponse });
+        });
+    }
+  }
+
 export const fetchCurrentUser = () => {
   // takes the token in localStorage and finds out who it belongs to
   return (dispatch) => {
     dispatch(authenticatingUser()) //tells the app we are fetching
     CURRENTUserAdapter.getAll()
-      .then((JSONResponse) => {
-        console.log("in FetchCurrentUser", JSONResponse)
-        return  dispatch(setCurrentUser(JSONResponse))
+      .then( response => {
+        return  dispatch(setCurrentUser(response))
         })
   }
 }
