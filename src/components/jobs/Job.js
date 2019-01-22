@@ -5,9 +5,9 @@ import './job.css'
 
 import { updateJobAction } from '../../actions/job';
 import { getTeamsAction } from '../../actions/team';
-import YOANHelpers from '../../helpers/helpers';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
+import YOANHelpers from '../../helpers/helpers';
 const timeHelper = new YOANHelpers();
 
 
@@ -28,9 +28,10 @@ class Job extends Component {
 
   componentDidMount(){
     this.props.getTeams(this.props.job.editingJob.location.id);
+    
     this.setState({
       date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date)
-    })
+    });
     this.setState({
       ...this.state,
       ...this.props.job.editingJob
@@ -38,10 +39,6 @@ class Job extends Component {
   } 
 
   handleChange = event => {
-    console.log(
-      event.target.name,
-      event.target.value
-    );
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -327,7 +324,7 @@ class Job extends Component {
               <div className="form-group">
                 Scheduled time: {timeHelper.formatTime(this.state.schedule_time)}
                 <label htmlFor="time" />
-                <input onChange={this.handleChange} id="time" className="form-control" value={this.state.time} type="time" name="schedule_time" min="" max="" />
+                <input onChange={this.handleChange} id="time" className="form-control" value={this.state.schedule_time} type="time" name="schedule_time" min="" max="" />
               </div>
 
               <div className="form-group">

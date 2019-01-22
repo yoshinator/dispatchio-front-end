@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import { editJobAction, addWeekAction, createJobAction } from '../../actions/job'
+import { editJobAction, addWeekAction, createJobFlagAction } from '../../actions/job'
 import withRoleManager from '../../hocs/withRoleManager'
 import YOANHelpers from '../../helpers/helpers'
 import Sidebar from '../Sidebar'
@@ -40,7 +40,7 @@ state = {
   }
 
   createJobButton =() => {
-    this.props.createJob()
+    this.props.createJobFlag()
   }
 
   renderMain = () => {
@@ -66,7 +66,7 @@ state = {
   }
 
   render() {
-    if(this.props.jobs.createJob){
+    if(this.props.jobs.createJobFlag){
       return <Redirect to="/createjob"></Redirect>
     } else {
     return <>
@@ -102,8 +102,8 @@ const mapDispatchToProps = (dispatch) => {
       editJob: (job) => {
         dispatch(editJobAction(job))
       },
-      createJob: () => {
-         dispatch(createJobAction())
+      createJobFlag: () => {
+         dispatch(createJobFlagAction())
       }
     };
 }

@@ -15,6 +15,7 @@ export const EDIT_JOB       = "EDIT_JOB";
 export const UPDATE_JOB     = "UPDATE_JOB"
 export const GET_JOBS       = "GET_JOBS";
 export const GET_WEEK       = "GET_WEEK";
+export const CREATE_JOB_FLAG= "CREATE_JOB_FLAG"
 export const CREATE_JOB     = "CREATE_JOB";
 
 //TEAMS REDUCER

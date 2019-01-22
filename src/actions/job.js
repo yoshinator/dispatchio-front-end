@@ -73,11 +73,28 @@ export const updateJobAction = (body, jobId) => {
   }
 }
 
+export const createJobAction = (body) => {
+  return dispatch => {
+    JOBUpdater.createItem(body)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.log(response.json());
+          throw response;
+        }
+      })
+      .then(r => {
+        dispatch({ type: "CREATE_JOB", payload: r });
+      });
+  }
+}
+
 // SETS THE JOB MANAGER AND EMPLOYEES ARE VIEWING TO EDIT OR CHANGE
 export const editJobAction = (job) => {
   return ({type: "EDIT_JOB", payload: job})
 }
 
-export const createJobAction = () =>{
-  return ({type: "CREATE_JOB"})
+export const createJobFlagAction = () =>{
+  return ({type: "CREATE_JOB_FLAG"})
  }

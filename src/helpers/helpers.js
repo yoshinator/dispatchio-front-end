@@ -37,6 +37,15 @@ export default class YOANHelpers {
     return dateArray[2] + "-" + dateArray[0] + "-" + dateArray[1]
   }
 
+  //dateTransform in reverse
+  formatDateSlash = date => {
+    const dateArray = date.split("-")
+    if (dateArray[2][0]==="0") dateArray[2] = dateArray[2][1]
+    if (dateArray[1][0]==="0") dateArray[1] = dateArray[1][1]
+    return dateArray[1]+"//"+dateArray[2]+"//"+dateArray[0]
+
+  }
+
   //takes an input in the form of 14:20 and returns 2:20 pm
   formatTime = time => {
     const timeArray = time.split(":")

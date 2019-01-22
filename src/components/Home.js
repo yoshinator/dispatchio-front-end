@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import withAuth from '../hocs/withAuth'
 
-import {addWeekAction} from '../actions/job'
 import Employee from './employee/Employee'
 import Manager from './manager/Manager';
 import Owner from './owner/Owner';
 import YOANHelpers from '../helpers/helpers';
+import { addWeekAction } from '../actions/job'
 import { getCustomersAction } from '../actions/customer';
+import { getTeamsAction } from '../actions/team'
 
 const timeHelper = new YOANHelpers ();
 
@@ -17,6 +18,7 @@ class Home extends Component {
     if (this.props.user.user.user_type === "employee" || this.props.user.user.user_type === "owner") {
       this.props.addWeek(timeHelper.getWeek(), this.props.user.user.location.id)
       this.props.getCustomers(this.props.user.user.location.id)
+      this.props.getTeams(this.props.user.user.location.id)
     }
   }
 
@@ -60,6 +62,9 @@ function mapDispatchToProps(dispatch) {
     }, 
     getCustomers: (locationId) => {
       dispatch(getCustomersAction(locationId))
+    },
+    getTeams: (locationId) => {
+      dispatch(getTeamsAction(locationId))
     }
   }
 }

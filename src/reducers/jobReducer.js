@@ -1,10 +1,10 @@
-import { ADD_JOB, EDIT_JOB, GET_JOBS, UPDATE_JOB, GET_WEEK, CREATE_JOB} from './types'
+import { ADD_JOB, EDIT_JOB, GET_JOBS, UPDATE_JOB, GET_WEEK, CREATE_JOB_FLAG, CREATE_JOB} from './types'
 
 const initialState = {
   jobs: [],
   editingJob: {},
   jobForm: false,
-  createJob: false
+  createJobFlag: false
 }
 
 
@@ -25,8 +25,10 @@ const jobReducer = (state = initialState, action) => {
       //replaces the updated job in our state's jobs array.
     case UPDATE_JOB:
        return { jobs: state.jobs.filter(job => job.id !== action.payload.id).concat(action.payload), editingJob: initialState.editingJob, jobForm: false}
+    case CREATE_JOB_FLAG: 
+       return {...state, jobForm: false, createJobFlag: true}
     case CREATE_JOB: 
-       return {...state, jobForm: false, createJob: true}
+      return { ...state, jobs: [...state.jobs, action.payload], createJobFlag: false}
     default:
       return state;
   }

@@ -18,21 +18,6 @@ import EditCustomer from './components/customers/EditCustomer';
 import CreateCustomer from './components/customers/CreateCustomer';
 
 class App extends Component {
-  renderRoutes = () => {
-    if (this.props.user){
-     if (this.props.user.user_type === "owner" || this.props.user.user_type === "manager"){
-       return (
-         <>
-
-       </>
-       )
-     }
-    }
-  }
-
-  componentDidMount() { 
-    this.renderRoutes()
-  }
 
 
   render() {
