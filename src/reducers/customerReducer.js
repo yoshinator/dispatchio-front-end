@@ -3,7 +3,8 @@ import {
   EDIT_CUSTOMER_FLAG,
   EDIT_CUSTOMER,
   ADD_CUSTOMER_TO_EDIT,
-  CREATE_CUSTOMER_FLAG
+  CREATE_CUSTOMER_FLAG,
+  CREATE_CUSTOMER
 } from "./types";
 
 const initialState = {
@@ -26,6 +27,8 @@ const customerReducer = (state = initialState, action) => {
       return {...state, customer: action.payload}
     case CREATE_CUSTOMER_FLAG: 
       return {...state, createCustomer: true}
+    case CREATE_CUSTOMER: 
+      return {...state, customers: [...state.customers, action.payload], createCustomer: false}
     default:
       return state;
   }
