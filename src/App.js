@@ -17,6 +17,7 @@ import NoMatch from './components/Nomatch'
 import { fetchCurrentUser } from './actions/user'
 import EditCustomer from './components/customers/EditCustomer';
 import CreateCustomer from './components/customers/CreateCustomer';
+import EditTeamMember from './components/teams/EditTeamMember';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/locations" component={Locations}></Route>
           <Route path="/teams" component={Teams}></Route>
           <Route path="/teammembers" component={TeamMembers}></Route>
+          <Route path="/editteammember" component={EditTeamMember}></Route>
           <Route path="/customers" component={Customers}></Route>
           <Route path="/editcustomer" component={EditCustomer}></Route>
           <Route path="/createcustomer" component={CreateCustomer}></Route>

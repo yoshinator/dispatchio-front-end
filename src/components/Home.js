@@ -8,7 +8,7 @@ import Owner from './owner/Owner';
 import YOANHelpers from '../helpers/helpers';
 import { addWeekAction } from '../actions/job'
 import { getCustomersAction } from '../actions/customer';
-import { getTeamsAction } from '../actions/team'
+import { getTeamsAction, getTeamMembersAction } from '../actions/team'
 
 const timeHelper = new YOANHelpers ();
 
@@ -19,6 +19,7 @@ class Home extends Component {
       this.props.addWeek(timeHelper.getWeek(), this.props.user.user.location.id)
       this.props.getCustomers(this.props.user.user.location.id)
       this.props.getTeams(this.props.user.user.location.id)
+      this.props.getTeamMembers(this.props.user.user.location.id)
     }
   }
 
@@ -65,6 +66,9 @@ function mapDispatchToProps(dispatch) {
     },
     getTeams: (locationId) => {
       dispatch(getTeamsAction(locationId))
+    },
+    getTeamMembers: (locationId) => {
+      dispatch(getTeamMembersAction(locationId));
     }
   }
 }

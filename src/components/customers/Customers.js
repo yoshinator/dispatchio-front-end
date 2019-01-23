@@ -15,7 +15,11 @@ class Customers extends Component {
         <p className="list-group-item">
           {customer.name} {customer.city}{" "}
           <a href={`tel:${customer.phone}`}>{customer.phone} </a>
-          <button type="button" onClick={() => this.handleClick(customer)} className="btn btn-primary">
+          <button
+            type="button"
+            onClick={() => this.handleClick(customer)}
+            className="btn btn-primary float-right"
+          >
             edit
           </button>
         </p>
@@ -28,7 +32,7 @@ class Customers extends Component {
       <div className="col-sm">
         <div className="list-group">
           <span className="list-group-item list-group-item-action active">
-            Customers      
+            Customers
           </span>
           {this.customersJSX()}
         </div>
