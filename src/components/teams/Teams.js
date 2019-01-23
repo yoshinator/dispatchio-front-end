@@ -16,8 +16,8 @@ class Teams extends Component {
 
  
   teamsJsx = () => {
-    if (this.props.teams.teams&& this.props.teams.teams.length > 0){
-      return this.props.teams.teams.map(team => 
+    if (this.props.teams&& this.props.teams.length > 0){
+      return this.props.teams.map(team => 
           <p className="list-group-item">{team.name}</p>
         );
     }
@@ -39,6 +39,9 @@ class Teams extends Component {
     render() {
       return <Sidebar>
         <main className="col">
+          <button onClick={this.createNewTeamMember} className="mx-auto create-new-job" style={{ display: "block" }}>
+            Create New Team{" "}
+          </button>
           <div className="container">
             <div className="row">
               {this.renderTeams()}
@@ -50,10 +53,10 @@ class Teams extends Component {
 
 }
 
-const mapStateToProps = (state) => ({
-  teams: state.teamReducer,
-  jobs: state.jobReducer,
-  user: state.loginReducer.user
+const mapStateToProps = ({teamReducer: {teams}, jobReducer: {jobs}, loginReducer: {user}}) => ({
+  teams,
+  jobs,
+  user
 })
 
 const mapDispatchToProps = (dispatch) => {
