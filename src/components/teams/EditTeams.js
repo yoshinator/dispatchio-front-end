@@ -5,15 +5,15 @@ import Sidebar from '../Sidebar';
 import { Redirect } from 'react-router-dom';
 
 
-class EditTeamMember extends Component {
+class EditTeam extends Component {
   state = {
-    f_name: "",
-    l_name: ""
+    name: "",
+    location_id: ""
   }
 
   componentDidMount() {
     this.setState({
-      ...this.props.team_member
+      ...this.props.team
     })
   }
 
@@ -25,39 +25,30 @@ class EditTeamMember extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.updateTeamMember(this.state, this.state.id)
+    this.props.updateTeam(this.state, this.state.id)
   }
   render() {
-    if (this.props.teamMemberEditFlag) {
+    if (this.props.editingTeam) {
       return <Sidebar>
         <div className="card inner-card">
-          <h2 className="job-edit-title">EDIT EMPLOYEE INFO</h2>
+          <h2 className="job-edit-title">TEAM INFO</h2>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">First Name</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="f_name" id="f_name" value={this.state.f_name} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="name">Last Name</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="l_name" id="l_name" value={this.state.l_name} />
+                <label htmlFor="name">Name</label>
+                <input onChange={this.handleChange} type="text" className="form-control" name="f_name" id="name" value={this.state.name} />
               </div>
 
               <div className="form-group">
                 <label htmlFor="phone">Phone</label>
                 <input onChange={this.handleChange} type="phone" className="form-control" name="phone" id="phone" value={this.state.phone} />
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input onChange={this.handleChange} type="email" className="form-control" name="email" id="email" value={this.state.email} />
-              </div>
 
               <div className="form-group">
                 <label htmlFor="teamMemberType">Team Member Type</label>
                 <select onChange={this.handleChange} className="form-control" name="state" id="state">
                   <option value="" selected></option>
-                  <option value="manager">Manager</option>
-                  <option value="employee">Employee</option>
+                  {this.getEmployees}
                 </select>
               </div>
 
@@ -69,14 +60,17 @@ class EditTeamMember extends Component {
         </div>
       </Sidebar>;
     }
-    else return <Redirect to="/teammembers"></Redirect>
+    else return <Redirect to="/teams"></Redirect>
   }
 }
 
 
 
-const mapStateToProps = ({ teamReducer: team_member }) => {
-  return team_member
+const mapStateToProps = ({ teamReducer: team, editingTeam }) => {
+  return {
+    team, 
+    editingTeam
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -87,4 +81,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditTeamMember)
+export default connect(mapStateToProps, mapDispatchToProps)(EditTeam)

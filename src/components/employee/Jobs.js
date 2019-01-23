@@ -6,11 +6,10 @@ import Job from './Job'
  class Jobs extends React.Component {
 
   render(){
-    return (
-      <div className="accordion" id="accordionExample">
-      <Job/>
-      </div>
-      )
+    return <div className="accordion" id="accordionExample">
+          <Job />
+        </div>
+      ;
   }
   
 }
