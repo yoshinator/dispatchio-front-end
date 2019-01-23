@@ -5,7 +5,8 @@ import Sidebar from '../Sidebar'
 import {
   getTeamsAction,
   changeTeamCreateFlagAction,
-  changeTeamEditFlagAction
+  changeTeamEditFlagAction,
+  setTeamAction
 } from "../../actions/team";
 import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
@@ -22,7 +23,7 @@ const TeamUsers = ({users}) => {
  })
 }
 const hello  = () => {
-  debugger
+
 }
 
 class Teams extends Component {
@@ -39,7 +40,7 @@ class Teams extends Component {
       return this.props.teams.map(team => 
           <p className="list-group-item">{team.name} <TeamUsers users={team.users}></TeamUsers>   <button
           type="button"
-          onClick={() => this.handleAdd()}
+          onClick={() => this.handleAdd(team)}
           className="btn btn-primary float-right">
           Add
           </button></p>
@@ -48,7 +49,8 @@ class Teams extends Component {
     }
   }
 
-  handleAdd = () =>{
+  handleAdd = (team) =>{
+    this.props.setTeam(team)
     this.props.editTeamFlag()
   }
 
@@ -111,6 +113,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     editTeamFlag: () => {
       dispatch(changeTeamEditFlagAction());
+    },
+    setTeam: (team) => {
+      dispatch(setTeamAction(team))
     }
 
   }

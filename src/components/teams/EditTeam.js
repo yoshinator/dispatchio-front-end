@@ -29,12 +29,13 @@ class EditTeam extends Component {
     this.props.editTeam(this.state)
   }
   render() {
-
+    debugger
     if (this.props.editingTeam) {
+
       return <Sidebar>
         <div className="card inner-card">
           <h2 className="customer-title">
-            Create New Team
+            Add Team Members to Team {this.props.team.name}
                 </h2>
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>

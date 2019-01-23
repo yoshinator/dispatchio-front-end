@@ -125,3 +125,7 @@ export const updateTeamAction =() => {
   export const changeTeamCreateFlagAction =() => {
     return ({ type: "CHANGE_TEAM_CREATE_FLAG"})
   }
+
+  export const setTeamAction = (team) => {
+    return ({type: "SET_TEAM", payload: team})
+  }
