@@ -4,17 +4,20 @@ import { Redirect } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
-import { updateTeamAction } from '../../actions/team'
+import { addMemberToTeamAction } from "../../actions/team";
 
 class EditTeam extends Component {
   state = {
     name: "",
-    location_id: ""
+    location_id: "",
+    team_id: "",
+    user_id: ""
   }
 
   componentDidMount() {
     this.setState({
-      location_id: this.props.user.location.id
+      location_id: this.props.user.location.id,
+      team_id: this.props.team.id
     })
   }
 
@@ -24,12 +27,17 @@ class EditTeam extends Component {
     })
   }
 
+  getTeamMembers = () => {
+    return this.props.team_members.map(member => {
+      return <option value={member.id}> {member.f_name}, {member.l_name}</option>
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.editTeam(this.state)
+    this.props.addMemberToTeam(this.state)
   }
   render() {
-    debugger
     if (this.props.editingTeam) {
 
       return <Sidebar>
@@ -40,10 +48,15 @@ class EditTeam extends Component {
           <div className="card-body">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Team Name</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="name" id="name" value={this.state.name} />
-              </div>
-              <button type="submit" class="btn btn-primary">Create</button>
+                <label htmlFor="team-member-select">
+                  Choose Team Member to add.
+                      </label>
+                <select onChange={this.handleChange} className="form-control" name="user_id" id="user_id" >
+                  <option value=""></option>
+                  {this.getTeamMembers()}
+                  </select>
+                  </div>
+              <button type="submit" className="btn btn-primary">Create</button>
             </form>
           </div>
         </div>
@@ -53,19 +66,20 @@ class EditTeam extends Component {
   }
 }
 
-export const mapStateTopProps = ({ teamReducer: { team, creatingTeam, editingTeam }, loginReducer: { user } }) => {
+export const mapStateTopProps = ({ teamReducer: { team, creatingTeam, editingTeam }, teamMemberReducer: {team_members}, loginReducer: { user } }) => {
   return {
     team,
     creatingTeam,
     editingTeam,
+    team_members,
     user
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    updateTeam: (body) => {
-      dispatch(updateTeamAction(body))
+    addMemberToTeam: (body) => {
+      dispatch(addMemberToTeamAction(body));
     }
   }
 

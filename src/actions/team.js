@@ -2,6 +2,7 @@ import JSONAPIAdapter from "../adapters/ApiAdapter";
 const TeamLocationAdapter = new JSONAPIAdapter('api/v1/teams/location');
 const TeamMemberAdapter = new JSONAPIAdapter('api/v1/users/location');
 const TEAMAdapter = new JSONAPIAdapter('api/v1/teams');
+const TEAMMEMBERAdapter = new JSONAPIAdapter('api/v1/team_users')
 const USERAdapter = new JSONAPIAdapter('api/v1/users');
 
 
@@ -117,8 +118,20 @@ export const changeTeamEditFlagAction = () => {
   return ({type: "CHANGE_TEAM_EDIT_FLAG"})
 }
 
-export const updateTeamAction =() => {
-  
+export const addMemberToTeamAction =(body) => {
+  return dispatch => {
+    TEAMMEMBERAdapter.createItem(body)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(JSONResponse => {
+        dispatch({ type: "EDIT_TEAM", payload: JSONResponse });
+      })
+  }
 }
 
 
