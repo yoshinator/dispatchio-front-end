@@ -80,7 +80,7 @@ class CreateTeamMember extends Component {
                 <label htmlFor="jobPaymentSelect">
                   Team Member Type
                       </label>
-                <select onChange={this.handleChange} className="form-control" name="state" id="state" >
+                <select onChange={this.handleChange} className="form-control" name="user_type" id="user_type" >
                   <option value="employee">Employee</option>
                   <option value="manager">Manager</option>
                 </select>

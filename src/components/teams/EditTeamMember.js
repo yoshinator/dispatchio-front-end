@@ -8,7 +8,10 @@ import { Redirect } from 'react-router-dom';
 class EditTeamMember extends Component {
   state ={
     f_name: "",
-    l_name: ""
+    l_name: "",
+    phone: "",
+    email: "",
+    user_type: ""
   }
 
   componentDidMount () {
@@ -54,7 +57,7 @@ class EditTeamMember extends Component {
 
                 <div className="form-group">
                   <label htmlFor="teamMemberType">Team Member Type</label>
-                  <select onChange={this.handleChange} className="form-control" name="state" id="state">
+                  <select onChange={this.handleChange} className="form-control" name="user_type" id="user_type">
                     <option value="" selected></option>
                     <option value="manager">Manager</option>
                     <option value="employee">Employee</option>
