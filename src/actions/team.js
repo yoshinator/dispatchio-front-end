@@ -3,6 +3,9 @@ const TeamLocationAdapter = new JSONAPIAdapter('api/v1/teams/location');
 const TeamMemberAdapter = new JSONAPIAdapter('api/v1/users/location');
 const TEAMAdapter = new JSONAPIAdapter('api/v1/teams');
 const TEAMMEMBERAdapter = new JSONAPIAdapter('api/v1/team_users')
+const TEAMMEMBERREMOVALAdapter = new JSONAPIAdapter(
+  "api/v1/team_users/remove"
+);
 const USERAdapter = new JSONAPIAdapter('api/v1/users');
 
 
@@ -133,7 +136,22 @@ export const addMemberToTeamAction =(body) => {
       })
   }
 }
-
+//body = { user_id: userId, team_id: teamId}
+export const removeTeamMemberFromTeam = (body) => {
+  return dispatch => {
+    TEAMMEMBERREMOVALAdapter.createItem(body)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(JSONResponse => {
+        dispatch({ type: "EDIT_TEAM", payload: JSONResponse });
+      });
+  };
+}
 
   export const changeTeamCreateFlagAction =() => {
     return ({ type: "CHANGE_TEAM_CREATE_FLAG"})
