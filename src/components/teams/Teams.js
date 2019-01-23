@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import Sidebar from '../Sidebar'
 import { getTeamsAction } from '../../actions/team'
 import withAuth from '../../hocs/withAuth'
@@ -37,6 +38,7 @@ class Teams extends Component {
   }
 
     render() {
+      if (!this.props.editingTeam && !this.props.creatingTeam)
       return <Sidebar>
         <main className="col">
           <button onClick={this.createNewTeamMember} className="mx-auto create-new-job" style={{ display: "block" }}>
@@ -49,12 +51,18 @@ class Teams extends Component {
           </div>
         </main>
       </Sidebar>;
+      else if (this.props.creatingTeam){
+        return <Redirect to="/createteam"></Redirect>
+      }
   }
 
 }
 
-const mapStateToProps = ({teamReducer: {teams}, jobReducer: {jobs}, loginReducer: {user}}) => ({
+const mapStateToProps = ({teamReducer: {teams, team, editingTeam, creatingTeam }, jobReducer: {jobs}, loginReducer: {user}}) => ({
   teams,
+  team, 
+  editingTeam,
+  creatingTeam,
   jobs,
   user
 })

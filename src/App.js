@@ -19,6 +19,8 @@ import EditCustomer from './components/customers/EditCustomer';
 import CreateCustomer from './components/customers/CreateCustomer';
 import EditTeamMember from './components/teams/EditTeamMember';
 import CreateTeamMember from './components/teams/CreateTeamMember';
+import CreateTeam from './components/teams/CreateTeam';
+import EditTeam from './components/teams/EditTeam';
 
 class App extends Component {
 
@@ -34,6 +36,8 @@ class App extends Component {
           <Route path="/createjob" component={CreateJob}></Route>
           <Route path="/locations" component={Locations}></Route>
           <Route path="/teams" component={Teams}></Route>
+          <Route path="/createteam" component={CreateTeam}></Route>
+          <Route path="/editteam" component={EditTeam}></Route>
           <Route path="/teammembers" component={TeamMembers}></Route>
           <Route path="/editteammember" component={EditTeamMember}></Route>
           <Route path="/createteammember" component={CreateTeamMember}></Route>
