@@ -1,4 +1,4 @@
-import { GET_TEAMS, SET_TEAM, CHANGE_TEAM_EDIT_FLAG, EDIT_TEAM, CREATE_TEAM_FLAG, CREATE_TEAM } from './types'
+import { GET_TEAMS, SET_TEAM, CHANGE_TEAM_EDIT_FLAG, EDIT_TEAM, CHANGE_TEAM_CREATE_FLAG, CREATE_TEAM } from './types'
 
 const initialState = {
  teams: [],
@@ -27,12 +27,11 @@ const teamReducer = (state = initialState, action) => {
           ), team: initialState.team, editingTeam: false
       };
 
-    case CREATE_TEAM_FLAG:
+    case CHANGE_TEAM_CREATE_FLAG:
       return { ...state, creatingTeam: true }
 
     case CREATE_TEAM:
       return { ...state, teams: [...state.teams, action.payload], creatingTeam: false }
-
     
     default:
       return state;

@@ -1,7 +1,9 @@
 import JSONAPIAdapter from "../adapters/ApiAdapter";
-const TeamAdapter = new JSONAPIAdapter('api/v1/teams/location');
-const TeamMemberAdapter = new JSONAPIAdapter('api/v1/users/location')
-const USERAdapter = new JSONAPIAdapter('api/v1/users')
+const TeamLocationAdapter = new JSONAPIAdapter('api/v1/teams/location');
+const TeamMemberAdapter = new JSONAPIAdapter('api/v1/users/location');
+const TEAMAdapter = new JSONAPIAdapter('api/v1/teams');
+const USERAdapter = new JSONAPIAdapter('api/v1/users');
+
 
 export const getTeamsAction =(locationId) => {
   return (dispatch) => {
@@ -11,7 +13,7 @@ export const getTeamsAction =(locationId) => {
 
       }
     }
-    TeamAdapter.createItem(body)
+    TeamLocationAdapter.createItem(body)
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -94,3 +96,32 @@ export const createNewTeamMemberFlagAction =() => {
     return ({type: "SET_TEAM_MEMBER", payload: teamMember})
   }
 
+export const createTeamAction = (team) => {
+  return dispatch => {
+    TEAMAdapter.createItem(team)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then(JSONResponse => {
+
+        dispatch({ type: "CREATE_TEAM", payload: JSONResponse });
+      })
+  }
+}
+
+export const changeTeamEditFlagAction = () => {
+  return ({type: "CHANGE_TEAM_EDIT_FLAG"})
+}
+
+export const updateTeamAction =() => {
+  
+}
+
+
+  export const changeTeamCreateFlagAction =() => {
+    return ({ type: "CHANGE_TEAM_CREATE_FLAG"})
+  }

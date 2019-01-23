@@ -2,10 +2,28 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import Sidebar from '../Sidebar'
-import { getTeamsAction } from '../../actions/team'
+import {
+  getTeamsAction,
+  changeTeamCreateFlagAction,
+  changeTeamEditFlagAction
+} from "../../actions/team";
 import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
 
+
+const TeamUsers = ({users}) => {
+ return users.map(user => {
+   return <span>
+       {" "}
+     {user.f_name}, {user.l_name[0]} <span onClick={hello}>
+         <i className="far fa-times-circle" />
+       </span>
+     </span>;
+ })
+}
+const hello  = () => {
+  debugger
+}
 
 class Teams extends Component {
   componentDidMount(){
@@ -19,9 +37,19 @@ class Teams extends Component {
   teamsJsx = () => {
     if (this.props.teams&& this.props.teams.length > 0){
       return this.props.teams.map(team => 
-          <p className="list-group-item">{team.name}</p>
+          <p className="list-group-item">{team.name} <TeamUsers users={team.users}></TeamUsers>   <button
+          type="button"
+          onClick={() => this.handleAdd()}
+          className="btn btn-primary float-right">
+          Add
+          </button></p>
+          
         );
     }
+  }
+
+  handleAdd = () =>{
+    this.props.editTeamFlag()
   }
 
   renderTeams = () => {
@@ -37,11 +65,15 @@ class Teams extends Component {
     )
   }
 
+  handleClick = () => {
+    this.props.createTeamFlag();
+  }
+
     render() {
       if (!this.props.editingTeam && !this.props.creatingTeam)
       return <Sidebar>
         <main className="col">
-          <button onClick={this.createNewTeamMember} className="mx-auto create-new-job" style={{ display: "block" }}>
+          <button onClick={this.handleClick} className="mx-auto create-new-job" style={{ display: "block" }}>
             Create New Team{" "}
           </button>
           <div className="container">
@@ -53,6 +85,8 @@ class Teams extends Component {
       </Sidebar>;
       else if (this.props.creatingTeam){
         return <Redirect to="/createteam"></Redirect>
+      }else if (this.props.editingTeam){
+        return <Redirect to="/editteam"></Redirect>
       }
   }
 
@@ -71,7 +105,14 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTeam: (location_id) => {
       dispatch(getTeamsAction(location_id));
+    },
+    createTeamFlag: ()=> {
+      dispatch(changeTeamCreateFlagAction());
+    },
+    editTeamFlag: () => {
+      dispatch(changeTeamEditFlagAction());
     }
+
   }
 }
 

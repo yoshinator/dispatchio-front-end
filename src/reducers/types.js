@@ -23,8 +23,8 @@ export const CREATE_JOB     = "CREATE_JOB";
 export const GET_TEAMS  = "GET_TEAMS";
 export const SET_TEAM = "SET_TEAM";
 export const CHANGE_TEAM_EDIT_FLAG = "CHANGE_TEAM_EDIT_FLAG";
-export const EDIT_TEAM = "EDIT_TEAM";
-export const CREATE_TEAM_FLAG = "CREATE_TEAM_FLAG";
+export const EDIT_TEAM = "EDIT_TEAM"
+export const CHANGE_TEAM_CREATE_FLAG = "CHANGE_TEAM_CREATE_FLAG";
 export const CREATE_TEAM = "CREATE_TEAM";
 
 
