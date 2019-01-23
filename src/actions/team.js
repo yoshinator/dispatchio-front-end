@@ -67,6 +67,23 @@ export const getTeamMembersAction =(locationId) => {
         });
     };
   }
+//user object
+export const createTeamMemberAction = ( user ) => {
+  return dispatch => {
+    USERAdapter.createItem(user)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw response;
+      }
+    })
+    .then(JSONResponse => {
+
+      dispatch({type: "CREATE_TEAM_MEMBER", payload: JSONResponse});
+    })
+  }
+}
 
 export const createNewTeamMemberFlagAction =() => {
   return { type: "CREATE_TEAM_MEMBER_FLAG" }

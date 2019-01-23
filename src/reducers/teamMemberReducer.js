@@ -37,7 +37,7 @@ const teamMemberReducer = (state = initialState, action) => {
       return { ...state, createTeamMemberFlag: true }
 
     case CREATE_TEAM_MEMBER:
-      return { ...state, team_members: [...state.customers, action.payload], createTeamMemberFlag: false }
+      return { ...state, team_members: [...state.team_members, action.payload], createTeamMemberFlag: false }
       
     default:
       return state;

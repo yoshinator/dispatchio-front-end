@@ -18,6 +18,7 @@ import { fetchCurrentUser } from './actions/user'
 import EditCustomer from './components/customers/EditCustomer';
 import CreateCustomer from './components/customers/CreateCustomer';
 import EditTeamMember from './components/teams/EditTeamMember';
+import CreateTeamMember from './components/teams/CreateTeamMember';
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
           <Route path="/teams" component={Teams}></Route>
           <Route path="/teammembers" component={TeamMembers}></Route>
           <Route path="/editteammember" component={EditTeamMember}></Route>
+          <Route path="/createteammember" component={CreateTeamMember}></Route>
           <Route path="/customers" component={Customers}></Route>
           <Route path="/editcustomer" component={EditCustomer}></Route>
           <Route path="/createcustomer" component={CreateCustomer}></Route>

@@ -60,7 +60,7 @@ class TeamMembers extends Component {
 
   render() {
 
-    if (!this.props.teamMembers.teamMemberEditFlag) {
+    if (!this.props.teamMembers.teamMemberEditFlag && !this.props.teamMembers.createTeamMemberFlag) {
       return <Sidebar>
           <main className="col">
           <button onClick={this.createNewTeamMember} className="mx-auto create-new-job" style={{ display: "block" }}>
@@ -71,9 +71,13 @@ class TeamMembers extends Component {
             </div>
           </main>
         </Sidebar>;
-    }else return <Redirect to="/editteammember"></Redirect>
+    } else if (this.props.teamMembers.createTeamMemberFlag) { 
+      return <Redirect to="/createteammember"></Redirect>
+    }
+      else {return <Redirect to="/editteammember"></Redirect>
+    }
   }
-}
+} 
 
 // PLEASE DESTRUCTURE THE STATE SO I DON'T HAVE TO THIS. `this.props.teamMembers.team_members`
 const mapStateToProps = (state) => ({
