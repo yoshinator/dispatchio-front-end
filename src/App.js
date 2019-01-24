@@ -21,6 +21,7 @@ import EditTeamMember from './components/teams/EditTeamMember';
 import CreateTeamMember from './components/teams/CreateTeamMember';
 import CreateTeam from './components/teams/CreateTeam';
 import EditTeam from './components/teams/EditTeam';
+import './css/mystyles.css'
 
 class App extends Component {
 

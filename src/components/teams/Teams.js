@@ -15,7 +15,7 @@ import withRoleManager from '../../hocs/withRoleManager'
 
 const TeamUsers = ({ users, removeUser, teamId}) => {
  return users.map(user => {
-   return <span>
+   return <span >
        {" "}
      {user.f_name}, {user.l_name[0]} <span onClick={() => removeUser(user.id, teamId)}>
          <i className="far fa-times-circle" />
@@ -41,15 +41,23 @@ class Teams extends Component {
  
   teamsJsx = () => {
     if (this.props.teams&& this.props.teams.length > 0){
-      return this.props.teams.map(team => 
-          <p key={team.id} className="list-group-item">{team.name} <TeamUsers users={team.users} removeUser={this.removeUser} teamId={team.id}></TeamUsers>   <button
-          type="button"
-          onClick={() => this.handleAdd(team)}
-          className="btn btn-primary float-right">
-          Add
-          </button></p>
-          
-        );
+      return this.props.teams.map(team => (
+        <p key={team.id} className="list-group-item no-cursor">
+          {team.name} <i class="fas fa-bars" /> Team Members: 
+          <TeamUsers
+            users={team.users}
+            removeUser={this.removeUser}
+            teamId={team.id}
+          />{" "}
+          <button
+            type="button"
+            onClick={() => this.handleAdd(team)}
+            className="btn btn-primary float-right"
+          >
+            Add
+          </button>
+        </p>
+      ));
     }
   }
 
@@ -78,17 +86,15 @@ class Teams extends Component {
     render() {
       if (!this.props.editingTeam && !this.props.creatingTeam)
       return <Sidebar>
-        <main className="col">
-          <button onClick={this.handleClick} className="mx-auto create-new-job" style={{ display: "block" }}>
-            Create New Team{" "}
-          </button>
-          <div className="container">
-            <div className="row">
-              {this.renderTeams()}
+          <main className="col">
+            <button onClick={this.handleClick} className="mx-auto create-new-button" style={{ display: "block" }}>
+              <span>Create New Team</span>{" "}
+            </button>
+            <div className="container">
+              <div className="row">{this.renderTeams()}</div>
             </div>
-          </div>
-        </main>
-      </Sidebar>;
+          </main>
+        </Sidebar>;
       else if (this.props.creatingTeam){
         return <Redirect to="/createteam"></Redirect>
       }else if (this.props.editingTeam){

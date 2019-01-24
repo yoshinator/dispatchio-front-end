@@ -63,8 +63,8 @@ class TeamMembers extends Component {
     if (!this.props.teamMembers.teamMemberEditFlag && !this.props.teamMembers.createTeamMemberFlag) {
       return <Sidebar>
           <main className="col">
-          <button onClick={this.createNewTeamMember} className="mx-auto create-new-job" style={{ display: "block" }}>
-            Create New Team Member{" "}
+          <button onClick={this.createNewTeamMember} className="mx-auto create-new-button" style={{ display: "block" }}>
+            <span>Add Team Member</span>{" "}
           </button>
             <div className="container">
               <div className="row">{this.renderTeamMembers()}</div>

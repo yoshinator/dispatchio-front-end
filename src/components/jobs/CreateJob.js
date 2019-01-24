@@ -81,7 +81,7 @@ class CreateJob extends Component {
     if (this.props.createJobFlag) {
       return <Sidebar>
           <div className="card inner-card">
-            <h2 className="customer-title">Create New Customer</h2>
+            <h2 className="customer-title">Create New Job</h2>
             <div className="card-body">
               <form onSubmit={this.handleSubmit} autoComplete="one">
                 <div className="form-group">
@@ -92,7 +92,7 @@ class CreateJob extends Component {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="team_id">Customer</label>
+                  <label htmlFor="team_id">Team</label>
                   <select onChange={this.handleChange} className="form-control" name="team_id" id="team_id">
                   <option value="" selected />
                     {this.getTeamOptions()}

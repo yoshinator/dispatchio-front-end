@@ -1,8 +1,6 @@
 import React from 'react'
 import {  Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import "./navigation.css";
-
 import { logOutAction } from '../../actions/user'
 
 
@@ -23,7 +21,7 @@ function Navbar(props) {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <Link className="nav-link" to="/">
                 Home
