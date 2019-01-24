@@ -74,8 +74,8 @@ state = {
           <main className="col">
             <div className="container">
              
-              <button onClick={this.createJobButton} className="mx-auto create-new-job" style={{ display: "block" }}>
-                Create New Job{" "}
+              <button onClick={this.createJobButton} className="mx-auto create-new-button" style={{ display: "block" }}>
+              <span>Create New Job</span>{" "}
               </button>
               <div className="row">{this.renderMain()}</div>
             </div>

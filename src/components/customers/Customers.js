@@ -56,16 +56,16 @@ class Customers extends Component {
       return <Redirect to="/createcustomer" />;
     } else { 
     return <Sidebar>
-      <main className="col">
-        <button onClick={this.createNewCustomer} className="mx-auto create-new-job" style={{ display: "block" }}>
-          Create New Customer{" "}
-        </button>
+        <main className="col">
+          <button onClick={this.createNewCustomer} className="mx-auto create-new-button" style={{ display: "block" }}>
+            <span>Create Customer</span>{" "}
+          </button>
 
-        <div className="container">
-          <div className="row">{this.renderCustomers()}</div>
-        </div>
-      </main>
-    </Sidebar>;
+          <div className="container">
+            <div className="row">{this.renderCustomers()}</div>
+          </div>
+        </main>
+      </Sidebar>;
     }
   }
 }
