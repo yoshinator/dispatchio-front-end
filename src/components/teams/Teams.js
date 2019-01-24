@@ -43,7 +43,7 @@ class Teams extends Component {
     if (this.props.teams&& this.props.teams.length > 0){
       return this.props.teams.map(team => (
         <p key={team.id} className="list-group-item no-cursor">
-          {team.name} <i class="fas fa-bars" /> Team Members: 
+          {team.name} <i class="fas fa-bars" /> 
           <TeamUsers
             users={team.users}
             removeUser={this.removeUser}
