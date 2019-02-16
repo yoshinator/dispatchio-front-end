@@ -1,7 +1,7 @@
 
 class JSONAPIAdapter {
   constructor(endpoint) {
-    this.endpoint = `http://localhost:3000/${endpoint}`
+    this.endpoint = `http://dispatchio.io:3000/${endpoint}`
     this.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
