@@ -14,6 +14,7 @@ import withRoleManager from '../../hocs/withRoleManager'
 
 
 const TeamUsers = ({ users, removeUser, teamId}) => {
+  if (users.length > 0){
  return users.map(user => {
    return <span >
        {" "}
@@ -22,6 +23,7 @@ const TeamUsers = ({ users, removeUser, teamId}) => {
        </span>
      </span>;
  })
+}
 }
 
 class Teams extends Component {
