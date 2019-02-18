@@ -66,6 +66,12 @@ state = {
   }
 
   render() {
+
+    if(this.props.user.location.id === 1 && this.props.user.user_type === "owner"){
+      return <Redirect to="/createcompany"></Redirect>
+    } else if (this.props.user.location.id === 1 && this.props.user.user_type === "manager"){
+      return <Redirect to="/joincompany"></Redirect>
+    }
     if(this.props.jobs.createJobFlag){
       return <Redirect to="/createjob"></Redirect>
     } else {
