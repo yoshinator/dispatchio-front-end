@@ -4,8 +4,8 @@ import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { getCompaniesAction } from '../../actions/companies'
 
-class JoinCompany extends Component {
 
+class JoinCompany extends Component {
 
   state = {
     companySearch: "",
@@ -40,6 +40,17 @@ class JoinCompany extends Component {
    })
   }
 
+  selectCompany = (event) => {
+    this.setState({
+      chosenCompany: this.state.foundCompanies.find(company => company.id == event.target.value)
+    }, this.showLocation)
+    
+  }
+
+  showLocations = () => {
+    
+  }
+
   render() {
 
     if (this.props.user === null || this.props.user.location.id !== 1) {
@@ -47,15 +58,14 @@ class JoinCompany extends Component {
     } else
 
       return (
-        <div>
+        <div className="eighty">
           <h1>Find Your Company</h1>
 
             <div className="form-group">
               <label htmlFor="companySearch">Type to start searching for your company</label>
-              <input onChange={this.handleChange} className="form-control" name="companySearch" id="companySearch"></input>
+              <input onChange={this.handleChange} className="form-control" name="companySearch" id="companySearch" autoComplete="off"></input>
+              <select className="thirty" size="4" onChange={this.selectCompany} defaultValue=""> {this.displayCompanies()}</select>
             </div>
-          <select>{this.displayCompanies()}</select>
-
 
         </div>
       )
