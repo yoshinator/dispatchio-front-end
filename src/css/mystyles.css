@@ -74,3 +74,17 @@ p.list-group-item {
   opacity: 1;
   right: 0;
 }
+
+.eighty {
+  width: 80%;
+  margin: auto;
+}
+
+.fifty {
+  width: 50%;
+  margin: auto;
+}
+
+.thirty {
+  width: 30%;
+}
