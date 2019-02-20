@@ -27,6 +27,7 @@ class Job extends Component {
   };
 
   componentDidMount(){
+    //Gets the teams for the current location
     this.props.getTeams(this.props.job.editingJob.location.id);
     
     this.setState({

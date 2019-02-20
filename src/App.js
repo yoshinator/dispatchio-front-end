@@ -21,6 +21,8 @@ import EditTeamMember from './components/teams/EditTeamMember';
 import CreateTeamMember from './components/teams/CreateTeamMember';
 import CreateTeam from './components/teams/CreateTeam';
 import EditTeam from './components/teams/EditTeam';
+import CreateCompany from './components/firstlogin/CreateCompany';
+import JoinCompany from './components/firstlogin/JoinCompany';
 import './css/mystyles.css'
 
 class App extends Component {
@@ -45,6 +47,8 @@ class App extends Component {
           <Route path="/customers" component={Customers}></Route>
           <Route path="/editcustomer" component={EditCustomer}></Route>
           <Route path="/createcustomer" component={CreateCustomer}></Route>
+          <Route path="/createcompany" component={CreateCompany}></Route>
+          <Route path="/joincompany" component={JoinCompany}></Route>
           <Route path="/map/:id" component={GoogleMap}></Route>
           <Route component={NoMatch} />
         </Switch>
@@ -63,10 +67,5 @@ class App extends Component {
   }
 
 export default
-  withRouter(
-    connect(
-      mapsStateToProps,
-      mapDispatchToProps
-    )(App)
-  );
+  withRouter(connect(mapsStateToProps,mapDispatchToProps)(App));
 
