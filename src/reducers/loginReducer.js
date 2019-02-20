@@ -1,4 +1,4 @@
-import { ADD_USER, SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, LOG_OUT} from './types'
+import { ADD_USER, SET_CURRENT_USER, AUTHENTICATING_USER, AUTHENTICATED_USER, FAILED_LOGIN, LOG_OUT, UPDATE_USER} from './types'
 
 const initialState = {
   JWTToken: "",
@@ -34,6 +34,9 @@ const  loginReducer = (state = initialState, action) => {
     case LOG_OUT:
       console.log("IN loginReducer", state)
       return initialState;
+
+      case UPDATE_USER: 
+      return {...state, user: action.payload}
 
     default:
       console.log("In default case")
