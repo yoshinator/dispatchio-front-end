@@ -54,6 +54,7 @@ export const createUserAction = ({user_type, f_name, l_name, email, phone, passw
 }
 
 // IS THIS EVEN USED???? MIGHT BE HANDLED IN ./team.js
+// HAHA I'm using it now!
   export const updateUserAction = (body, userId) => {
     return (dispatch) => {
       USERAdapter.updateItem(body, userId)
@@ -65,7 +66,6 @@ export const createUserAction = ({user_type, f_name, l_name, email, phone, passw
           }
         })
         .then(JSONResponse => {
-          debugger
           dispatch({ type: "UPDATE_USER", payload: JSONResponse });
         });
     }
