@@ -5,14 +5,22 @@ import { connect } from 'react-redux'
 import { getCompaniesAction } from '../../actions/companies'
 
 
+//functional component that is outside of the JoinCompany component. It is needed to display locations on this same page (component)
+const Locations = ({locations}) => {
+  if(locations && locations.length > 0){
+    return locations.map(location => {
+      return <option key={location.id} value={location.id}>Name: {location.nickname}, ID: {location.id}</option>
+    })
+  }else return ""
+
+}
+
 class JoinCompany extends Component {
 
   state = {
     companySearch: "",
     foundCompanies: [],
-    chosenCompany: {},
-    foundLocations: [],
-    chosenLocation: {}
+    chosenCompany: {}
   }
 
   componentDidMount(){
@@ -43,11 +51,7 @@ class JoinCompany extends Component {
   selectCompany = (event) => {
     this.setState({
       chosenCompany: this.state.foundCompanies.find(company => company.id == event.target.value)
-    }, this.showLocation)
-    
-  }
-
-  showLocations = () => {
+    })
     
   }
 
@@ -64,14 +68,16 @@ class JoinCompany extends Component {
             <div className="form-group">
               <label htmlFor="companySearch">Type to start searching for your company</label>
               <input onChange={this.handleChange} className="form-control" name="companySearch" id="companySearch" autoComplete="off"></input>
-              <select className="thirty" size="4" onChange={this.selectCompany} defaultValue=""> {this.displayCompanies()}</select>
+              <select className="thirty" size="3" onChange={this.selectCompany} defaultValue=""> {this.displayCompanies()}</select>
             </div>
-
+            <h2>Find your main work location</h2>
+            <select className="thirty" size="3" defaultValue="">
+            <Locations locations={this.state.chosenCompany.locations}></Locations>
+          </select>
         </div>
       )
   }
 }
-
 
 const mapsStateToProps = ({loginReducer: {user}, companiesReducer: {companies}}) => {
   return {
