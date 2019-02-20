@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { getCompaniesAction } from '../../actions/companies'
+import { updateUserAction } from '../../actions/user'
 
 
 //functional component that is outside of the JoinCompany component. It is needed to display locations on this same page (component)
@@ -20,7 +21,8 @@ class JoinCompany extends Component {
   state = {
     companySearch: "",
     foundCompanies: [],
-    chosenCompany: {}
+    chosenCompany: {},
+    chosenLocation: []
   }
 
   componentDidMount(){
@@ -52,7 +54,20 @@ class JoinCompany extends Component {
     this.setState({
       chosenCompany: this.state.foundCompanies.find(company => company.id == event.target.value)
     })
-    
+  }
+
+  selectLocation = (event) => {
+    this.setState({
+      chosenLocation: [this.state.chosenCompany.locations.find(location => location.id == event.target.value )]
+    })
+  }
+
+  updateUserLocation = () => {
+    const body ={
+      company_id: this.state.chosenCompany.id,
+      location_id: this.state.chosenLocation[0].id
+    }
+    this.props.updateUser(body, this.props.user.id)
   }
 
   render() {
@@ -71,9 +86,10 @@ class JoinCompany extends Component {
               <select className="thirty" size="3" onChange={this.selectCompany} defaultValue=""> {this.displayCompanies()}</select>
             </div>
             <h2>Find your main work location</h2>
-            <select className="thirty" size="3" defaultValue="">
+            <select className="thirty" size="3" onChange={this.selectLocation} defaultValue="">
             <Locations locations={this.state.chosenCompany.locations}></Locations>
           </select>
+          {this.state.chosenLocation.length > 0 ? <button onClick={this.updateUserLocation} className="create-new-button" style={{ display: "block" }}>Go</button> : null} 
         </div>
       )
   }
@@ -90,6 +106,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCompanies: () => {
       dispatch(getCompaniesAction())
+    },
+    updateUser: (body, userId) => {
+      dispatch(updateUserAction(body, userId))
     }
   };
 }
