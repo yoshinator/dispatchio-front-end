@@ -4,6 +4,8 @@ import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { getCompaniesAction } from '../../actions/companies'
 import { updateUserAction } from '../../actions/user'
+import withAuth from '../../hocs/withAuth';
+
 
 
 //functional component that is outside of the JoinCompany component. It is needed to display locations on this same page (component)
@@ -115,4 +117,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default connect(mapsStateToProps, mapDispatchToProps)(JoinCompany)
+export default withAuth(connect(mapsStateToProps, mapDispatchToProps)(JoinCompany))

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import {updateUserAction} from '../../actions/user'
 import { createCompanyAction } from '../../actions/companies'
+import withAuth from '../../hocs/withAuth';
 
 class CreateCompany extends Component {
 
@@ -105,4 +106,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateCompany)
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(CreateCompany))
