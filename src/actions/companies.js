@@ -10,3 +10,21 @@ export const getCompaniesAction = () => {
     })
   }
 }
+
+export const createCompanyAction = (body) => {
+  return (dispatch) => {COMPANIESAdapter.createItem(body)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.log(response.json())
+        throw response;
+      }
+    })
+    .then(r => {
+      dispatch({ type: "UPDATE_USER", payload: { location: r.locations[0]} })
+    })
+  }
+
+}
+  
