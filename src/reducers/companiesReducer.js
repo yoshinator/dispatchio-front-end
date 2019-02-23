@@ -1,4 +1,4 @@
-import { GET_COMPANIES } from './types'
+import { GET_COMPANIES, ADD_COMPANY } from './types'
 
 const initialState = {
   companies: []
@@ -9,6 +9,9 @@ const companiesReducer = (state = initialState, action) => {
     
     case GET_COMPANIES:
       return { ...initialState, companies:  action.payload };
+
+      case ADD_COMPANY: 
+        return {...state, companies: [...state.companies, action.payload]}
     default:
       return state;
       
