@@ -52,16 +52,18 @@ class JoinCompany extends Component {
 
   selectCompany = (event) => {
     this.setState({
-      chosenCompany: this.state.foundCompanies.find(company => company.id == event.target.value)
+      chosenCompany: this.state.foundCompanies.find(company => company.id === event.target.value)
     })
   }
 
   selectLocation = (event) => {
     this.setState({
-      chosenLocation: [this.state.chosenCompany.locations.find(location => location.id == event.target.value )]
+      chosenLocation: [this.state.chosenCompany.locations.find(location => location.id === event.target.value )]
     })
   }
 
+
+  // This updates the users work location
   updateUserLocation = () => {
     const body ={
       company_id: this.state.chosenCompany.id,
