@@ -49,6 +49,7 @@ class App extends Component {
           <Route path="/createcustomer" component={CreateCustomer}></Route>
           <Route path="/createcompany" component={CreateCompany}></Route>
           <Route path="/joincompany" component={JoinCompany}></Route>
+          <Route path="/createcompany" component={CreateCompany}></Route>
           <Route path="/map/:id" component={GoogleMap}></Route>
           <Route component={NoMatch} />
         </Switch>
