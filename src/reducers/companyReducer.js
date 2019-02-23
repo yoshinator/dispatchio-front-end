@@ -1,4 +1,4 @@
-import { ADD_LOCATION, } from './types'
+import { ADD_LOCATION } from './types'
 
 const initialState = {
   users: [],

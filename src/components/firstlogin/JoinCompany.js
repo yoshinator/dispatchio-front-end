@@ -4,6 +4,8 @@ import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { getCompaniesAction } from '../../actions/companies'
 import { updateUserAction } from '../../actions/user'
+import withAuth from '../../hocs/withAuth';
+
 
 
 //functional component that is outside of the JoinCompany component. It is needed to display locations on this same page (component)
@@ -52,16 +54,18 @@ class JoinCompany extends Component {
 
   selectCompany = (event) => {
     this.setState({
-      chosenCompany: this.state.foundCompanies.find(company => company.id == event.target.value)
+      chosenCompany: this.state.foundCompanies.find(company => company.id === event.target.value)
     })
   }
 
   selectLocation = (event) => {
     this.setState({
-      chosenLocation: [this.state.chosenCompany.locations.find(location => location.id == event.target.value )]
+      chosenLocation: [this.state.chosenCompany.locations.find(location => location.id === event.target.value )]
     })
   }
 
+
+  // This updates the users work location
   updateUserLocation = () => {
     const body ={
       company_id: this.state.chosenCompany.id,
@@ -113,4 +117,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default connect(mapsStateToProps, mapDispatchToProps)(JoinCompany)
+export default withAuth(connect(mapsStateToProps, mapDispatchToProps)(JoinCompany))

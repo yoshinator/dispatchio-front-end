@@ -47,6 +47,7 @@ class Home extends Component {
     else{
       return <div>
               <h1>Other</h1>
+              {window.location.reload()}
       </div>
     }
   }
