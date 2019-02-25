@@ -53,14 +53,15 @@ class JoinCompany extends Component {
   }
 
   selectCompany = (event) => {
+    event.persist()
     this.setState({
-      chosenCompany: this.state.foundCompanies.find(company => company.id === event.target.value)
+      chosenCompany: this.state.foundCompanies.find(company => company.id === parseInt(event.target.value))
     })
   }
 
   selectLocation = (event) => {
     this.setState({
-      chosenLocation: [this.state.chosenCompany.locations.find(location => location.id === event.target.value )]
+      chosenLocation: [this.state.chosenCompany.locations.find(location => location.id === parseInt(event.target.value))]
     })
   }
 
@@ -91,7 +92,7 @@ class JoinCompany extends Component {
             </div>
             <h2>Find your main work location</h2>
             <select className="thirty" size="3" onChange={this.selectLocation} defaultValue="">
-            {this.state.chosenCompany ? <Locations locations={this.state.chosenCompany.locations}></Locations> : <div>Searching...</div>}
+            {this.state.chosenCompany ? <Locations locations={this.state.chosenCompany.locations}></Locations> : <option> Searching...</option>}
             
           </select>
           {this.state.chosenLocation.length > 0 ? <button onClick={this.updateUserLocation} className="create-new-button" style={{ display: "block" }}>Go</button> : null} 
