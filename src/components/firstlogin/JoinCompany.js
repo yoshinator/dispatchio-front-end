@@ -91,7 +91,7 @@ class JoinCompany extends Component {
             </div>
             <h2>Find your main work location</h2>
             <select className="thirty" size="3" onChange={this.selectLocation} defaultValue="">
-            {this.state.chosenCompany.locations ? <Locations locations={this.state.chosenCompany.locations}></Locations> : <div>Searching...</div>}
+            {this.state.chosenCompany ? <Locations locations={this.state.chosenCompany.locations}></Locations> : <div>Searching...</div>}
             
           </select>
           {this.state.chosenLocation.length > 0 ? <button onClick={this.updateUserLocation} className="create-new-button" style={{ display: "block" }}>Go</button> : null} 
