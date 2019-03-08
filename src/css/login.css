@@ -1,0 +1,30 @@
+
+.card.login {
+  top: 10%;
+  background: rgba(255, 192, 203, 0.75);
+  width: 50%;
+  margin: auto;
+
+}
+.login.screen{
+  margin: 1px;
+  background: url(https://source.unsplash.com/random/?city,street);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.about.card {
+  top: 15%;
+  width: 50%;
+  margin: auto;
+  background: rgba(255, 192, 203, 0.75);
+
+}
+
+.about.card p{
+  font-size: 1.15em;
+  text-indent: 3%;
+  line-height: 1.5em;
+  margin-left: 5%;
+}
