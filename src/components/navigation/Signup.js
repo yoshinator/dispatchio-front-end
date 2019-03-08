@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createUserAction } from '../../actions/user'
 import { Redirect } from 'react-router'
+import About from "../About"
 
 class Signup extends Component{
   state = {
@@ -40,7 +41,7 @@ class Signup extends Component{
 
   render(){
     return this.props.loggedIn ? (
-      <Redirect to="/" />) : <div className="card">
+      <Redirect to="/" />) : <div className="login screen"><div className="card login">
       <div className="card-body">
         <form onSubmit={this.handleSubmit} autoComplete="one">
           <div className="form-group">
@@ -98,6 +99,8 @@ class Signup extends Component{
           </button>
         </form>
       </div>
+    </div>
+    <About />
     </div>;
   }
 }
