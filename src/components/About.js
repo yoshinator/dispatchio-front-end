@@ -7,11 +7,11 @@ export default function About() {
         Dispatchio is built for companies with a mobile workforce that need
         to dispatch teams and keep track of jobs. Dispatchio helps you locate
         your team members and get constant status updates about the jobs that
-        they are on.{" "}
+        they are on.
       </p>
       <p>
         Dispatchio also helps you manage your customers and keep a record of the jobs they have done. We are
-        in beta now so dispatchio is totally free to use.
+        in this is a pre beta release of Dispatchio that is totally free to use.
       </p>
       <p>
       Please beware that this product is in development and might not always
