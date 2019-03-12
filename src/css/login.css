@@ -8,21 +8,26 @@
 }
 .login.screen{
   margin: 1px;
+  overflow: scroll;
   background: url(https://source.unsplash.com/random/?city,street);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
 }
 
-.about.card {
+.login.screen img {
+  position: fixed;
+}
+
+.about.card{
   top: 15%;
   width: 50%;
-  margin: auto;
-  background: rgba(255, 192, 203, 0.75);
-
+  background: rgba(255, 192, 203);
+  margin: 5% auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  padding: 1.5%;
 }
 
-.about.card p{
+.about.card p {
   font-size: 1.15em;
   text-indent: 3%;
   line-height: 1.5em;
