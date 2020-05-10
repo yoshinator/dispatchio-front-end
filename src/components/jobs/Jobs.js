@@ -7,7 +7,6 @@ import withRoleManager from '../../hocs/withRoleManager'
 import YOANHelpers from '../../helpers/helpers'
 import Sidebar from '../Sidebar'
 import Job from './Job'
-import './job.css'
 
 const YOANHelper = new YOANHelpers();
 
@@ -32,7 +31,7 @@ state = {
     const filteredJobs = this.props.jobs.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
       return (
-        <small><p key={job.id} onClick={() => this.handleClick(job.id)} className="list-group-item">
+        <small><p key={job.id} onClick={() => this.handleClick(job.id)} >
             {job.city}  {job.customer.name} <a href={`tel:+1${job.customer.phone}`}>{job.customer.phone}</a>
           </p></small>
 
@@ -47,9 +46,9 @@ state = {
   renderMain = () => {
     if (!this.props.jobs.jobForm){
       return this.state.currentWeek.map(day => {
-        return <div key={day} className="col-sm">
-            <div className="list-group">
-              <span className="list-group-item list-group-item-action active">
+        return <div key={day} >
+            <div >
+              <span>
                 {day}{" "}
               </span>
               {this.renderJobsJsx(day)}
@@ -78,13 +77,13 @@ state = {
     } else {
     return <>
         <Sidebar>
-          <main className="col">
-            <div className="container">
+          <main>
+            <div>
              
-              <button onClick={this.createJobButton} className="mx-auto create-new-button" style={{ display: "block" }}>
+              <button onClick={this.createJobButton} >
               <span>Create New Job</span>{" "}
               </button>
-              <div className="row">{this.renderMain()}</div>
+              <div>{this.renderMain()}</div>
             </div>
           </main>
         </Sidebar>

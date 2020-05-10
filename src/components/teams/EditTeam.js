@@ -41,22 +41,22 @@ class EditTeam extends Component {
     if (this.props.editingTeam) {
 
       return <Sidebar>
-        <div className="card inner-card">
-          <h2 className="customer-title">
+        <div>
+          <h2>
             Add Team Members to Team {this.props.team.name}
                 </h2>
-          <div className="card-body">
+          <div>
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div>
                 <label htmlFor="team-member-select">
                   Choose Team Member to add.
                       </label>
-                <select onChange={this.handleChange} className="form-control" name="user_id" id="user_id" >
+                <select onChange={this.handleChange} name="user_id" id="user_id" >
                   <option value=""></option>
                   {this.getTeamMembers()}
                   </select>
                   </div>
-              <button type="submit" className="btn btn-primary">Create</button>
+              <button type="submit">Create</button>
             </form>
           </div>
         </div>

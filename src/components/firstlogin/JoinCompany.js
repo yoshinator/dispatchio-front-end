@@ -82,20 +82,20 @@ class JoinCompany extends Component {
     } else
 
       return (
-        <div className="eighty">
+        <div>
           <h1>Find Your Company</h1>
 
-            <div className="form-group">
+            <div>
               <label htmlFor="companySearch">Type to start searching for your company</label>
-              <input onChange={this.handleChange} className="form-control" name="companySearch" id="companySearch" autoComplete="off"></input>
-              <select className="thirty" size="3" onChange={this.selectCompany} defaultValue=""> {this.displayCompanies()}</select>
+              <input onChange={this.handleChange} name="companySearch" id="companySearch" autoComplete="off"></input>
+              <select size="3" onChange={this.selectCompany} defaultValue=""> {this.displayCompanies()}</select>
             </div>
             <h2>Find your main work location</h2>
-            <select className="thirty" size="3" onChange={this.selectLocation} defaultValue="">
+            <select size="3" onChange={this.selectLocation} defaultValue="">
             {this.state.chosenCompany ? <Locations locations={this.state.chosenCompany.locations}></Locations> : <option> Searching...</option>}
             
           </select>
-          {this.state.chosenLocation.length > 0 ? <button onClick={this.updateUserLocation} className="create-new-button" style={{ display: "block" }}>Go</button> : null} 
+          {this.state.chosenLocation.length > 0 ? <button onClick={this.updateUserLocation} >Go</button> : null} 
         </div>
       )
   }

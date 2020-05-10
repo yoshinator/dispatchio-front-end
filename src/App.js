@@ -23,7 +23,6 @@ import CreateTeam from './components/teams/CreateTeam';
 import EditTeam from './components/teams/EditTeam';
 import CreateCompany from './components/firstlogin/CreateCompany';
 import JoinCompany from './components/firstlogin/JoinCompany';
-import './css/mystyles.css'
 
 class App extends Component {
 

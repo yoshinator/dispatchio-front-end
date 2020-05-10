@@ -34,17 +34,17 @@ class CreateTeam extends Component {
 
     if (this.props.creatingTeam) {
       return <Sidebar>
-        <div className="card inner-card">
-          <h2 className="customer-title">
+        <div >
+          <h2 >
             Create New Team
                 </h2>
-          <div className="card-body">
+          <div >
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div >
                 <label htmlFor="name">Team Name</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="name" id="name" value={this.state.name} />
+                <input onChange={this.handleChange} type="text" name="name" id="name" value={this.state.name} />
               </div>
-              <button type="submit" class="btn btn-primary">Create</button>
+              <button type="submit">Create</button>
             </form>
           </div>
         </div>

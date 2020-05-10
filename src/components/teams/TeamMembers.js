@@ -28,14 +28,14 @@ class TeamMembers extends Component {
 
     if (this.props.teamMembers.team_members && this.props.teamMembers.team_members.length > 0) {
       return this.props.teamMembers.team_members.map(teamMember => {
-        return <div>
+        return <div key={Date.now()*Math.random()}>
             {" "}
-            <p key={teamMember.id} className="list-group-item">
+            <p key={teamMember.id}>
               {teamMember.f_name} {teamMember.l_name} <span onClick={() => this.handleClick(teamMember)}>
                 {" "}
                 <Link to={`/map/${teamMember.id}`}>Locate</Link>
               </span>
-              <button onClick={() => this.handleEdit(teamMember)} type="button" className="btn btn-primary float-right">
+              <button onClick={() => this.handleEdit(teamMember)} type="button">
                 {" "}
                 Edit{" "}
               </button>
@@ -47,9 +47,9 @@ class TeamMembers extends Component {
 
   renderTeamMembers = () => {
     return (
-      <div className="col-sm">
-        <div className="list-group">
-          <span className="list-group-item list-group-item-action active">
+      <div>
+        <div>
+          <span>
             Team Members
       </span>
           {this.teamMembersJsx()}
@@ -62,12 +62,12 @@ class TeamMembers extends Component {
 
     if (!this.props.teamMembers.teamMemberEditFlag && !this.props.teamMembers.createTeamMemberFlag) {
       return <Sidebar>
-          <main className="col">
-          <button onClick={this.createNewTeamMember} className="mx-auto create-new-button" style={{ display: "block" }}>
+          <main>
+          <button onClick={this.createNewTeamMember} >
             <span>Add Team Member</span>{" "}
           </button>
-            <div className="container">
-              <div className="row">{this.renderTeamMembers()}</div>
+            <div>
+              <div>{this.renderTeamMembers()}</div>
             </div>
           </main>
         </Sidebar>;

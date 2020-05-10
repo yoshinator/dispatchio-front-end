@@ -33,38 +33,38 @@ class EditTeamMember extends Component {
   render() {
     if (this.props.teamMemberEditFlag) {
       return <Sidebar>
-          <div className="card inner-card">
-            <h2 className="job-edit-title">EDIT EMPLOYEE INFO</h2>
-            <div className="card-body">
+          <div>
+            <h2 >EDIT EMPLOYEE INFO</h2>
+            <div>
               <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
+                <div>
                   <label htmlFor="name">First Name</label>
-                  <input onChange={this.handleChange} type="text" className="form-control" name="f_name" id="f_name" value={this.state.f_name} />
+                  <input onChange={this.handleChange} type="text" name="f_name" id="f_name" value={this.state.f_name} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="name">Last Name</label>
-                  <input onChange={this.handleChange} type="text" className="form-control" name="l_name" id="l_name" value={this.state.l_name} />
+                  <input onChange={this.handleChange} type="text" name="l_name" id="l_name" value={this.state.l_name} />
                 </div>
 
-                <div className="form-group">
+                <div>
                   <label htmlFor="phone">Phone</label>
-                  <input onChange={this.handleChange} type="phone" className="form-control" name="phone" id="phone" value={this.state.phone} />
+                  <input onChange={this.handleChange} type="phone" name="phone" id="phone" value={this.state.phone} />
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="email">Email</label>
-                  <input onChange={this.handleChange} type="email" className="form-control" name="email" id="email" value={this.state.email} />
+                  <input onChange={this.handleChange} type="email" name="email" id="email" value={this.state.email} />
                 </div>
 
-                <div className="form-group">
+                <div>
                   <label htmlFor="teamMemberType">Team Member Type</label>
-                  <select onChange={this.handleChange} className="form-control" name="user_type" id="user_type">
+                  <select onChange={this.handleChange}name="user_type" id="user_type">
                     <option value="" selected></option>
                     <option value="manager">Manager</option>
                     <option value="employee">Employee</option>
                   </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit">
                   Update
                 </button>
               </form>

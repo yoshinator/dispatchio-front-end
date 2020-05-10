@@ -6,6 +6,7 @@ const USERAdapter = new JSONAPIAdapter("api/v1/users")
 
 
 export const loginAction = (email, password) => {
+  console.log(password)
   return  (dispatch) => { 
     // dispatch({ type: 'AUTHENTICATING_USER' })
     dispatch(authenticatingUser())

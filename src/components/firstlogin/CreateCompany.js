@@ -51,35 +51,35 @@ class CreateCompany extends Component {
       return <Redirect to="/"></Redirect>
     } else {
       return (
-        <div className="card inner-card">
-          <h2 className="company-title">
+        <div>
+          <h2>
             Create New Company
                 </h2>
-          <div className="card-body">
+          <div >
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div>
                 <label htmlFor="name">Company Name</label>
-                <input onChange={this.handleChangeCompany} type="text" minLength="4" className="form-control" name="name" id="name" value={this.state.company.name} />
+                <input onChange={this.handleChangeCompany} type="text" minLength="4" name="name" id="name" value={this.state.company.name} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="phone">Company Primary Phone</label>
-                <input onChange={this.handleChangeCompany} type="tel" pattern="[0-9]{10}" placeholder="2015551111" className="form-control" name="phone" id="phone" value={this.state.company.phone} />
+                <input onChange={this.handleChangeCompany} type="tel" pattern="[0-9]{10}" placeholder="2015551111" name="phone" id="phone" value={this.state.company.phone} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="website"> Company Website</label>
-                <input onChange={this.handleChangeCompany} type="website" className="form-control" name="website" minLength="4" id="website" value={this.state.company.website} />
+                <input onChange={this.handleChangeCompany} type="website" name="website" minLength="4" id="website" value={this.state.company.website} />
               </div>
 
               <h2>Main Location</h2>
-              <div className="form-group">
+              <div>
                 <label htmlFor="nickname">Location Nickname</label>
-                <input onChange={this.handleChangeLocation} type="text" minLength="4" className="form-control" name="nickname" id="nickname" value={this.state.location.nickname} />
+                <input onChange={this.handleChangeLocation} type="text" minLength="4" name="nickname" id="nickname" value={this.state.location.nickname} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="city">City</label>
-                <input onChange={this.handleChangeLocation} type="text" minLength="4" className="form-control" name="city" id="city" value={this.state.location.city} />
+                <input onChange={this.handleChangeLocation} type="text" minLength="4" name="city" id="city" value={this.state.location.city} />
               </div>
-              <button type="submit" className="btn btn-primary">Create</button>
+              <button type="submit">Create</button>
             </form>
           </div>
         </div>

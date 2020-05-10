@@ -41,10 +41,9 @@ class JobsSearch extends React.Component {
     console.log(this.state);
     return (
       <>
-        <h2 className="justify-content-center d-flex p-2 ">JOB SEARCH</h2>
-        <div className="justify-content-center d-flex p-2 ">
+        <h2>JOB SEARCH</h2>
+        <div>
           <form
-            className="justify-content-center d-flex p-2"
             onSubmit={this.handleSubmit}
           >
             <input

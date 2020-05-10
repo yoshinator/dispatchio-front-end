@@ -45,47 +45,47 @@ class CreateTeamMember extends Component {
 
     if (this.props.createTeamMemberFlag) {
       return <Sidebar>
-        <div className="card inner-card">
-          <h2 className="customer-title">
+        <div>
+          <h2>
             Create New TeamMember
                 </h2>
-          <div className="card-body">
+          <div>
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div>
                 <label htmlFor="f_name">First Name</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="f_name" id="f_name" value={this.state.f_name} />
+                <input onChange={this.handleChange} type="text" name="f_name" id="f_name" value={this.state.f_name} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="l_name">Last Name</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="l_name" id="l_name" value={this.state.l_name} />
+                <input onChange={this.handleChange} type="text" name="l_name" id="l_name" value={this.state.l_name} />
               </div>     
-              <div className="form-group">
+              <div>
                 <label htmlFor="phone">Phone</label>
-                <input onChange={this.handleChange} type="phone" className="form-control" name="phone" id="phone" value={this.state.phone} />
+                <input onChange={this.handleChange} type="phone" name="phone" id="phone" value={this.state.phone} />
               </div>
-              <div className="form-group">
+              <div >
                 <label htmlFor="email"> email</label>
-                <input onChange={this.handleChange} type="email" className="form-control" name="email" id="email" value={this.state.email} />
+                <input onChange={this.handleChange} type="email" name="email" id="email" value={this.state.email} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="password"> Password</label>
-                <input onChange={this.handleChange} type="password" className="form-control" name="password" id="password" value={this.state.password} />
+                <input onChange={this.handleChange} type="password" name="password" id="password" value={this.state.password} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="password_c"> Confirm password</label>
-                <input onChange={this.handleChange} type="password" className="form-control" name="password_c" id="password_c" value={this.state.password_c} />
+                <input onChange={this.handleChange} type="password" name="password_c" id="password_c" value={this.state.password_c} />
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="jobPaymentSelect">
                   Team Member Type
                       </label>
-                <select onChange={this.handleChange} className="form-control" name="user_type" id="user_type" >
+                <select onChange={this.handleChange} name="user_type" id="user_type" >
                   <option value="employee">Employee</option>
                   <option value="manager">Manager</option>
                 </select>
                 </div>
-              <button type="submit" class="btn btn-primary">Create</button>
+              <button type="submit">Create</button>
             </form>
           </div>
         </div>

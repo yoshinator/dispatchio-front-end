@@ -5,9 +5,6 @@ import { Redirect } from 'react-router'
 import { loginAction } from '../../actions/user'
 import About from "../About"
 
-import "../../css/login.css"
-
-
 class Login extends Component {
   state ={ 
     email: "",
@@ -40,22 +37,22 @@ class Login extends Component {
     console.log(this.props.loggedIn)
   return this.props.loggedIn ? (
   <Redirect to="/"/> ) : (
-    <div className="login screen">
-      <div className="card login">
+    <div>
+      <div>
           <div className="card-body">
             { this.handleError()}
             <form onSubmit={this.handleSubmit} autoComplete="on">
-              <div className="form-group">
+              <div>
                 <label htmlFor="exampleInputEmail1">Email address</label>
-                <input onChange={this.handleChange} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} name="email" />
+                <input onChange={this.handleChange} type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} name="email" />
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="input-password">Password</label>
-                <input onChange={this.handleChange} type="password" className="form-control" id="input-password" placeholder="Password" value={this.state.password} name="password" autoComplete="password" />
+                <input onChange={this.handleChange} type="password" id="input-password" placeholder="Password" value={this.state.password} name="password" autoComplete="password" />
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button type="submit">
                 Login
               </button>
             </form>

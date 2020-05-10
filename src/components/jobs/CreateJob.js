@@ -80,44 +80,44 @@ class CreateJob extends Component {
 
     if (this.props.createJobFlag) {
       return <Sidebar>
-          <div className="card inner-card">
-            <h2 className="customer-title">Create New Job</h2>
-            <div className="card-body">
+          <div>
+            <h2>Create New Job</h2>
+            <div>
               <form onSubmit={this.handleSubmit} autoComplete="one">
-                <div className="form-group">
+                <div>
                   <label htmlFor="customer_id">Customer</label>
-                  <select onChange={this.handleChange} className="form-control" name="customer_id" id="customer_id">
+                  <select onChange={this.handleChange} name="customer_id" id="customer_id">
                   <option value="" selected/>
                     {this.getCustomerOptions()}
                   </select>
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="team_id">Team</label>
-                  <select onChange={this.handleChange} className="form-control" name="team_id" id="team_id">
+                  <select onChange={this.handleChange} name="team_id" id="team_id">
                   <option value="" selected />
                     {this.getTeamOptions()}
                   </select>
                 </div>
 
-                <div className="form-group">
+                <div>
                   <label htmlFor="street-1">Street 1</label>
-                  <input onChange={this.handleChange} type="text" className="form-control" name="street_1" id="street-1" value={this.state.street_1} />
+                  <input onChange={this.handleChange} type="text" name="street_1" id="street-1" value={this.state.street_1} />
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="street-2">Street 2</label>
-                  <input onChange={this.handleChange} type="text" className="form-control" name="street_2" id="street-2" value={this.state.street_2} />
+                  <input onChange={this.handleChange} type="text" name="street_2" id="street-2" value={this.state.street_2} />
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="city">City</label>
-                  <input onChange={this.handleChange} type="text" className="form-control" name="city" id="city" value={this.state.city} />
+                  <input onChange={this.handleChange} type="text" name="city" id="city" value={this.state.city} />
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="zip">Zip</label>
-                  <input onChange={this.handleChange} type="text" className="form-control" name="zip" id="zip" value={this.state.zip} />
+                  <input onChange={this.handleChange} type="text" name="zip" id="zip" value={this.state.zip} />
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="state">State</label>
-                  <select onChange={this.handleChange} className="form-control" name="state" id="state">
+                  <select onChange={this.handleChange} name="state" id="state">
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -171,22 +171,22 @@ class CreateJob extends Component {
                     <option value="WY">Wyoming</option>
                   </select>
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="price">
                     Price leave blank for none
                   </label>
-                  <input onChange={this.handleChange} type="number" className="form-control" name="price" id="price" value={this.state.price} />
+                  <input onChange={this.handleChange} type="number"  name="price" id="price" value={this.state.price} />
                 </div>
-                <div className="form-group">
+                <div>
                   Date
                   <label htmlFor="date" />
-                  <input onChange={this.handleDateChange} id="date" className="form-control" value={this.state.date} type="date" name="date" min="" max="" />
+                  <input onChange={this.handleDateChange} id="date"  value={this.state.date} type="date" name="date" min="" max="" />
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="schedule_time">Time </label>
-                  <input onChange={this.handleChange} type="time" className="form-control" name="schedule_time" id="schedule_time" value={this.state.schedule_time} />
+                  <input onChange={this.handleChange} type="time" name="schedule_time" id="schedule_time" value={this.state.schedule_time} />
                 </div>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit">
                   Create
                 </button>
               </form>

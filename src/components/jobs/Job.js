@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router'
-import './job.css'
 
 import { updateJobAction } from '../../actions/job';
 import { getTeamsAction } from '../../actions/team';
@@ -208,30 +207,28 @@ class Job extends Component {
           ) : (
             <div />
           )}
-          <div className="form-check">
+          <div>
             <input
               onClick={this.handleChange}
-              className="form-check-input"
               type="radio"
               name="paid"
               id="paid1"
               value="true"
               checked
             />
-            <label className="form-check-label" htmlFor="paid1">
+            <label htmlFor="paid1">
               Yes
             </label>
           </div>
-          <div className="form-check">
+          <div>
             <input
               onClick={this.handleChange}
-              className="form-check-input"
               type="radio"
               name="paid"
               id="paid2"
               value="false"
             />
-            <label className="form-check-label" htmlFor="paid2">
+            <label htmlFor="paid2">
               No
             </label>
           </div>
@@ -245,30 +242,28 @@ class Job extends Component {
           ) : (
             <div />
           )}
-          <div className="form-check">
+          <div>
             <input
               onClick={this.handleChange}
-              className="form-check-input"
               type="radio"
               name="paid"
               id="paid1"
               value="true"
             />
-            <label className="form-check-label" htmlFor="paid1">
+            <label htmlFor="paid1">
               Yes
             </label>
           </div>
-          <div className="form-check">
+          <div>
             <input
               onClick={this.handleChange}
-              className="form-check-input"
               type="radio"
               name="paid"
               id="paid2"
               value="false"
               checked
             />
-            <label className="form-check-label" htmlFor="paid2">
+            <label htmlFor="paid2">
               No
             </label>
           </div>
@@ -280,33 +275,33 @@ class Job extends Component {
   render() {
     if (this.state.city || this.state.street_1){
     return <>
-        <div className="card inner-card">
-          <h2 className="job-edit-title">
+        <div>
+          <h2>
             {this.props.job.editingJob.city}, {this.props.job.editingJob.customer.name} {this.props.job.editingJob.customer.phone}, {this.props.job.editingJob.status}
           </h2>
-          <div className="card-body">
+          <div>
             <form onSubmit={this.handleSubmit} autoComplete="one">
-              <div className="form-group">
+              <div>
                 <label htmlFor="street_1">Street 1</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="street_1" id="street_1" value={this.state.street_1} />
+                <input onChange={this.handleChange} type="text" name="street_1" id="street_1" value={this.state.street_1} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="street_2">Street 2</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="street_2" id="street_2" value={this.state.street_2} />
+                <input onChange={this.handleChange} type="text" name="street_2" id="street_2" value={this.state.street_2} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="city">City</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="city" id="city" value={this.state.city} />
+                <input onChange={this.handleChange} type="text" name="city" id="city" value={this.state.city} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="state">State</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="state" id="state" value={this.state.state} />
+                <input onChange={this.handleChange} type="text" name="state" id="state" value={this.state.state} />
               </div>
-              <div className="form-group">
+              <div>
                 <label htmlFor="zip">Zip</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="zip" id="zip" value={this.state.zip} />
+                <input onChange={this.handleChange} type="text" name="zip" id="zip" value={this.state.zip} />
               </div>
-              <div className="form-group">
+              <div>
                 <label
                   htmlFor={`add-to-description${
                     this.props.job.editingJob.id
@@ -314,51 +309,51 @@ class Job extends Component {
                 >
                   Description
                 </label>
-                <textarea onChange={this.handleChange} name="description" className="form-control" id={`add-to-description${this.props.job.id}`} rows="3" value={this.state.description} />
+                <textarea onChange={this.handleChange} name="description" id={`add-to-description${this.props.job.id}`} rows="3" value={this.state.description} />
               </div>
 
-              <div className="form-group">
+              <div>
                 Date: {this.state.schedule_date}
                 <label htmlFor="date" />
-                <input onChange={this.handleDateChange} id="date" className="form-control" value={this.state.date} type="date" name="date" min="" max="" />
+                <input onChange={this.handleDateChange} id="date" value={this.state.date} type="date" name="date" min="" max="" />
               </div>
-              <div className="form-group">
+              <div>
                 Scheduled time: {timeHelper.formatTime(this.state.schedule_time)}
                 <label htmlFor="time" />
-                <input onChange={this.handleChange} id="time" className="form-control" value={this.state.schedule_time} type="time" name="schedule_time" min="" max="" />
+                <input onChange={this.handleChange} id="time" value={this.state.schedule_time} type="time" name="schedule_time" min="" max="" />
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="jobStatusSelect">Change Status</label>
-                <select onChange={this.handleChange} className="form-control" name="status" id={`jobStatusSelect${this.props.job.editingJob.id}`} value={this.state.status}>
+                <select onChange={this.handleChange} name="status" id={`jobStatusSelect${this.props.job.editingJob.id}`} value={this.state.status}>
                   {this.selectionOptionStatus()}
                 </select>
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="jobPaymentSelect">
                   Change Payment Type
                 </label>
-                <select onChange={this.handleChange} className="form-control" name="payment_type" id={`jobPaymentSelect${this.props.job.editingJob.id}`} value={this.state.payment_type}>
+                <select onChange={this.handleChange} name="payment_type" id={`jobPaymentSelect${this.props.job.editingJob.id}`} value={this.state.payment_type}>
                   {this.selectionOptionPayment()}
                 </select>
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="jobPaymentSelect">
                   Change team
                 </label>
-                <select onChange={this.handleChange} className="form-control" name="team_id" id={`teamSelect${this.props.job.editingJob.id}`} >
+                <select onChange={this.handleChange} name="team_id" id={`teamSelect${this.props.job.editingJob.id}`} >
                   {this.selectionOptionTeam()}
                 </select>
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="paid">Paid? </label>
                 {this.paidRadioButtons()}
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button type="submit">
                 Update
               </button>
             </form>

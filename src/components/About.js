@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function About() {
   return (
-    <div className="about card">
+    <div>
       <p>
         Dispatchio is built for companies with a mobile workforce that need
         to dispatch teams and keep track of jobs. Dispatchio helps you locate

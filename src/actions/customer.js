@@ -11,7 +11,7 @@ export const getCustomersAction =(locationId) => {
 
       }
     }
-    CUSTOMERSAdapter.createItem(body)
+      CUSTOMERSAdapter.createItem(body)
       .then(response => {
         if (response.ok) {
           return response.json()

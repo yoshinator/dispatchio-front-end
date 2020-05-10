@@ -30,29 +30,29 @@ class EditTeam extends Component {
   render() {
     if (this.props.editingTeam) {
       return <Sidebar>
-        <div className="card inner-card">
-          <h2 className="job-edit-title">TEAM INFO</h2>
-          <div className="card-body">
+        <div>
+          <h2>TEAM INFO</h2>
+          <div>
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div>
                 <label htmlFor="name">Name</label>
-                <input onChange={this.handleChange} type="text" className="form-control" name="f_name" id="name" value={this.state.name} />
+                <input onChange={this.handleChange} type="text" name="f_name" id="name" value={this.state.name} />
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="phone">Phone</label>
-                <input onChange={this.handleChange} type="phone" className="form-control" name="phone" id="phone" value={this.state.phone} />
+                <input onChange={this.handleChange} type="phone" name="phone" id="phone" value={this.state.phone} />
               </div>
 
-              <div className="form-group">
+              <div>
                 <label htmlFor="teamMemberType">Team Member Type</label>
-                <select onChange={this.handleChange} className="form-control" name="state" id="state">
+                <select onChange={this.handleChange}  name="state" id="state">
                   <option value="" selected></option>
                   {this.getEmployees}
                 </select>
               </div>
 
-              <button type="submit" class="btn btn-primary">
+              <button type="submit">
                 Update
                 </button>
             </form>

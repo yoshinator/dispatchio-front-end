@@ -18,8 +18,7 @@ const TeamUsers = ({ users, removeUser, teamId}) => {
  return users.map(user => {
    return <span >
        {" "}
-     {user.f_name}, {user.l_name[0]} <span onClick={() => removeUser(user.id, teamId)}>
-         <i className="far fa-times-circle" />
+     {user.f_name}, {user.l_name[0]}. <span onClick={() => removeUser(user.id, teamId)}>
        </span>
      </span>;
  })
@@ -44,8 +43,8 @@ class Teams extends Component {
   teamsJsx = () => {
     if (this.props.teams&& this.props.teams.length > 0){
       return this.props.teams.map(team => (
-        <p key={team.id} className="list-group-item no-cursor">
-          {team.name} <i class="fas fa-bars" /> 
+        <p key={team.id}>
+          {team.name} 
           <TeamUsers
             users={team.users}
             removeUser={this.removeUser}
@@ -54,7 +53,6 @@ class Teams extends Component {
           <button
             type="button"
             onClick={() => this.handleAdd(team)}
-            className="btn btn-primary float-right"
           >
             Add
           </button>
@@ -70,9 +68,9 @@ class Teams extends Component {
 
   renderTeams = () => {
     return(
-      <div className="col-sm">
-        <div className="list-group">
-          <span className="list-group-item list-group-item-action active">
+      <div>
+        <div>
+          <span >
             Teams
       </span>
           {this.teamsJsx()}
@@ -88,12 +86,12 @@ class Teams extends Component {
     render() {
       if (!this.props.editingTeam && !this.props.creatingTeam)
       return <Sidebar>
-          <main className="col">
-            <button onClick={this.handleClick} className="mx-auto create-new-button" style={{ display: "block" }}>
+          <main >
+            <button onClick={this.handleClick}>
               <span>Create New Team</span>{" "}
             </button>
-            <div className="container">
-              <div className="row">{this.renderTeams()}</div>
+            <div>
+              <div>{this.renderTeams()}</div>
             </div>
           </main>
         </Sidebar>;

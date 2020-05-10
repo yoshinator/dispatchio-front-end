@@ -12,13 +12,12 @@ class Customers extends Component {
 
     if (this.props.customers.customers && this.props.customers.customers.length > 0) {
       return this.props.customers.customers.map(customer => (
-        <p className="list-group-item">
+        <p>
           {customer.name} {customer.city}{" "}
           <a href={`tel:${customer.phone}`}>{customer.phone} </a>
           <button
             type="button"
             onClick={() => this.handleClick(customer)}
-            className="btn btn-primary float-right"
           >
             edit
           </button>
@@ -29,9 +28,9 @@ class Customers extends Component {
 
   renderCustomers = () => {
     return (
-      <div className="col-sm">
-        <div className="list-group">
-          <span className="list-group-item list-group-item-action active">
+      <div>
+        <div >
+          <span>
             Customers
           </span>
           {this.customersJSX()}
@@ -56,13 +55,13 @@ class Customers extends Component {
       return <Redirect to="/createcustomer" />;
     } else { 
     return <Sidebar>
-        <main className="col">
-          <button onClick={this.createNewCustomer} className="mx-auto create-new-button" style={{ display: "block" }}>
+        <main >
+          <button onClick={this.createNewCustomer}>
             <span>Create Customer</span>{" "}
           </button>
 
-          <div className="container">
-            <div className="row">{this.renderCustomers()}</div>
+          <div>
+            <div>{this.renderCustomers()}</div>
           </div>
         </main>
       </Sidebar>;

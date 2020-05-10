@@ -5,7 +5,6 @@ import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
 import Sidebar from '../Sidebar'
 import {editCustomerAction} from '../../actions/customer'
-import './customer.css'
 
 class EditCustomer extends Component {
   state={
@@ -44,41 +43,41 @@ class EditCustomer extends Component {
   render() {
     if (this.props.customer.editingCustomer){
     return  <Sidebar>
-              <div className="card inner-card">
-                <h2 className="job-edit-title">
+              <div>
+                <h2>
                   EDIT CUSTOMER INFO 
                 </h2>
-              <div className="card-body">
+              <div>
               <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
+                <div>
                   <label htmlFor="customer-name">Customer Name</label>
-                  <input onChange={this.handleChange} type="text" className="form-control" name="name" id="customer-name"  value={this.state.name}/>
+                  <input onChange={this.handleChange} type="text"  name="name" id="customer-name"  value={this.state.name}/>
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="point0of-contact">Point of Contact</label>
-                  <input onChange={this.handleChange}type="text" className="form-control" name="poc" id="point-of-contact"  value={this.state.poc}/>
+                  <input onChange={this.handleChange}type="text"  name="poc" id="point-of-contact"  value={this.state.poc}/>
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="street-1">Street 1</label>
-                  <input onChange={this.handleChange}type="text" className="form-control" name="street_1" id="street-1"  value={this.state.street_1}/>
+                  <input onChange={this.handleChange}type="text"  name="street_1" id="street-1"  value={this.state.street_1}/>
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="street-2">Street 2</label>
-                  <input onChange={this.handleChange}type="text" className="form-control" name="street_2" id="street-2"  value={this.state.street_2}/>
+                  <input onChange={this.handleChange}type="text"  name="street_2" id="street-2"  value={this.state.street_2}/>
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="city">City</label>
-                  <input onChange={this.handleChange}type="text" className="form-control" name="city" id="city"  value={this.state.city}/>
+                  <input onChange={this.handleChange}type="text"  name="city" id="city"  value={this.state.city}/>
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="zip">Zip</label>
-                  <input onChange={this.handleChange}type="text" className="form-control" name="zip" id="zip"  value={this.state.zip}/>
+                  <input onChange={this.handleChange}type="text"  name="zip" id="zip"  value={this.state.zip}/>
                 </div>
-                  <div className="form-group">
+                  <div>
                     <label htmlFor="jobPaymentSelect">
                       State
                       </label>
-                    <select onChange={this.handleChange} className="form-control" name="state" id="state" >
+                    <select onChange={this.handleChange}  name="state" id="state" >
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -133,15 +132,15 @@ class EditCustomer extends Component {
                     </select>
                   </div>
 
-                <div className="form-group">
+                <div>
                   <label htmlFor="customer-phone">Phone</label>
-                  <input onChange={this.handleChange}type="phone" className="form-control" name="phone" id="customer-phone"  value={this.state.phone}/> 
+                  <input onChange={this.handleChange}type="phone"  name="phone" id="customer-phone"  value={this.state.phone}/> 
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="customer-email">Customer email</label>
-                  <input onChange={this.handleChange}type="email" className="form-control" name="email" id="customer-email"  value={this.state.email}/>
+                  <input onChange={this.handleChange}type="email"  name="email" id="customer-email"  value={this.state.email}/>
                 </div>
-                      <button type="submit" class="btn btn-primary">Update</button>
+                      <button type="submit" >Update</button>
                 </form>
               </div>
               </div>

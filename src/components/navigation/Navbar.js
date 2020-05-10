@@ -13,22 +13,22 @@ function Navbar(props) {
 
   const logInToggle = () => {
     if (props.loginReducer.loggedIn) {
-      return <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" to="/">
+      return <nav>
+        <Link to="/">
           Dispatchio
         </Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
+        <button type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span/>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
-              <Link className="nav-link" to="/">
+        <div id="navbarNav">
+          <ul>
+            <li>
+              <Link to="/">
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <button onClick={(event, props) => handleLogout(event, props)} className="nav-link">
+            <li>
+              <button onClick={(event, props) => handleLogout(event, props)}>
                 Log Out
             </button>
 
@@ -39,21 +39,21 @@ function Navbar(props) {
     } // END IF
     else {
       return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link className="navbar-brand" to="/">Dispatchio</Link>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+        <nav >
+          <Link to="/">Dispatchio</Link>
+          <button type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">Home</Link>
+          <div id="navbarNav">
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">Login</Link>
+              <li >
+                <Link to="/login">Login</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">Sign Up</Link>
+              <li >
+                <Link to="/signup">Sign Up</Link>
               </li>
             </ul>
           </div>

@@ -1,11 +1,11 @@
 
 class JSONAPIAdapter {
   constructor(endpoint) {
-    this.endpoint = `http://dispatchio.io:3000/${endpoint}`
+    this.endpoint = `http://localhost:3000/${endpoint}`
     this.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://dispatchio.io',
+      'Access-Control-Allow-Origin': 'http://localhost',
       'Authorization': `Bearer ${localStorage.getItem('jwt')}`
     }
   }
@@ -22,6 +22,7 @@ class JSONAPIAdapter {
   }
   // { key: 'value', key: { key: 'value', key: 'value'} }
   createItem(body) {
+    console.log(body)
     return fetch(this.endpoint, {
       method: 'POST',
       headers: this.headers,
