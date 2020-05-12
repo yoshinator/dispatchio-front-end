@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Sidebar from '../Sidebar';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
 import { addMemberToTeamAction } from "../../actions/team";
@@ -40,7 +39,7 @@ class EditTeam extends Component {
   render() {
     if (this.props.editingTeam) {
 
-      return <Sidebar>
+      return (
         <div>
           <h2>
             Add Team Members to Team {this.props.team.name}
@@ -60,7 +59,7 @@ class EditTeam extends Component {
             </form>
           </div>
         </div>
-      </Sidebar>
+      )
     }
     else return <Redirect to="/teams"></Redirect>
   }

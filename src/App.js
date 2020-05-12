@@ -23,13 +23,15 @@ import CreateTeam from './components/teams/CreateTeam';
 import EditTeam from './components/teams/EditTeam';
 import CreateCompany from './components/firstlogin/CreateCompany';
 import JoinCompany from './components/firstlogin/JoinCompany';
+import './css/styles.css'
 
 class App extends Component {
 
 
   render() {
-    return <div>
+    return <>
         <Navbar />
+        <div className="content">
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
@@ -52,7 +54,8 @@ class App extends Component {
           <Route path="/map/:id" component={GoogleMap}></Route>
           <Route component={NoMatch} />
         </Switch>
-      </div>;
+      </div>
+      </>;
   }
 }
 

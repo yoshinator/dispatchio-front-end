@@ -24,7 +24,7 @@ class Login extends Component {
   
   handleError = () => {
     if(this.props.failedLogin) {
-      return <h3 className="card-title text-white bg-danger text-center">
+      return <h3>
           {this.props.error}
         </h3>; 
     } else {
@@ -37,29 +37,27 @@ class Login extends Component {
     console.log(this.props.loggedIn)
   return this.props.loggedIn ? (
   <Redirect to="/"/> ) : (
-    <div>
-      <div>
-          <div className="card-body">
-            { this.handleError()}
+    <div className="container">
+        { this.handleError()}
+        <div className="form-container"> 
+          <h2>Login</h2>
+          <div className="form">
             <form onSubmit={this.handleSubmit} autoComplete="on">
-              <div>
+
                 <label htmlFor="exampleInputEmail1">Email address</label>
                 <input onChange={this.handleChange} type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} name="email" />
-              </div>
 
-              <div>
                 <label htmlFor="input-password">Password</label>
                 <input onChange={this.handleChange} type="password" id="input-password" placeholder="Password" value={this.state.password} name="password" autoComplete="password" />
-              </div>
 
-              <button type="submit">
-                Login
-              </button>
+                <button className="button" type="submit">Login</button>
             </form>
           </div>
+        </div>
+        <About />
       </div>
-      <About />
-    </div>);
+    )
+    
   }
 }
 

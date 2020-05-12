@@ -4,7 +4,6 @@ import { withRouter } from 'react-router'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import withAuth from '../hocs/withAuth'
 import withRoleManager from '../hocs/withRoleManager'
-import Sidebar from '../components/Sidebar'
 
 const mapStyles = {
   width: '100%',
@@ -40,7 +39,7 @@ class GoogleMap extends Component {
   
   render() {
     if (this.props.team_member.lat && this.props.team_member.lon){
-      return <Sidebar>
+      return (
         <div className="my-map">
           <Map google={this.props.google} zoom={14} style={mapStyles} initialCenter={{ lat: this.props.team_member.lat, lng: this.props.team_member.lon }}>     
         <Marker
@@ -61,14 +60,12 @@ class GoogleMap extends Component {
             </InfoWindow>
             </Map>
         </div>
-        </Sidebar>;
+      )
     }else {
       return (
-        <Sidebar >
           <div className="my-map">
             No Recent Locations for this user
           </div>
-        </Sidebar >
       )
     }
   }

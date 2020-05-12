@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Sidebar from '../Sidebar';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
 import { createTeamMemberAction } from '../../actions/team'
@@ -44,39 +43,27 @@ class CreateTeamMember extends Component {
   render() {
 
     if (this.props.createTeamMemberFlag) {
-      return <Sidebar>
-        <div>
+      return (
+        <div className="container">
           <h2>
             Create New TeamMember
                 </h2>
-          <div>
+          <div className="form-container">
+            <div className="form">
             <form onSubmit={this.handleSubmit}>
-              <div>
                 <label htmlFor="f_name">First Name</label>
                 <input onChange={this.handleChange} type="text" name="f_name" id="f_name" value={this.state.f_name} />
-              </div>
-              <div>
                 <label htmlFor="l_name">Last Name</label>
-                <input onChange={this.handleChange} type="text" name="l_name" id="l_name" value={this.state.l_name} />
-              </div>     
-              <div>
+                <input onChange={this.handleChange} type="text" name="l_name" id="l_name" value={this.state.l_name} />     
                 <label htmlFor="phone">Phone</label>
                 <input onChange={this.handleChange} type="phone" name="phone" id="phone" value={this.state.phone} />
-              </div>
-              <div >
                 <label htmlFor="email"> email</label>
                 <input onChange={this.handleChange} type="email" name="email" id="email" value={this.state.email} />
-              </div>
-              <div>
                 <label htmlFor="password"> Password</label>
                 <input onChange={this.handleChange} type="password" name="password" id="password" value={this.state.password} />
-              </div>
-              <div>
                 <label htmlFor="password_c"> Confirm password</label>
                 <input onChange={this.handleChange} type="password" name="password_c" id="password_c" value={this.state.password_c} />
-              </div>
 
-              <div>
                 <label htmlFor="jobPaymentSelect">
                   Team Member Type
                       </label>
@@ -84,12 +71,12 @@ class CreateTeamMember extends Component {
                   <option value="employee">Employee</option>
                   <option value="manager">Manager</option>
                 </select>
-                </div>
-              <button type="submit">Create</button>
+              <button className="button" type="submit">Create</button>
             </form>
+            </div>
           </div>
         </div>
-      </Sidebar>
+      )
     }
     else return <Redirect to="/teammembers"></Redirect>
   }

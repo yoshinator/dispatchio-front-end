@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Sidebar from '../Sidebar';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
 import { createTeamAction } from '../../actions/team'
@@ -33,7 +32,7 @@ class CreateTeam extends Component {
   render() {
 
     if (this.props.creatingTeam) {
-      return <Sidebar>
+      return (
         <div >
           <h2 >
             Create New Team
@@ -48,7 +47,7 @@ class CreateTeam extends Component {
             </form>
           </div>
         </div>
-      </Sidebar>
+      )
     }
     else return <Redirect to="/teams"></Redirect>
   }

@@ -27,7 +27,6 @@ class Signup extends Component{
   handleSubmit = (e) => {
     e.preventDefault()
     if (this.passwordsMatch()){
-      console.log("passwordsMatch")
       this.props.createUser(this.state)
     }
   }
@@ -41,67 +40,58 @@ class Signup extends Component{
 
   render(){
     return this.props.loggedIn ? (
-      <Redirect to="/" />) : <div><div >
-      <div>
-        <form onSubmit={this.handleSubmit} autoComplete="one">
-          <div>
-            <label htmlFor="sign-up-f-name">First Name</label>
-            <input onChange={this.handleChange} type="text" id="sign-up-f-name" placeholder="First " name="f_name" value={this.state.f_name} />
-          </div>
-          <div>
-            <label htmlFor="sign-up-l-name">Last Name</label>
-            <input onChange={this.handleChange} type="text" id="sign-up-l-name" placeholder="Last " name="l_name" value={this.state.l_name} />
-          </div>
+      <Redirect to="/" />) : 
+      <div className="container">
+        <div className="form-container">
+          <div className="form">
+            <form onSubmit={this.handleSubmit} autoComplete="one">
+              <label htmlFor="sign-up-f-name">First Name</label>
+              <input onChange={this.handleChange} type="text" id="sign-up-f-name" placeholder="First " name="f_name" value={this.state.f_name} />
+          
+              <label htmlFor="sign-up-l-name">Last Name</label>
+              <input onChange={this.handleChange} type="text" id="sign-up-l-name" placeholder="Last " name="l_name" value={this.state.l_name} />
 
-          <div>
-            <label htmlFor="sign-up-email">Email address</label>
-            <input onChange={this.handleChange} type="email" id="sign-up-email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={this.state.email} />
-            <small id="emailHelp">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
+              <label htmlFor="sign-up-email">Email address</label>
+              <input onChange={this.handleChange} type="email" id="sign-up-email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={this.state.email} />
 
-          <div>
-            <label htmlFor="input-password">Password</label>
-            <input onChange={this.handleChange} type="password" id="input-password" placeholder="Password" name="password" value={this.state.password} />
-          </div>
+              <label htmlFor="input-password">Password</label>
+              <input onChange={this.handleChange} type="password" id="input-password" placeholder="Password" name="password" value={this.state.password} />
 
-          <div>
-            <label htmlFor="input-password">Password Confirmation</label>
-            <input onChange={this.handleChange} type="password" id="input-password-confim" placeholder="Confirm Password" name="pconfirm" value={this.state.pconfirm} />
-          </div>
-          {/* USER TYPE RADIO BUTTONS  */}
+              <label htmlFor="input-password">Password Confirmation</label>
+              <input onChange={this.handleChange} type="password" id="input-password-confim" placeholder="Confirm Password" name="pconfirm" value={this.state.pconfirm} />
+             
+              {/* USER TYPE RADIO BUTTONS  */}
+              <label>Pick a user type</label>
+              <div>
+                <input onChange={this.handleChange} type="radio" name="user_type" id="owner" value="owner" checked />
+                <label htmlFor="owner">
+                  Owner
+                </label>
+              </div>
+              <div>
+                <input 
+                  onChange={this.handleChange} 
+                  type="radio" name="user_type" id="manager" value="manager"  
+                  />
+                <label htmlFor="manager">
+                  Manager
+                </label>
+              </div>
+              <div>
+                <input onChange={this.handleChange} type="radio" name="user_type" id="employee" value="employee"/>
+                <label htmlFor="employee">
+                  Employee
+                </label>
+              </div>
 
-          <div>
-          <input onChange={this.handleChange} type="radio" name="user_type" id="exampleRadios1" value="owner"  />
-            <label htmlFor="exampleRadios1">
-              Owner
-            </label>
-          </div>
-          <div>
-            <input onChange={this.handleChange} type="radio" name="user_type" id="exampleRadios2" value="manager" />
-            <label htmlFor="exampleRadios2">
-              Manager
-            </label>
-          </div>
-          <div >
-            <input onChange={this.handleChange} type="radio" name="user_type" id="exampleRadios3" value="employee" />
-            <label htmlFor="exampleRadios3">
-              Employee
-            </label>
-          </div>
-          <div>
-            <br></br>
-          </div>
-
-          <button type="submit">
-            Sign Up
-          </button>
-        </form>
+            <button className="button" type="submit">
+              Sign Up
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
     <About />
-    </div>;
+    </div>
   }
 }
 

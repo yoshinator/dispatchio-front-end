@@ -24,6 +24,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log("props", this.props)
     if(!this.props.user.user){
       return <h1> </h1>
     }

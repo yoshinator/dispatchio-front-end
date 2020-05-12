@@ -32,6 +32,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "dotenv": "^6.2.0"
   }
 }

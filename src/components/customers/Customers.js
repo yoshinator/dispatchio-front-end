@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom'
-import Sidebar from "../Sidebar";
 import withAuth from "../../hocs/withAuth";
 import withRoleManager from "../../hocs/withRoleManager"
 import { editCustomerFlagAction, addCustomerToEditAction, createNewCustomerFlagAction } from "../../actions/customer";
@@ -54,7 +53,7 @@ class Customers extends Component {
     }else if (this.props.customers.createCustomerFlag){
       return <Redirect to="/createcustomer" />;
     } else { 
-    return <Sidebar>
+    return (
         <main >
           <button onClick={this.createNewCustomer}>
             <span>Create Customer</span>{" "}
@@ -64,7 +63,7 @@ class Customers extends Component {
             <div>{this.renderCustomers()}</div>
           </div>
         </main>
-      </Sidebar>;
+      )
     }
   }
 }

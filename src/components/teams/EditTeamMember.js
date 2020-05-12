@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateTeamMemberAction } from '../../actions/team';
-import Sidebar from '../Sidebar';
 import { Redirect } from 'react-router-dom';
 
 
@@ -32,7 +31,7 @@ class EditTeamMember extends Component {
   }
   render() {
     if (this.props.teamMemberEditFlag) {
-      return <Sidebar>
+      return (
           <div>
             <h2 >EDIT EMPLOYEE INFO</h2>
             <div>
@@ -41,7 +40,7 @@ class EditTeamMember extends Component {
                   <label htmlFor="name">First Name</label>
                   <input onChange={this.handleChange} type="text" name="f_name" id="f_name" value={this.state.f_name} />
                 </div>
-                <div className="form-group">
+                <div>
                   <label htmlFor="name">Last Name</label>
                   <input onChange={this.handleChange} type="text" name="l_name" id="l_name" value={this.state.l_name} />
                 </div>
@@ -70,7 +69,7 @@ class EditTeamMember extends Component {
               </form>
             </div>
           </div>
-        </Sidebar>;
+      )
     }
     else return <Redirect to="/teammembers"></Redirect>
   }

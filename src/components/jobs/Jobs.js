@@ -5,8 +5,8 @@ import {Redirect} from 'react-router-dom'
 import { editJobAction, addWeekAction, createJobFlagAction } from '../../actions/job'
 import withRoleManager from '../../hocs/withRoleManager'
 import YOANHelpers from '../../helpers/helpers'
-import Sidebar from '../Sidebar'
 import Job from './Job'
+import './Jobs.css'
 
 const YOANHelper = new YOANHelpers();
 
@@ -30,11 +30,12 @@ state = {
   renderJobsJsx = (day) => {
     const filteredJobs = this.props.jobs.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
-      return (
-        <small><p key={job.id} onClick={() => this.handleClick(job.id)} >
-            {job.city}  {job.customer.name} <a href={`tel:+1${job.customer.phone}`}>{job.customer.phone}</a>
-          </p></small>
-
+      return (<>
+        <div className="card-content"  key={job.id}>
+          <p className="button" onClick={() => this.handleClick(job.id)} > {job.city} {job.customer.name} </p>
+          <a className="button" href={`tel:+1${job.customer.phone}`}>{job.customer.phone}</a>
+          </div>
+        </>
       )
     })
   }
@@ -46,14 +47,10 @@ state = {
   renderMain = () => {
     if (!this.props.jobs.jobForm){
       return this.state.currentWeek.map(day => {
-        return <div key={day} >
-            <div >
-              <span>
-                {day}{" "}
-              </span>
+        return <div key={day} className="card">
+              <span>{day}{" "}</span>
               {this.renderJobsJsx(day)}
             </div>
-          </div>;
       });
     }else {
      return (
@@ -62,7 +59,6 @@ state = {
        </>
      )
     }
-
   }
 
   render() {
@@ -75,19 +71,15 @@ state = {
     if(this.props.jobs.createJobFlag){
       return <Redirect to="/createjob"></Redirect>
     } else {
-    return <>
-        <Sidebar>
-          <main>
-            <div>
-             
-              <button onClick={this.createJobButton} >
-              <span>Create New Job</span>{" "}
-              </button>
-              <div>{this.renderMain()}</div>
-            </div>
-          </main>
-        </Sidebar>
-      </>;
+    return (
+        <div className="container">
+            <i class="fas fa-arrow-alt-circle-left"/>
+            <h2>Jobs</h2>
+            <i class="fas fa-arrow-alt-circle-right"/>
+            <div className="jobs">{this.renderMain()}</div>
+            <button className="button" onClick={this.createJobButton}>Create New Job</button>
+          </div>
+    )
     }
   }
 }

@@ -3,7 +3,6 @@ import {connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
-import Sidebar from '../Sidebar'
 import {editCustomerAction} from '../../actions/customer'
 
 class EditCustomer extends Component {
@@ -42,7 +41,7 @@ class EditCustomer extends Component {
   }
   render() {
     if (this.props.customer.editingCustomer){
-    return  <Sidebar>
+    return  (
               <div>
                 <h2>
                   EDIT CUSTOMER INFO 
@@ -144,7 +143,7 @@ class EditCustomer extends Component {
                 </form>
               </div>
               </div>
-            </Sidebar>
+        )
     }
     else return <Redirect to="/customers"></Redirect>
   }

@@ -27,8 +27,8 @@ const withAuth = WrappedComponent => {
         (this.props.authenticatingUser || !this.props.loggedIn)
       ) {
         //we're currently fetching, show a loading spinner
-        return <div className="spinner-border text-primary" role="status">
-          <span className="sr-only">Loading...</span>
+        return <div role="status">
+          <span>Loading...</span>
         </div>
       } else {
         //user is not AUTHORIZED to see this component

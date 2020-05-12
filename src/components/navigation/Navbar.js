@@ -2,6 +2,7 @@ import React from 'react'
 import {  Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logOutAction } from '../../actions/user'
+import './Navbar.css'
 
 
 function Navbar(props) {
@@ -13,59 +14,63 @@ function Navbar(props) {
 
   const logInToggle = () => {
     if (props.loginReducer.loggedIn) {
-      return <nav>
-        <Link to="/">
-          Dispatchio
-        </Link>
-        <button type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span/>
-        </button>
-        <div id="navbarNav">
+      return (
+      <header>
+          <h1 className="logo"><Link to="/">Dispatchio</Link></h1>
+        <input type="checkbox" className="nav-toggle" id="nav-toggle" />
+        <nav>
           <ul>
             <li>
-              <Link to="/">
-                Home
-              </Link>
+              <Link to="/jobs">Jobs</Link>
             </li>
             <li>
-              <button onClick={(event, props) => handleLogout(event, props)}>
+              <Link to="/teams">Teams</Link>
+            </li>
+            <li>
+              <Link to="/teammembers">Team Members</Link>
+            </li>
+            <li>
+              <Link to="/customers">Customers</Link>
+            </li>
+            <li>
+              <Link to="#" onClick={(event, props) => handleLogout(event, props)}>
                 Log Out
-            </button>
-
+              </Link>
             </li>
           </ul>
-        </div>
-      </nav>;
+        </nav>
+        <label htmlFor="nav-toggle" className="nav-toggle-label">
+          <span></span>
+        </label>
+      </header>
+      )
     } // END IF
     else {
       return (
-        <nav >
-          <Link to="/">Dispatchio</Link>
-          <button type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <header>
+          <h1 className="logo">Dispatchio</h1>
+          <input type="checkbox" className="nav-toggle" id="nav-toggle" />
+          <nav>
+              <ul>
+                <li >
+                  <Link to="/login">Login</Link>
+                </li>
+                <li >
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+              </ul>
+          </nav>
+          <label htmlFor="nav-toggle" className="nav-toggle-label">
             <span></span>
-          </button>
-          <div id="navbarNav">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li >
-                <Link to="/login">Login</Link>
-              </li>
-              <li >
-                <Link to="/signup">Sign Up</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+          </label>
+        </header>
       )
     }//END ELSE 
   }
 
   //RETURN FOR Navbar
-  return <div>
-      {logInToggle(props)}
-    </div>;
+  return logInToggle(props)
+
 }//END Navbar()
 
 const mapStateToProps = state => ({

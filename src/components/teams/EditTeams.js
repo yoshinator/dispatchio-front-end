@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateTeamAction } from '../../actions/team';
-import Sidebar from '../Sidebar';
 import { Redirect } from 'react-router-dom';
 
 
@@ -29,7 +28,7 @@ class EditTeam extends Component {
   }
   render() {
     if (this.props.editingTeam) {
-      return <Sidebar>
+      return (
         <div>
           <h2>TEAM INFO</h2>
           <div>
@@ -58,7 +57,7 @@ class EditTeam extends Component {
             </form>
           </div>
         </div>
-      </Sidebar>;
+      )
     }
     else return <Redirect to="/teams"></Redirect>
   }

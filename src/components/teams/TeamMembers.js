@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Sidebar from '../Sidebar';
 import { getTeamMembersAction, setTeamMemberAction, changeTeamMemberEditFlagAction, createNewTeamMemberFlagAction} from '../../actions/team';
 import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
@@ -30,12 +29,12 @@ class TeamMembers extends Component {
       return this.props.teamMembers.team_members.map(teamMember => {
         return <div key={Date.now()*Math.random()}>
             {" "}
-            <p key={teamMember.id}>
+            <p className= "card-content" key={teamMember.id}>
               {teamMember.f_name} {teamMember.l_name} <span onClick={() => this.handleClick(teamMember)}>
                 {" "}
-                <Link to={`/map/${teamMember.id}`}>Locate</Link>
+              <Link to={`/map/${teamMember.id}`}><i class="fas fa-map-marker-alt"></i></Link>
               </span>
-              <button onClick={() => this.handleEdit(teamMember)} type="button">
+              <button className="button" onClick={() => this.handleEdit(teamMember)} type="button">
                 {" "}
                 Edit{" "}
               </button>
@@ -47,30 +46,29 @@ class TeamMembers extends Component {
 
   renderTeamMembers = () => {
     return (
-      <div>
         <div>
-          <span>
+          <h2>
             Team Members
-      </span>
+          </h2>
           {this.teamMembersJsx()}
         </div>
-      </div>
+   
     )
   }
 
   render() {
 
     if (!this.props.teamMembers.teamMemberEditFlag && !this.props.teamMembers.createTeamMemberFlag) {
-      return <Sidebar>
-          <main>
-          <button onClick={this.createNewTeamMember} >
-            <span>Add Team Member</span>{" "}
-          </button>
-            <div>
+      return (
+          <main className="container">
+            <div className="form-container">
               <div>{this.renderTeamMembers()}</div>
             </div>
+          <button className="button" onClick={this.createNewTeamMember} >
+            <span>Add Team Member</span>{" "}
+          </button>
           </main>
-        </Sidebar>;
+      )
     } else if (this.props.teamMembers.createTeamMemberFlag) { 
       return <Redirect to="/createteammember"></Redirect>
     }

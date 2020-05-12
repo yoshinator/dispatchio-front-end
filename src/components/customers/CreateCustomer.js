@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Sidebar from '../Sidebar';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
 import  { createCustomerAction } from '../../actions/customer'
@@ -46,7 +45,7 @@ class CreateCustomer extends Component {
   render() {
 
     if (this.props.createCustomerFlag) {
-      return <Sidebar>
+      return (
         <div>
           <h2>
             Create New Customer
@@ -148,7 +147,7 @@ class CreateCustomer extends Component {
             </form>
           </div>
         </div>
-      </Sidebar>
+      )
     }
     else return <Redirect to="/customers"></Redirect>
   }
