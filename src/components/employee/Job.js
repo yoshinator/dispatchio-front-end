@@ -10,28 +10,26 @@ class Job extends Component {
     if (this.props.jobs){
       
     return this.props.jobs.map(job => {
-      return <div key={job.id}>
+      return (
+        <div className="card" key={job.id}>
           <div id={`heading${job.id}`}>
-            <h2 >
-              <button  type="button" data-toggle="collapse" data-target={`#collapse${job.id}`} aria-expanded="true" aria-controls={`collapse${job.id}`}>
-                {job.status} {job.customer.name} {job.customer.phone} {job.city}
-              </button>
-            </h2>
+            <h3 >
+              {job.status} {job.customer.name}</h3> 
+              <a className="button" href={`tel:+1${job.customer.phone}`}><i class="fas fa-mobile-alt"></i> {job.customer.phone}</a>    
+              <h3>{job.city}</h3>
           </div>
 
-     
-          <div id={`collapse${job.id}`} aria-labelledby={`heading${job.id}`} data-parent="#accordionExample">
-            <div >
-            <span>
+          <div className="card-content">
+            <p>
               <a target="_blank" rel="noopener noreferrer" href={`http://maps.google.com/maps?q=${job.street_1},${job.street_2},+${job.city},+${job.state}+${job.zip}`}>
                 {`${job.street_1} ${job.street_2}, ${job.city}, ${job.state} ${job.zip} `}
-              </a>{" "}
-            </span>
+              </a>
+            </p>
             <span>Description: {job.description}</span>
               <JobUpdater job={job} />
             </div>
-          </div>
-        </div>;
+        </div>
+      );
     })
     }
     else {
@@ -39,7 +37,7 @@ class Job extends Component {
         < div >
           <div id="headingOne">
             <h2 >
-              <button  type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button className="button">
                 No Jobs
               </button>
             </h2>

@@ -40,23 +40,23 @@ class JobsSearch extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <>
-        <h2>JOB SEARCH</h2>
-        <div>
-          <form
-            onSubmit={this.handleSubmit}
-          >
-            <input
-              onChange={this.handleChange}
-              type="date"
-              name="date"
-              min={timeHelper.dateTransform(timeHelper.getDay())}
-            />
-            <button>Submit</button>
-          </form>
+      <div className="container">
+        <div className="form-container">
+          <h2>JOB SEARCH</h2>
+          <div className="form">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                onChange={this.handleChange}
+                type="date"
+                name="date"
+                min={timeHelper.dateTransform(timeHelper.getDay())}
+              />
+              <button className="button" type="submit">Submit</button>
+            </form>
+          </div>
+        <Jobs/>
         </div>
-        <Jobs />
-      </>
+      </div>
     );
   }
 }

@@ -11,10 +11,10 @@ class Customers extends Component {
 
     if (this.props.customers.customers && this.props.customers.customers.length > 0) {
       return this.props.customers.customers.map(customer => (
-        <p>
+        <p className="card-content">
           {customer.name} {customer.city}{" "}
-          <a href={`tel:${customer.phone}`}>{customer.phone} </a>
-          <button
+          <a className="button" href={`tel:${customer.phone}`}><i class="fas fa-mobile-alt"></i> {customer.phone} </a>
+          <button className="button"
             type="button"
             onClick={() => this.handleClick(customer)}
           >
@@ -28,12 +28,10 @@ class Customers extends Component {
   renderCustomers = () => {
     return (
       <div>
-        <div >
-          <span>
-            Customers
-          </span>
-          {this.customersJSX()}
-        </div>
+        <h2>
+          Customers
+        </h2>
+        {this.customersJSX()}
       </div>
     )
   }
@@ -54,14 +52,13 @@ class Customers extends Component {
       return <Redirect to="/createcustomer" />;
     } else { 
     return (
-        <main >
-          <button onClick={this.createNewCustomer}>
-            <span>Create Customer</span>{" "}
-          </button>
-
-          <div>
+        <main className="container">
+          <div className="card">
             <div>{this.renderCustomers()}</div>
           </div>
+          <button className="button" onClick={this.createNewCustomer}>
+            Add New Customer
+          </button>
         </main>
       )
     }

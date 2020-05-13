@@ -72,7 +72,6 @@ class JobUpdater extends Component {
     navigator.geolocation.getCurrentPosition(this.success, this.error);
   }
   render() {
-    console.log(this.props)
     return <div>
         <div>
           <form onSubmit={this.handleSubmit} autoComplete="one">
@@ -89,8 +88,8 @@ class JobUpdater extends Component {
             <label htmlFor={`add-to-description${this.props.job.id}`}>Add to description</label>
             <textarea onChange={this.handleChange} name="description" id={`add-to-description${this.props.job.id}`} rows="2" />
             </div>
-            <button type="submit">
-              Update
+            <button className="button" type="submit">
+              Update Job
             </button>
           </form>
         </div>

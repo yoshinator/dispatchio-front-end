@@ -42,11 +42,12 @@ class EditCustomer extends Component {
   render() {
     if (this.props.customer.editingCustomer){
     return  (
-              <div>
-                <h2>
-                  EDIT CUSTOMER INFO 
-                </h2>
-              <div>
+        <div className="container">
+          <h2>
+            EDIT CUSTOMER INFO 
+          </h2>
+          <div className="form-container">
+            <div className="form">
               <form onSubmit={this.handleSubmit}>
                 <div>
                   <label htmlFor="customer-name">Customer Name</label>
@@ -139,10 +140,11 @@ class EditCustomer extends Component {
                   <label htmlFor="customer-email">Customer email</label>
                   <input onChange={this.handleChange}type="email"  name="email" id="customer-email"  value={this.state.email}/>
                 </div>
-                      <button type="submit" >Update</button>
+                      <button className="button" type="submit" >Update</button>
                 </form>
-              </div>
-              </div>
+            </div>
+          </div>
+        </div>
         )
     }
     else return <Redirect to="/customers"></Redirect>

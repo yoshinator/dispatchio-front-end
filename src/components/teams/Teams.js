@@ -14,14 +14,16 @@ import withRoleManager from '../../hocs/withRoleManager'
 
 const TeamUsers = ({ users, removeUser, teamId}) => {
   if (users.length > 0){
- return users.map(user => {
-   return <p >
-       {" "}
-     {user.f_name}, {user.l_name[0]}. <span onClick={() => removeUser(user.id, teamId)}><i class="fas fa-trash"></i>
-       </span> |
-     </p>;
- })
-}
+    return users.map(user => {
+      return <p >
+          {" "}
+        {user.f_name}, {user.l_name[0]}. <span onClick={() => removeUser(user.id, teamId)}><i class="fas fa-trash"></i>
+          </span> |
+        </p>;
+    })
+  } else {
+    return <div></div>
+  }
 }
 
 class Teams extends Component {
@@ -53,7 +55,7 @@ class Teams extends Component {
             type="button"
             onClick={() => this.handleAdd(team)}
           >
-            Add
+            Add Member to Team
           </button>
         </p>
       ));

@@ -33,7 +33,7 @@ state = {
       return (<>
         <div className="card-content"  key={job.id}>
           <p className="button" onClick={() => this.handleClick(job.id)} > {job.city} {job.customer.name} </p>
-          <a className="button" href={`tel:+1${job.customer.phone}`}>{job.customer.phone}</a>
+          <a className="button" href={`tel:+1${job.customer.phone}`}><i class="fas fa-mobile-alt"></i> {job.customer.phone}</a>
           </div>
         </>
       )
@@ -76,7 +76,7 @@ state = {
             <i class="fas fa-arrow-alt-circle-left"/>
             <h2>Jobs</h2>
             <i class="fas fa-arrow-alt-circle-right"/>
-            <div className="jobs">{this.renderMain()}</div>
+            <div className="card">{this.renderMain()}</div>
             <button className="button" onClick={this.createJobButton}>Create New Job</button>
           </div>
     )

@@ -4,6 +4,41 @@ import { connect } from 'react-redux'
 import { logOutAction } from '../../actions/user'
 import './Navbar.css'
 
+function EmployeeNavBar(props){
+  return <nav>
+    <ul>
+      <li>
+        <Link to="#" onClick={() => props.handleLogout()}>
+          Log Out
+              </Link>
+      </li>
+    </ul>
+  </nav>
+}
+
+function MainNavBar(props){
+  return <nav>
+    <ul>
+      <li>
+        <Link to="/jobs">Jobs</Link>
+      </li>
+      <li>
+        <Link to="/teams">Teams</Link>
+      </li>
+      <li>
+        <Link to="/teammembers">Team Members</Link>
+      </li>
+      <li>
+        <Link to="/customers">Customers</Link>
+      </li>
+      <li>
+        <Link to="#" onClick={() => props.handleLogout()}>
+          Log Out
+        </Link>
+      </li>
+    </ul>
+  </nav>
+}
 
 function Navbar(props) {
 
@@ -18,29 +53,9 @@ function Navbar(props) {
       <header>
           <h1 className="logo"><Link to="/">Dispatchio</Link></h1>
         <input type="checkbox" className="nav-toggle" id="nav-toggle" />
-        <nav>
-          <ul>
-            <li>
-              <Link to="/jobs">Jobs</Link>
-            </li>
-            <li>
-              <Link to="/teams">Teams</Link>
-            </li>
-            <li>
-              <Link to="/teammembers">Team Members</Link>
-            </li>
-            <li>
-              <Link to="/customers">Customers</Link>
-            </li>
-            <li>
-              <Link to="#" onClick={(event, props) => handleLogout(event, props)}>
-                Log Out
-              </Link>
-            </li>
-          </ul>
-        </nav>
+          {props.loginReducer.user.user_type === "employee" ? <EmployeeNavBar {...props} handleLogout={handleLogout}/> : <MainNavBar {...props} handleLogout={handleLogout} />}
         <label htmlFor="nav-toggle" className="nav-toggle-label">
-          <span></span>
+          <span></span> {/**Span must stay here for hamburger */}
         </label>
       </header>
       )
@@ -73,9 +88,9 @@ function Navbar(props) {
 
 }//END Navbar()
 
-const mapStateToProps = state => ({
-  loginReducer: state.loginReducer
-});
+const mapStateToProps = ({loginReducer}) => ({
+  loginReducer
+})
 
 function mapDispatchToProps(dispatch) {
   return  {

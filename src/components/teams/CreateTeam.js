@@ -33,18 +33,20 @@ class CreateTeam extends Component {
 
     if (this.props.creatingTeam) {
       return (
-        <div >
+        <div className="container" >
           <h2 >
             Create New Team
-                </h2>
-          <div >
-            <form onSubmit={this.handleSubmit}>
-              <div >
-                <label htmlFor="name">Team Name</label>
-                <input onChange={this.handleChange} type="text" name="name" id="name" value={this.state.name} />
-              </div>
-              <button type="submit">Create</button>
-            </form>
+          </h2>
+          <div className="form-container">
+            <div className="form">
+              <form onSubmit={this.handleSubmit}>
+                <div >
+                  <label htmlFor="name">Team Name</label>
+                  <input onChange={this.handleChange} type="text" name="name" id="name" value={this.state.name} />
+                </div>
+                <button type="submit">Create</button>
+              </form>
+            </div>
           </div>
         </div>
       )
