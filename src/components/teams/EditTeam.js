@@ -28,7 +28,7 @@ class EditTeam extends Component {
 
   getTeamMembers = () => {
     return this.props.team_members.map(member => {
-      return <option value={member.id}> {member.f_name}, {member.l_name}</option>
+      return <option key={member.id} value={member.id}> {member.f_name}, {member.l_name}</option>
     })
   }
 

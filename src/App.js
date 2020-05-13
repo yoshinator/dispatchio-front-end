@@ -25,10 +25,8 @@ import CreateCompany from './components/firstlogin/CreateCompany';
 import JoinCompany from './components/firstlogin/JoinCompany';
 import './css/styles.css'
 
-class App extends Component {
+function App() {
 
-
-  render() {
     return <>
         <Navbar />
         <div className="content">
@@ -56,7 +54,6 @@ class App extends Component {
         </Switch>
       </div>
       </>;
-  }
 }
 
   const mapsStateToProps = (state) => ({

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import withAuth from '../hocs/withAuth'
 
@@ -12,45 +12,24 @@ import { getTeamsAction, getTeamMembersAction } from '../actions/team'
 
 const timeHelper = new YOANHelpers ();
 
-class Home extends Component {
+function Home (props) {
 
-  componentDidMount(){
-    if (this.props.user.user_type === "employee" || this.props.user.user_type === "owner") {
-      this.props.addWeek(timeHelper.getWeek(), this.props.user.location.id)
-      this.props.getCustomers(this.props.user.location.id)
-      this.props.getTeams(this.props.user.location.id)
-      this.props.getTeamMembers(this.props.user.location.id)
-    }
+  props.addWeek(timeHelper.getWeek(), props.user.location.id)
+  props.getCustomers(props.user.location.id)
+  props.getTeams(props.user.location.id)
+  props.getTeamMembers(props.user.location.id)
+
+  switch(props.user){
+    case "employee":
+      return <Employee />;
+    case "manager":
+      return <Manager />;
+    case "owner":
+      return <Owner />;
+      default:
+        return <div></div>
   }
 
-  render() {
-    if(!this.props.user){
-      return <h1> </h1>
-    }
-    if(this.props.user.user_type === "employee" ){
-      return <Employee />
-    }
-    if(this.props.user.user_type === "manager"){
-      return (
-      <>
-          <Manager />
-      </>
-      )
-    }
-    if(this.props.user.user_type === "owner"){
-      return (
-        <>
-          <Owner />
-        </>
-      )
-    }
-    else{
-      return <div>
-              <h1>Other</h1>
-              {window.location.reload()}
-      </div>
-    }
-  }
 }
 
 const mapStateToProps = ( {loginReducer: {user}} ) => ({

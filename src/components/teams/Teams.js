@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {
@@ -12,7 +12,7 @@ import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
 
 
-const TeamUsers = ({ users, removeUser, teamId}) => {
+const TeamUsers = ({ users, removeUser, teamId, getTeam, user}) => {
   if (users.length > 0){
     return users.map(user => {
       return <p >
@@ -26,34 +26,30 @@ const TeamUsers = ({ users, removeUser, teamId}) => {
   }
 }
 
-class Teams extends Component {
-  componentDidMount(){
-    if (this.props.user){
-      this.props.getTeam(this.props.user.location.id);
-    }
-  }
-  
-  removeUser  = (userId, teamId ) => {
+const Teams = (props) => {
+
+  const removeUser  = (userId, teamId ) => {
     const body ={
       user_id: userId, 
       team_id: teamId
     }
-    this.props.removeTeamMemberFromTeam(body) 
+    props.removeTeamMemberFromTeam(body) 
   }
- 
-  teamsJsx = () => {
-    if (this.props.teams&& this.props.teams.length > 0){
-      return this.props.teams.map(team => (
+
+  const teamsJsx = () => {
+    console.log(props.teams)
+    if (props.teams && props.teams.length > 0){
+      return props.teams.map(team => (
         <p className="card-content" key={team.id}>
           <h2>{team.name} Team</h2>
           <TeamUsers
             users={team.users}
-            removeUser={this.removeUser}
+            removeUser={removeUser}
             teamId={team.id}
-          />{" "}
+          />
           <button className="button"
             type="button"
-            onClick={() => this.handleAdd(team)}
+            onClick={() => handleAdd(team)}
           >
             Add Member to Team
           </button>
@@ -62,43 +58,40 @@ class Teams extends Component {
     }
   }
 
-  handleAdd = (team) =>{
-    this.props.setTeam(team)
-    this.props.editTeamFlag()
+  const handleAdd = (team) =>{
+    props.setTeam(team)
+    props.editTeamFlag()
   }
 
-  renderTeams = () => {
+  const renderTeams = () => {
     return(
         <div className="card">
           <h2>Teams</h2>
-          {this.teamsJsx()}
+          {teamsJsx()}
         </div>
     )
   }
 
-  handleClick = () => {
-    this.props.createTeamFlag();
+  const handleClick = () => {
+    props.createTeamFlag();
   }
 
-    render() {
-      if (!this.props.editingTeam && !this.props.creatingTeam)
-      return (
-          <main className="container">
-            <div className="form-container">
-              <div className="jobs">{this.renderTeams()}</div>
-            </div>
-            <button className="button" onClick={this.handleClick}>
-            Create New Team
-            </button>
-          </main>
-      )
-      else if (this.props.creatingTeam){
-        return <Redirect to="/createteam"></Redirect>
-      }else if (this.props.editingTeam){
-        return <Redirect to="/editteam"></Redirect>
-      }
-  }
-
+  if (!props.editingTeam && !props.creatingTeam){
+    return (
+      <main className="container">
+        <div className="form-container">
+          <div className="jobs">{renderTeams()}</div>
+        </div>
+        <button className="button" onClick={handleClick}>
+        Create New Team
+        </button>
+      </main>
+    )}
+    else if (props.creatingTeam){
+      return <Redirect to="/createteam"></Redirect>
+    }else if (props.editingTeam){
+      return <Redirect to="/editteam"></Redirect>
+    }
 }
 
 const mapStateToProps = ({teamReducer: {teams, team, editingTeam, creatingTeam }, jobReducer: {jobs}, loginReducer: {user}}) => ({
