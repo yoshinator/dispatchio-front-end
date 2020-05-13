@@ -32,14 +32,12 @@ const  loginReducer = (state = initialState, action) => {
       return { ...state, users: [...state.users, action.payload] };
 
     case LOG_OUT:
-      console.log("IN loginReducer", state)
       return initialState;
 
       case UPDATE_USER: 
       return {...state, user: action.payload}
 
     default:
-      console.log("In default case")
       return state;
   }
 }

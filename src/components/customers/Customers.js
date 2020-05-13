@@ -13,7 +13,7 @@ class Customers extends Component {
       return this.props.customers.customers.map(customer => (
         <p className="card-content">
           {customer.name} {customer.city}{" "}
-          <a className="button" href={`tel:${customer.phone}`}><i class="fas fa-mobile-alt"></i> {customer.phone} </a>
+          <a className="button" href={`tel:${customer.phone}`}><i className="fas fa-mobile-alt"></i> {customer.phone} </a>
           <button className="button"
             type="button"
             onClick={() => this.handleClick(customer)}

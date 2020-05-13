@@ -17,7 +17,6 @@ const withAuth = WrappedComponent => {
     }
 
     render() {
-      console.log("%c INSIDE RENDER FOR HOC", "color: green");
       if (localStorage.getItem("jwt") && this.props.loggedIn) {
         //i have a token and i'm logged in
         // wrapped component in our case is Profile

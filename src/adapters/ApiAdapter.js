@@ -21,7 +21,6 @@ class JSONAPIAdapter {
   }
   // { key: 'value', key: { key: 'value', key: 'value'} }
   createItem(body) {
-    console.log(body)
     return fetch(this.endpoint, {
       method: 'POST',
       headers: this.headers,

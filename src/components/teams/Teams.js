@@ -17,7 +17,7 @@ const TeamUsers = ({ users, removeUser, teamId}) => {
     return users.map(user => {
       return <p >
           {" "}
-        {user.f_name}, {user.l_name[0]}. <span onClick={() => removeUser(user.id, teamId)}><i class="fas fa-trash"></i>
+        {user.f_name}, {user.l_name[0]}. <span onClick={() => removeUser(user.id, teamId)}><i className="fas fa-trash"></i>
           </span> |
         </p>;
     })

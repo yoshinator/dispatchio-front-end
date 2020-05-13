@@ -32,7 +32,7 @@ class TeamMembers extends Component {
             <p className= "card-content" key={teamMember.id}>
               {teamMember.f_name} {teamMember.l_name} <span onClick={() => this.handleClick(teamMember)}>
                 {" "}
-              <Link to={`/map/${teamMember.id}`}><i class="fas fa-map-marker-alt"></i></Link>
+              <Link to={`/map/${teamMember.id}`}><i className="fas fa-map-marker-alt"></i></Link>
               </span>
               <button className="button" onClick={() => this.handleEdit(teamMember)} type="button">
                 {" "}

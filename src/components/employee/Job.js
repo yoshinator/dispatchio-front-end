@@ -15,7 +15,7 @@ class Job extends Component {
           <div id={`heading${job.id}`}>
             <h3 >
               {job.status} {job.customer.name}</h3> 
-              <a className="button" href={`tel:+1${job.customer.phone}`}><i class="fas fa-mobile-alt"></i> {job.customer.phone}</a>    
+              <a className="button" href={`tel:+1${job.customer.phone}`}><i className="fas fa-mobile-alt"></i> {job.customer.phone}</a>    
               <h3>{job.city}</h3>
           </div>
 

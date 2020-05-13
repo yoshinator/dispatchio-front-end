@@ -15,30 +15,29 @@ const timeHelper = new YOANHelpers ();
 class Home extends Component {
 
   componentDidMount(){
-    if (this.props.user.user.user_type === "employee" || this.props.user.user.user_type === "owner") {
-      this.props.addWeek(timeHelper.getWeek(), this.props.user.user.location.id)
-      this.props.getCustomers(this.props.user.user.location.id)
-      this.props.getTeams(this.props.user.user.location.id)
-      this.props.getTeamMembers(this.props.user.user.location.id)
+    if (this.props.user.user_type === "employee" || this.props.user.user_type === "owner") {
+      this.props.addWeek(timeHelper.getWeek(), this.props.user.location.id)
+      this.props.getCustomers(this.props.user.location.id)
+      this.props.getTeams(this.props.user.location.id)
+      this.props.getTeamMembers(this.props.user.location.id)
     }
   }
 
   render() {
-    console.log("props", this.props)
-    if(!this.props.user.user){
+    if(!this.props.user){
       return <h1> </h1>
     }
-    if(this.props.user.user.user_type === "employee" ){
+    if(this.props.user.user_type === "employee" ){
       return <Employee />
     }
-    if(this.props.user.user.user_type === "manager"){
+    if(this.props.user.user_type === "manager"){
       return (
       <>
           <Manager />
       </>
       )
     }
-    if(this.props.user.user.user_type === "owner"){
+    if(this.props.user.user_type === "owner"){
       return (
         <>
           <Owner />
@@ -54,8 +53,8 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ( loginReducer ) => ({
-  user: loginReducer.loginReducer
+const mapStateToProps = ( {loginReducer: {user}} ) => ({
+   user
 })
 
 function mapDispatchToProps(dispatch) {
