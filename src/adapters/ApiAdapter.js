@@ -1,11 +1,10 @@
 
 class JSONAPIAdapter {
   constructor(endpoint) {
-    this.endpoint = `http://localhost:3000/${endpoint}`
+    this.endpoint = `https://disaptchio.herokuapp.com/${endpoint}`
     this.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost',
       'Authorization': `Bearer ${localStorage.getItem('jwt')}`
     }
   }
