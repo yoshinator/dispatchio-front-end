@@ -8,21 +8,20 @@ export const getCustomersAction =(locationId) => {
     const body = {
       "customers": {
         "location_id": locationId
-
       }
     }
-      CUSTOMERSAdapter.createItem(body)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw response
-        }
-      })
-      .then(JSONResponse => {
-        dispatch({ type: "GET_CUSTOMERS", payload: JSONResponse })
-      })
-    }
+    CUSTOMERSAdapter.createItem(body)
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        throw response
+      }
+    })
+    .then(JSONResponse => {
+      dispatch({ type: "GET_CUSTOMERS", payload: JSONResponse })
+    })
+  }
 }
 
 export const editCustomerAction = (body, id) => {
