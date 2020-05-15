@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from  'react-redux'
 import { Redirect } from 'react-router'
 
@@ -34,7 +34,6 @@ class Login extends Component {
 
   render(){
   //TODO ::::   CHECK LINE 70 loggedIn wrong state. Also this state is changing for almost every action is because of auth check? Investigate.
-    console.log(this.props.loggedIn)
   return this.props.loggedIn ? (
   <Redirect to="/"/> ) : (
     <div className="container">
