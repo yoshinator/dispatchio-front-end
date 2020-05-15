@@ -1,12 +1,11 @@
 
 class JSONAPIAdapter {
   constructor(endpoint) {
-    console.log(window.localStorage.getItem('jwt'))
     this.endpoint = `https://dispatch-io.herokuapp.com/${endpoint}`
     this.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+      'Authorization': `Bearer ${window.localStorage.getItem('jwt')}`
     }
   }
   getAll() {
