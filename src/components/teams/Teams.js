@@ -15,7 +15,7 @@ import withRoleManager from '../../hocs/withRoleManager'
 const TeamUsers = ({ users, removeUser, teamId, getTeam, user}) => {
   if (users.length > 0){
     return users.map(user => {
-      return <p >
+      return <p key={user.id}>
           {" "}
         {user.f_name}, {user.l_name[0]}. <span onClick={() => removeUser(user.id, teamId)}><i className="fas fa-trash"></i>
           </span> |
@@ -27,7 +27,6 @@ const TeamUsers = ({ users, removeUser, teamId, getTeam, user}) => {
 }
 
 const Teams = (props) => {
-
   const removeUser  = (userId, teamId ) => {
     const body ={
       user_id: userId, 
@@ -37,10 +36,9 @@ const Teams = (props) => {
   }
 
   const teamsJsx = () => {
-    console.log(props.teams)
     if (props.teams && props.teams.length > 0){
       return props.teams.map(team => (
-        <p className="card-content" key={team.id}>
+        <div className="card-content" key={team.id}>
           <h2>{team.name} Team</h2>
           <TeamUsers
             users={team.users}
@@ -53,7 +51,7 @@ const Teams = (props) => {
           >
             Add Member to Team
           </button>
-        </p>
+        </div>
       ));
     }
   }
@@ -105,7 +103,7 @@ const mapStateToProps = ({teamReducer: {teams, team, editingTeam, creatingTeam }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTeam: (location_id) => {
+    getTeams: (location_id) => {
       dispatch(getTeamsAction(location_id));
     },
     createTeamFlag: ()=> {

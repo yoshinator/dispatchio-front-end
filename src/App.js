@@ -11,6 +11,14 @@ import CreateJob from './components/jobs/CreateJob'
 import Locations from './components/Locations'
 import Teams from './components/teams/Teams'
 import TeamMembers from './components/teams/TeamMembers'
+import {
+  getTeamMembersAction,
+  getTeamsAction,
+  changeTeamCreateFlagAction,
+  changeTeamEditFlagAction,
+  setTeamAction,
+  removeTeamMemberFromTeam
+} from "./actions/team";
 import Customers from './components/customers/Customers'
 import GoogleMap from './components/GoogleMap'
 import NoMatch from './components/Nomatch'
@@ -25,8 +33,13 @@ import CreateCompany from './components/firstlogin/CreateCompany';
 import JoinCompany from './components/firstlogin/JoinCompany';
 import './css/styles.css'
 
-function App() {
+function App(props) {
 
+  props.user && props.user.location && props.user.location.id && props.getTeamMembers(props.user.location.id)
+
+  props.user && props.user.location && props.user.location.id && props.getTeams(props.user.location.id)
+
+  console.log(props)
     return <>
         <Navbar />
         <div className="content">
@@ -37,10 +50,10 @@ function App() {
           <Route path="/jobs" component={Jobs}></Route>
           <Route path="/createjob" component={CreateJob}></Route>
           <Route path="/locations" component={Locations}></Route>
-          <Route path="/teams" component={Teams}></Route>
+          <Route path="/teams" render={() => <Teams />}></Route>
           <Route path="/createteam" component={CreateTeam}></Route>
           <Route path="/editteam" component={EditTeam}></Route>
-          <Route path="/teammembers" component={TeamMembers}></Route>
+          <Route path="/teammembers" render={()=><TeamMembers/>}></Route>
           <Route path="/editteammember" component={EditTeamMember}></Route>
           <Route path="/createteammember" component={CreateTeamMember}></Route>
           <Route path="/customers" component={Customers}></Route>
@@ -62,8 +75,12 @@ function App() {
 
   const mapDispatchToProps = (dispatch) => {
     return { 
-      fetchCurrentUser: () => dispatch(fetchCurrentUser()) 
-    };
+      fetchCurrentUser: () => dispatch(fetchCurrentUser()) ,
+      getTeamMembers: (location_id) => {
+        dispatch(getTeamMembersAction(location_id));
+      }, 
+      getTeams: (location_id) => dispatch(getTeamsAction(location_id))
+    }
   }
 
 export default

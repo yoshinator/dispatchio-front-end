@@ -10,7 +10,7 @@ const initialState = {
 const teamReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_TEAMS:
-      return {...initialState, teams: action.payload}
+      return {...state, teams: action.payload}
    
     case SET_TEAM: 
       return { ...state, team: action.payload }
@@ -26,15 +26,14 @@ const teamReducer = (state = initialState, action) => {
             action.payload
           ), team: initialState.team, editingTeam: false
       };
+      case CHANGE_TEAM_CREATE_FLAG:
+        return { ...state, creatingTeam: true }
 
-    case CHANGE_TEAM_CREATE_FLAG:
-      return { ...state, creatingTeam: true }
-
-    case CREATE_TEAM:
-      return { ...state, teams: [...state.teams, action.payload], creatingTeam: false }
-    
-    default:
-      return state;
+      case CREATE_TEAM:
+        return { ...state, teams: [...state.teams, action.payload], creatingTeam: false }
+      
+      default:
+        return state;
   }
 }
 

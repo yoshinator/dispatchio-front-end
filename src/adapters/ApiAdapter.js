@@ -1,7 +1,7 @@
 
 class JSONAPIAdapter {
   constructor(endpoint) {
-    this.endpoint = `https://disaptchio.herokuapp.com/${endpoint}`
+    this.endpoint = `https://dispatch-io.herokuapp.com/${endpoint}`
     this.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',

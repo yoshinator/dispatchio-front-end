@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from "react-redux";
 
 import JobUpdater from "./JobUpdater"
 
 
-class Job extends Component {
+const Job = (props) =>  {
 
-  jsxBuilder = () => {
-    if (this.props.jobs){
-      
-    return this.props.jobs.map(job => {
+    if (props.jobs){
+    return props.jobs.map(job => {
       return (
         <div className="card" key={job.id}>
           <div id={`heading${job.id}`}>
@@ -46,11 +44,6 @@ class Job extends Component {
       )
     }
   }
-
-  render() {
-  return this.jsxBuilder()
-  }
-}
 
 
 const mapStateToProps = ({ jobReducer }) => ({

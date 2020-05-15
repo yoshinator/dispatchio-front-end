@@ -17,7 +17,7 @@ const initialState = {
 const teamMemberReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_TEAM_MEMBERS:
-      return {...initialState, team_members: action.payload}
+      return {...state, team_members: action.payload}
     
     case SET_TEAM_MEMBER: 
       return {...state, team_member: action.payload}

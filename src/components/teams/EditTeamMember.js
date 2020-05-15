@@ -30,44 +30,47 @@ class EditTeamMember extends Component {
     this.props.updateTeamMember(this.state, this.state.id)
   }
   render() {
+    console.log("EDIT TEAM MEMBER", this.props)
     if (this.props.teamMemberEditFlag) {
       return (
-          <div>
+          <div className="container">
             <h2 >EDIT EMPLOYEE INFO</h2>
-            <div>
-              <form onSubmit={this.handleSubmit}>
-                <div>
-                  <label htmlFor="name">First Name</label>
-                  <input onChange={this.handleChange} type="text" name="f_name" id="f_name" value={this.state.f_name} />
-                </div>
-                <div>
-                  <label htmlFor="name">Last Name</label>
-                  <input onChange={this.handleChange} type="text" name="l_name" id="l_name" value={this.state.l_name} />
-                </div>
+            <div className="form-container">
+              <div className="form">
+                <form onSubmit={this.handleSubmit}>
+                  <div>
+                    <label htmlFor="name">First Name</label>
+                    <input onChange={this.handleChange} type="text" name="f_name" id="f_name" value={this.state.f_name} />
+                  </div>
+                  <div>
+                    <label htmlFor="name">Last Name</label>
+                    <input onChange={this.handleChange} type="text" name="l_name" id="l_name" value={this.state.l_name} />
+                  </div>
 
-                <div>
-                  <label htmlFor="phone">Phone</label>
-                  <input onChange={this.handleChange} type="phone" name="phone" id="phone" value={this.state.phone} />
-                </div>
-                <div>
-                  <label htmlFor="email">Email</label>
-                  <input onChange={this.handleChange} type="email" name="email" id="email" value={this.state.email} />
-                </div>
+                  <div>
+                    <label htmlFor="phone">Phone</label>
+                    <input onChange={this.handleChange} type="phone" name="phone" id="phone" value={this.state.phone} />
+                  </div>
+                  <div>
+                    <label htmlFor="email">Email</label>
+                    <input onChange={this.handleChange} type="email" name="email" id="email" value={this.state.email} />
+                  </div>
 
-                <div>
-                  <label htmlFor="teamMemberType">Team Member Type</label>
-                  <select onChange={this.handleChange}name="user_type" id="user_type">
-                    <option value="" selected></option>
-                    <option value="manager">Manager</option>
-                    <option value="employee">Employee</option>
-                  </select>
-                </div>
+                  <div>
+                    <label htmlFor="teamMemberType">Team Member Type</label>
+                    <select onChange={this.handleChange}name="user_type" id="user_type">
+                      <option value="" selected></option>
+                      <option value="manager">Manager</option>
+                      <option value="employee">Employee</option>
+                    </select>
+                  </div>
 
-                <button type="submit">
-                  Update
-                </button>
-              </form>
-            </div>
+                  <button className ="button" type="submit">
+                    Update
+                  </button>
+                </form>
+              </div>
+             </div>
           </div>
       )
     }

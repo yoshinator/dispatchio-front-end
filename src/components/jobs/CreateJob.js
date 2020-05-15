@@ -64,7 +64,7 @@ class CreateJob extends Component {
 
   getTeamOptions = () => {
     return this.props.teams.map(team => {
-      return <option value={team.id}> {team.name} </option>
+      return <option key={team.id} value={team.id}> {team.name} </option>
     })
   }
 
@@ -87,14 +87,14 @@ class CreateJob extends Component {
 
                   <label htmlFor="customer_id">Customer</label>
                   <select onChange={this.handleChange} name="customer_id" id="customer_id">
-                  <option value="" selected/>
+                  <option value="" />
                     {this.getCustomerOptions()}
                   </select>
 
 
                   <label htmlFor="team_id">Team</label>
                   <select onChange={this.handleChange} name="team_id" id="team_id">
-                  <option value="" selected />
+                  <option value=""  />
                     {this.getTeamOptions()}
                   </select>
 

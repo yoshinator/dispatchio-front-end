@@ -19,7 +19,9 @@ function Home (props) {
   props.getTeams(props.user.location.id)
   props.getTeamMembers(props.user.location.id)
 
-  switch(props.user){
+  console.log(props.user)
+
+  switch(props.user.user_type){
     case "employee":
       return <Employee />;
     case "manager":

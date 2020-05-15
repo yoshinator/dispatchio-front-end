@@ -3,7 +3,8 @@ import {connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
-import {editCustomerAction} from '../../actions/customer'
+import { editCustomerAction } from '../../actions/customer'
+import { getTeamMembersAction } from '../../actions/team'
 
 class EditCustomer extends Component {
   state={

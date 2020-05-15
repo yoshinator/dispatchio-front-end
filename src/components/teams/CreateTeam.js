@@ -44,7 +44,7 @@ class CreateTeam extends Component {
                   <label htmlFor="name">Team Name</label>
                   <input onChange={this.handleChange} type="text" name="name" id="name" value={this.state.name} />
                 </div>
-                <button type="submit">Create</button>
+                <button className="button" type="submit">Create</button>
               </form>
             </div>
           </div>
