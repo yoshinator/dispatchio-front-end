@@ -8,7 +8,7 @@ import {
 } from "./types";
 
 const initialState = {
-  customers: [],
+  customers: null,
   customer: {},
   editingCustomer: false, 
   createCustomerFlag: false

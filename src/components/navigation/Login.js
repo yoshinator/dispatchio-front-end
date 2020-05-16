@@ -33,7 +33,6 @@ class Login extends Component {
   }
 
   render(){
-  //TODO ::::   CHECK LINE 70 loggedIn wrong state. Also this state is changing for almost every action is because of auth check? Investigate.
   return this.props.loggedIn ? (
   <Redirect to="/"/> ) : (
     <div className="container">
@@ -48,8 +47,9 @@ class Login extends Component {
 
                 <label htmlFor="input-password">Password</label>
                 <input onChange={this.handleChange} type="password" id="input-password" placeholder="Password" value={this.state.password} name="password" autoComplete="password" />
-
-                <button className="button" type="submit">Login</button>
+                <div>
+                  <button className="button" type="submit">Login</button>
+                </div>
             </form>
           </div>
         </div>
@@ -60,7 +60,6 @@ class Login extends Component {
   }
 }
 
-// TODO :::: For some reason when this component is rendered from the address bar loggedIn false so we do not redirect to home :(
 const mapStateToProps = ({loginReducer: {user: authenticatingUser, failedLogin, error, loggedIn}}) => ({
   authenticatingUser,
   failedLogin,

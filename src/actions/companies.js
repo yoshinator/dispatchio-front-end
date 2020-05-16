@@ -17,7 +17,6 @@ export const createCompanyAction = (body) => {
       if (response.ok) {
         return response.json();
       } else {
-        console.log(response.json())
         throw response;
       }
     })

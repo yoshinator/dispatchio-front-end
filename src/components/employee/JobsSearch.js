@@ -38,7 +38,6 @@ class JobsSearch extends React.Component {
 
   // THIS COMPONENT ONLY DISPLAYS FOR USERS OF TYPE EMPLOYEE
   render() {
-    console.log(this.state);
     return (
       <div className="container">
         <div className="form-container">

@@ -13,7 +13,8 @@ const YOANHelper = new YOANHelpers();
 
 class Jobs extends Component {
 state = {
-  currentWeek: YOANHelper.getWeek()
+  week: 0,
+  currentWeek: YOANHelper.getWeek(0)
 }
 
   componentDidMount(){
@@ -39,6 +40,15 @@ state = {
       )
     })
   }
+
+  forward = (e) => {
+      this.setState({ week: this.state.week + 1, currentWeek: YOANHelper.getWeek(this.state.week) }, ()=>this.props.addWeek(this.state.currentWeek, this.props.user.location.id))
+  }
+  backward = (e) => {
+    this.setState({ week: this.state.week - 1, currentWeek: YOANHelper.getWeek(this.state.week) }, () => this.props.addWeek(this.state.currentWeek, this.props.user.location.id))
+  }
+
+
 
   createJobButton =() => {
     this.props.createJobFlag()
@@ -73,9 +83,9 @@ state = {
     } else {
     return (
         <div className="container">
-            <i className="fas fa-arrow-alt-circle-left"/>
+        <a className="transparent" onClick={this.backward}><i className="fas fa-arrow-alt-circle-left" /></a>
             <h2>Jobs</h2>
-            <i className="fas fa-arrow-alt-circle-right"/>
+        <a className="transparent" onClick={this.forward}><i className="fas fa-arrow-alt-circle-right" /></a>
             <div className="card">{this.renderMain()}</div>
             <button className="button" onClick={this.createJobButton}>Create New Job</button>
           </div>

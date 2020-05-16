@@ -26,7 +26,6 @@ export const getTeamsAction =(locationId) => {
         }
       })
       .then(JSONResponse => {
-        console.log("TEAMS RESPONSE JSON", JSONResponse)
         dispatch({ type: "GET_TEAMS", payload: JSONResponse })
       })
     }

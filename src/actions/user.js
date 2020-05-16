@@ -6,7 +6,6 @@ const USERAdapter = new JSONAPIAdapter("api/v1/users")
 
 
 export const loginAction = (email, password) => {
-  console.log(password)
   return  (dispatch) => { 
     // dispatch({ type: 'AUTHENTICATING_USER' })
     dispatch(authenticatingUser())
@@ -20,10 +19,10 @@ export const loginAction = (email, password) => {
         }
       })
       .then(JSONResponse => {
-        localStorage.setItem('jwt', JSONResponse.jwt)
+        window.localStorage.setItem('jwt', JSONResponse.jwt)
         dispatch(setCurrentUser(JSONResponse.user));
       })
-      .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+      .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN MAKE SURE THE SERVER CAN BE REACHED', payload: e.message })))
   }
 }
 
@@ -43,7 +42,7 @@ export const createUserAction = ({user_type, f_name, l_name, email, phone, passw
       })
       .then(JSONResponse => {
         // debugger;
-        localStorage.setItem("jwt", JSONResponse.jwt);
+        window.localStorage.setItem("jwt", JSONResponse.jwt);
         dispatch(setCurrentUser(JSONResponse.user));
       })
       .catch(r =>
@@ -99,6 +98,3 @@ export const logOutAction = () =>({
 
 // tell our app we're currently fetching
 export const authenticatingUser = () => ({ type: 'AUTHENTICATING_USER' })
-// export const authenticatingUser = () => {
-//   return { type: 'AUTHENTICATING_USER' }
-// }

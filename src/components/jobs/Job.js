@@ -84,7 +84,6 @@ class Job extends Component {
 
   handleTimeChange = (event) => {
     console.log("%cHANDLETIME", 'color:green', event.target.name, event.target.value);
-    
   }
 
   //PART OF FORM BUILDER RENDER RETURN

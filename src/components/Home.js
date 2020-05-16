@@ -8,7 +8,7 @@ import Owner from './owner/Owner';
 import YOANHelpers from '../helpers/helpers';
 import { addWeekAction } from '../actions/job'
 import { getCustomersAction } from '../actions/customer';
-import { getTeamsAction, getTeamMembersAction } from '../actions/team'
+import { getTeamMembersAction } from '../actions/team'
 
 const timeHelper = new YOANHelpers ();
 
@@ -16,12 +16,12 @@ function Home (props) {
 
   props.addWeek(timeHelper.getWeek(), props.user.location.id)
   props.getCustomers(props.user.location.id)
-  props.getTeams(props.user.location.id)
+  
   props.getTeamMembers(props.user.location.id)
 
-  console.log(props.user)
-
+  console.log(props)
   switch(props.user.user_type){
+    
     case "employee":
       return <Employee />;
     case "manager":
@@ -45,9 +45,6 @@ function mapDispatchToProps(dispatch) {
     }, 
     getCustomers: (locationId) => {
       dispatch(getCustomersAction(locationId))
-    },
-    getTeams: (locationId) => {
-      dispatch(getTeamsAction(locationId))
     },
     getTeamMembers: (locationId) => {
       dispatch(getTeamMembersAction(locationId));

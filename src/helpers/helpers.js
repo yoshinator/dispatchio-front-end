@@ -1,8 +1,16 @@
 export default class YOANHelpers {
   // Returns an array of weeks. 
-  getWeek = () => {
+  getWeek = (start) => {
+    if (start>0){
+      start +=1
+      start *=7
+    }
+    else if (start < 0 ){
+      start -=1
+      start *=7
+    } else start = 7
     const week = []
-    for (let i = 0; i < 7; i++) {
+    for (let i = start-7; i < start; i++) {
       const day = new Date()
       const a = new Date(day.setDate(day.getDate() + i))
       week.push(a.toLocaleString(
@@ -52,22 +60,6 @@ export default class YOANHelpers {
     return timeArray[0] - 12 > 0 ? `${timeArray[0] - 12}:${timeArray[1]} pm` : `${timeArray[0]}:${timeArray[1]} am`
 
   }
-
-
-  //same return value as getDay above
-  // getFormattedDay = () => {
-  //   const day = new Date();
-  //   const year = day.toLocaleString("en-US", {
-  //     year: "numeric"
-  //   });
-  //   const month = day.toLocaleString("en-US", {
-  //     month: "2-digit"
-  //   });
-  //   const today = day.toLocaleString("en-US", {
-  //     day: "2-digit"
-  //   });
-  //   return `${year}/${month}/${today}`
-  // }
 
 
 }

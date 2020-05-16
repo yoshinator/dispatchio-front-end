@@ -31,7 +31,6 @@ export const editCustomerAction = (body, id) => {
         if (response.ok) {
           return response.json();
         } else {
-          console.log(response.json())
           throw response;
         }
       })
@@ -48,7 +47,6 @@ export const createCustomerAction = (body) => {
       if (response.ok ){
         return response.json();
       } else {
-        console.log(response.json())
         throw response;
       }
     })

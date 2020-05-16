@@ -30,7 +30,6 @@ class EditTeamMember extends Component {
     this.props.updateTeamMember(this.state, this.state.id)
   }
   render() {
-    console.log("EDIT TEAM MEMBER", this.props)
     if (this.props.teamMemberEditFlag) {
       return (
           <div className="container">

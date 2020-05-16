@@ -6,10 +6,6 @@ import { fetchCurrentUser } from "../actions/user";
 const withAuth = WrappedComponent => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
-      console.log(
-        "%c INSIDE COMPONENT DID MOUNT FOR AUTH HOC",
-        "color: purple"
-      );
       // POTENTIAL SECURITY FLAW!!! my tokens don't expire
       if (localStorage.getItem("jwt") && !this.props.loggedIn)
         this.props.fetchCurrentUser();
@@ -46,17 +42,7 @@ const withAuth = WrappedComponent => {
     )
   };
 
-  // const mapDispatchToProps = /*FUNCTION*/ (dispatch) => {
-  //   return {
-  //     fetchCurrentUser: () => dispatch(fetchCurrentUser()), //dispatch is automagically provided by redux
-  //   }
-  // }
-
   const mapDispatchToProps = { fetchCurrentUser: fetchCurrentUser };
-
-  // const connectedToReduxHOC = connect(mapStateToProps, mapDispatchToProps)
-  // const connectedAuthorizedComponent = connectedToReduxHOC(AuthorizedComponent)
-  // return connectedAuthorizedComponent
 
   return connect(
     mapStateToProps,

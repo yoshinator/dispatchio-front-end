@@ -43,6 +43,10 @@ h3 {
   color: var(--text-clr);
 }
 
+p {
+  line-height: 1.5;
+}
+
 .button {
   padding: 1em;
   text-transform: uppercase;
@@ -155,13 +159,23 @@ text-align: center;;
 }
 
 /* ========FONT AWESOME STYLES======= */
+
+.transparent {
+  border: none;
+  background-color: rgba(255,255,255,0);
+  color: rgba(255,255,255,0);
+  cursor: pointer;
+}
+
+
+
 .fa-arrow-alt-circle-left{
   color: var(--accent-clr);
-  font-size: 2em;
+  font-size: 3em;
 }
 .fa-arrow-alt-circle-right{
   color: var(--accent-clr);
-   font-size: 2em;
+   font-size: 3em;
 }
 
 .fa-trash{

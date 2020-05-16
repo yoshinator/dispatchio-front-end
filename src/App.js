@@ -39,7 +39,6 @@ function App(props) {
 
   props.user && props.user.location && props.user.location.id && props.getTeams(props.user.location.id)
 
-  console.log(props)
     return <>
         <Navbar />
         <div className="content">
@@ -47,7 +46,7 @@ function App(props) {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/jobs" component={Jobs}></Route>
+          <Route path="/jobs" render={()=><Jobs/>}></Route>
           <Route path="/createjob" component={CreateJob}></Route>
           <Route path="/locations" component={Locations}></Route>
           <Route path="/teams" render={() => <Teams />}></Route>
@@ -56,7 +55,7 @@ function App(props) {
           <Route path="/teammembers" render={()=><TeamMembers/>}></Route>
           <Route path="/editteammember" component={EditTeamMember}></Route>
           <Route path="/createteammember" component={CreateTeamMember}></Route>
-          <Route path="/customers" component={Customers}></Route>
+          <Route path="/customers" render={()=><Customers/>}></Route>
           <Route path="/editcustomer" component={EditCustomer}></Route>
           <Route path="/createcustomer" component={CreateCustomer}></Route>
           <Route path="/createcompany" component={CreateCompany}></Route>

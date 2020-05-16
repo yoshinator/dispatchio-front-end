@@ -10,10 +10,10 @@ const TeamMembers = (props) =>  {
   const handleClick =(teamMember) => {
     props.setTeamMemberAction(teamMember)
   }
+
   const handleEdit = (teamMember) => {
     props.setTeamMemberAction(teamMember);
     props.changeTeamMemberEditFlag();
-
   }
 
   const teamMembersJsx = () => {
@@ -38,7 +38,6 @@ const TeamMembers = (props) =>  {
 
 
   if (!props.teamMembers.teamMemberEditFlag && !props.teamMembers.createTeamMemberFlag) {
-    console.log(props.teamMembers.teamMemberEditFlag)
     return (
         <main className="container">
           <div className="form-container">

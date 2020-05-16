@@ -27,6 +27,12 @@ const TeamUsers = ({ users, removeUser, teamId, getTeam, user}) => {
 }
 
 const Teams = (props) => {
+
+  if (!props.teams){
+    props.getTeams(props.user.location.id)
+  }
+ 
+
   const removeUser  = (userId, teamId ) => {
     const body ={
       user_id: userId, 
@@ -103,11 +109,11 @@ const mapStateToProps = ({teamReducer: {teams, team, editingTeam, creatingTeam }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTeams: (location_id) => {
-      dispatch(getTeamsAction(location_id));
-    },
     createTeamFlag: ()=> {
       dispatch(changeTeamCreateFlagAction());
+    },
+    getTeams: (locationId) => {
+      dispatch(getTeamsAction(locationId))
     },
     editTeamFlag: () => {
       dispatch(changeTeamEditFlagAction());

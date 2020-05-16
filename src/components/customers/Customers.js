@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom'
 import withAuth from "../../hocs/withAuth";
 import withRoleManager from "../../hocs/withRoleManager"
-import { editCustomerFlagAction, addCustomerToEditAction, createNewCustomerFlagAction } from "../../actions/customer";
+import { editCustomerFlagAction, addCustomerToEditAction, createNewCustomerFlagAction, getCustomersAction } from "../../actions/customer";
 
 const Customers = (props) => {
-
+  console.log(props.customers)
+  if (!props.customers){
+    props.getCustomers(props.user.location.id)
+  }
   const renderCustomers = () => {
-    if (props.customers.customers && props.customers.customers.length > 0) {
-      return props.customers.customers.map(customer => (
+    if (props.customers && props.customers.length > 0) {
+      return props.customers.map(customer => (
         <p key={customer.id} className="card-content">
           {customer.name} {customer.city}{" "}
           <a className="button" href={`tel:${customer.phone}`}><i className="fas fa-mobile-alt"></i> {customer.phone} </a>
@@ -33,9 +36,9 @@ const Customers = (props) => {
     props.createNewCustomerFlag();
   }
 
-  if (props.customers.editingCustomer) {
+  if (props.editingCustomer) {
     return <Redirect to="/editcustomer"></Redirect>
-  }else if (props.customers.createCustomerFlag){
+  }else if (props.createCustomerFlag){
     return <Redirect to="/createcustomer" />;
   } else { 
   return (
@@ -55,16 +58,21 @@ const Customers = (props) => {
 }
 
 
-const mapStateTopProps = ({ customerReducer: customers, customer, editingCustomer})=>{
+const mapStateTopProps = ({ customerReducer:{ customers, customer, editingCustomer, createCustomerFlag}, loginReducer: {user}})=>{
  return {
    customers,
    customer, 
-   editingCustomer
+   editingCustomer,
+   createCustomerFlag,
+   user
   }
 }
  
 const mapDispatchToProps = (dispatch)  => {
   return {
+    getCustomers: (locationId) => {
+      dispatch(getCustomersAction(locationId))
+    },
     editCustomerFlag: () => {
       dispatch(editCustomerFlagAction())
     },

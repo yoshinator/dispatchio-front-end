@@ -8,7 +8,6 @@ const withRoleManager = WrappedComponent => {
     render() {
       if (this.props.user) {
         if (this.props.user.user_type === "manager" || this.props.user.user_type === "owner") {
-   
           return <WrappedComponent />;
         }
         } else {

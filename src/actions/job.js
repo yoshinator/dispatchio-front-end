@@ -26,7 +26,6 @@ export const getEmployeeJobsAction = (day, id) => {
         }
       })
       .then(JSONResponse => {
-          console.log(JSONResponse)
           dispatch({type: "GET_JOBS", payload: JSONResponse})
       })
   }
@@ -79,7 +78,6 @@ export const createJobAction = (body) => {
         if (response.ok) {
           return response.json();
         } else {
-          console.log(response.json());
           throw response;
         }
       })

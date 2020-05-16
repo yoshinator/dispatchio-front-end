@@ -21,9 +21,6 @@ class CreateCustomer extends Component {
   }
 
   componentDidMount(){
-    console.log(
-      this.props
-    )
     this.setState({
       location_id: this.props.user.location.id
     })
