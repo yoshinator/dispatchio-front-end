@@ -23,7 +23,7 @@ state = {
 
 
   handleClick = (id) => {
-    const job = this.props.jobs.jobs.filter(job => job.id === id)
+    const job = this.props.jobs.filter(job => job.id === id)
     this.props.editJob(job[0])
   }
 
