@@ -44,6 +44,7 @@ class CreateCompany extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createCompany(this.state)
+    return <Redirect to="/"></Redirect>
   }
   render() {
 
@@ -51,11 +52,10 @@ class CreateCompany extends Component {
       return <Redirect to="/"></Redirect>
     } else {
       return (
-        <div>
-          <h2>
-            Create New Company
-                </h2>
-          <div >
+        <div className="container">
+          <h2>Create New Company</h2>
+          <div className="form-container" >
+            <div className="form">
             <form onSubmit={this.handleSubmit}>
               <div>
                 <label htmlFor="name">Company Name</label>
@@ -79,8 +79,9 @@ class CreateCompany extends Component {
                 <label htmlFor="city">City</label>
                 <input onChange={this.handleChangeLocation} type="text" minLength="4" name="city" id="city" value={this.state.location.city} />
               </div>
-              <button type="submit">Create</button>
+              <button className="button" type="submit">Create</button>
             </form>
+            </div>
           </div>
         </div>
       )

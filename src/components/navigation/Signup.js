@@ -6,7 +6,7 @@ import About from "../About"
 
 class Signup extends Component{
   state = {
-    user_type: "",
+    user_type: "employee",
     f_name: "",
     l_name: "",
     email: "",
@@ -62,7 +62,7 @@ class Signup extends Component{
               {/* USER TYPE RADIO BUTTONS  */}
               <label>Pick a user type</label>
               <div>
-                <input onChange={this.handleChange} type="radio" name="user_type" id="owner" value="owner" checked />
+                <input onChange={this.handleChange} type="radio" name="user_type" id="owner" value="owner" />
                 <label htmlFor="owner">
                   Owner
                 </label>
@@ -77,7 +77,7 @@ class Signup extends Component{
                 </label>
               </div>
               <div>
-                <input onChange={this.handleChange} type="radio" name="user_type" id="employee" value="employee"/>
+                <input onChange={this.handleChange} type="radio" name="user_type" id="employee" value="employee" checked/>
                 <label htmlFor="employee">
                   Employee
                 </label>

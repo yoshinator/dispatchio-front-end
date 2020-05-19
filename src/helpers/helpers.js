@@ -2,15 +2,13 @@ export default class YOANHelpers {
   // Returns an array of weeks. 
   getWeek = (start) => {
     if (start>0){
-      start +=1
       start *=7
     }
     else if (start < 0 ){
-      start -=1
       start *=7
-    } else start = 7
+    } else start = 0
     const week = []
-    for (let i = start-7; i < start; i++) {
+    for (let i = start; i < start+7; i++) {
       const day = new Date()
       const a = new Date(day.setDate(day.getDate() + i))
       week.push(a.toLocaleString(

@@ -29,7 +29,8 @@ state = {
 
   // Takes a day as a string in the form "1/25/1990" 
   renderJobsJsx = (day) => {
-    const filteredJobs = this.props.jobs.jobs.filter(job => job.schedule_date === day)
+    console.log(this.props.jobs)
+    const filteredJobs = this.props.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
       return (<>
         <div className="card-content"  key={job.id}>
@@ -41,11 +42,13 @@ state = {
     })
   }
 
-  forward = (e) => {
-      this.setState({ week: this.state.week + 1, currentWeek: YOANHelper.getWeek(this.state.week) }, ()=>this.props.addWeek(this.state.currentWeek, this.props.user.location.id))
+  forward = () => {
+      this.setState({ week: this.state.week + 1, currentWeek: YOANHelper.getWeek(this.state.week + 1 ) }, 
+      ()=> this.props.addWeek(this.state.currentWeek, this.props.user.location.id))
   }
-  backward = (e) => {
-    this.setState({ week: this.state.week - 1, currentWeek: YOANHelper.getWeek(this.state.week) }, () => this.props.addWeek(this.state.currentWeek, this.props.user.location.id))
+  backward = () => {
+    this.setState({ week: this.state.week - 1, currentWeek: YOANHelper.getWeek(this.state.week - 1) }, 
+    () => this.props.addWeek(this.state.currentWeek, this.props.user.location.id))
   }
 
 
@@ -97,7 +100,7 @@ state = {
 
 const mapStateToProps = (state) => {
   return {
-    jobs: state.jobReducer,
+    jobs: state.jobReducer.jobs,
     user: state.loginReducer.user
   }
 }
