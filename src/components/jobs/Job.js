@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Redirect} from 'react-router'
 
 import { updateJobAction } from '../../actions/job';
 import { getTeamsAction } from '../../actions/team';
@@ -23,26 +22,24 @@ class Job extends Component {
     paid: "",
     schedule_time: "",
     location_id: "",
-    date: ""
+    date: "",
+    disabled: true
   };
 
   componentDidMount(){
     //Gets the teams for the current location
     this.props.getTeams(this.props.job.editingJob.location.id);
-    
     this.setState({
-      date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date)
-    });
-    this.setState({
+      date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date),
       ...this.state,
       ...this.props.job.editingJob
-    });
+    },()=> console.log(this.state));
   } 
 
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
-    });
+    }, console.log(this.state));
   };
 
   handleDateChange = event => {
@@ -56,9 +53,7 @@ class Job extends Component {
         month: "numeric",
         day: "numeric",
         year: "numeric"
-      })
-    });
-    this.setState({
+      }),
       date: event.target.value
     });
   };
@@ -77,7 +72,8 @@ class Job extends Component {
       schedule_date: this.state.schedule_date,
       schedule_time: this.state.schedule_time,
       paid: this.state.paid,
-      team_id: this.state.team_id
+      team_id: this.state.team_id,
+      disabled: true
     };
     this.props.updateJob(body, this.state.id);
   };
@@ -135,16 +131,19 @@ class Job extends Component {
     }
   };
 
-  selectionOptionTeam = () => {
-   return this.props.teams.map(team => {
-     if (team.id === this.state.team.id){
-       return <option value={team.id} selected = "selected" >{team.name}</option>
-     }
-       else {
-         return <option value={team.id}>{team.name}</option>
 
-       }
-    })
+  selectionOptionTeam = () => {
+    if (this.state.team){
+      return this.props.teams.map(team => {
+        if (team.id === this.state.team.id){
+          return <option value={team.id} selected = "selected" >{team.name}</option>
+        }
+          else {
+            return <option value={team.id}>{team.name}</option>
+
+          }
+        })
+      }
   }
 
   // PART OF FORM BUILDER IN RENDER RETURN
@@ -199,42 +198,6 @@ class Job extends Component {
   };
 
   paidRadioButtons = () => {
-    if (this.state.paid === true || this.state.paid === "true") {
-      return (
-        <>
-          {this.props.job.editingJob.paid ? (
-            <div>This bill currently paid choose no to mark unpaid</div>
-          ) : (
-            <div />
-          )}
-          <div>
-            <input
-              onClick={this.handleChange}
-              type="radio"
-              name="paid"
-              id="paid1"
-              value="true"
-              checked
-            />
-            <label htmlFor="paid1">
-              Yes
-            </label>
-          </div>
-          <div>
-            <input
-              onClick={this.handleChange}
-              type="radio"
-              name="paid"
-              id="paid2"
-              value="false"
-            />
-            <label htmlFor="paid2">
-              No
-            </label>
-          </div>
-        </>
-      );
-    } else {
       return (
         <>
           {this.props.job.editingJob.paid ? (
@@ -249,7 +212,7 @@ class Job extends Component {
               name="paid"
               id="paid1"
               value="true"
-              checked
+              checked = {this.state.paid === "true" || this.state.paid === true}
             />
             <div></div>
             <label htmlFor="paid1">
@@ -263,7 +226,7 @@ class Job extends Component {
               name="paid"
               id="paid2"
               value="false"
-              checked
+              checked={this.state.paid === "false" || this.state.paid === false}
             />
             <div></div>
             <label htmlFor="paid2">
@@ -273,10 +236,8 @@ class Job extends Component {
         </>
       );
     }
-  };
 
   render() {
-    if (this.state.city || this.state.street_1){
     return(
       <div className="container">
         <div className="form-container">
@@ -285,7 +246,7 @@ class Job extends Component {
           </h2>
           <div className="form">
             <form onSubmit={this.handleSubmit} autoComplete="one">
-              
+               <fieldset disabled={this.state.disabled? "disabled": null} > 
                 <label htmlFor="street_1">Street 1</label>
                 <input onChange={this.handleChange} type="text" name="street_1" id="street_1" value={this.state.street_1} />
               
@@ -351,16 +312,24 @@ class Job extends Component {
                 {this.paidRadioButtons()}
               </div>
 
-              <button className="button" type="submit">
-                Update
-              </button>
+                {this.state.disabled ? <h2>Form Locked</h2> : <button className="button" type="submit">  Update</button>
+ }
+              </fieldset>
             </form>
+            {this.state.disabled ? <button onClick={() => this.setState({ disabled: !this.state.disabled })} className="button" >Unlock Form</button>  : null}
           </div>
         </div>
       </div>
       )
-    }
-    else return <Redirect to="/"></Redirect>
+
+  
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    job: state.jobReducer,
+    teams: state.teamReducer.teams
   }
 }
 
@@ -375,13 +344,6 @@ const mapDispatchToProps =(dispatch) =>{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    job: state.jobReducer,
-    teams: state.teamReducer.teams
-  }
-}
- 
 export default withRoleManager(withAuth(connect(mapStateToProps, mapDispatchToProps)(Job)))
 
 

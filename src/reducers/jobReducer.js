@@ -15,7 +15,7 @@ const jobReducer = (state = initialState, action) => {
       return { ...state, jobs: [...state.jobs.slice(0), action.payload] };
       //GET JOBS FOR EMPLOYEE VIEW ONLY
     case GET_JOBS:
-      return { ...initialState, jobs: action.payload }
+      return { ...state, jobs: action.payload }
       //jobs gets overwritten with action.payload which should be all the jobs in a 7 day period.
     case GET_WEEK:
       return  {jobs: [...initialState.jobs, ...action.payload], editingJob: {...state.editingJob}, jobForm: false, createJob: false}

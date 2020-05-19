@@ -26,6 +26,7 @@ class CreateJob extends Component {
   }
 
   componentDidMount() {
+    console.log("MOUNTED")
     this.setState({
       location_id: this.props.user.location.id,
       date: timeHelper.getDay()

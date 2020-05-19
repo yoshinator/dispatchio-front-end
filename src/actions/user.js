@@ -87,10 +87,12 @@ export const setCurrentUser = (userData) => ({
   payload: userData
 })
 
-export const failedLogin = (errorMsg) => ({
-  type: 'FAILED_LOGIN',
-  payload: errorMsg
-})
+export const failedLogin = (errorMsg) => {
+  return ({
+    type: 'FAILED_LOGIN',
+    payload: errorMsg
+  });
+}
 
 export const logOutAction = () =>({
   type: 'LOG_OUT'

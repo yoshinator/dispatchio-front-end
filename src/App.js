@@ -7,6 +7,7 @@ import Signup from './components/navigation/Signup'
 import Login from './components/navigation/Login'
 import Home from './components/Home'
 import Jobs from './components/jobs/Jobs'
+import Job from './components/jobs/Job'
 import CreateJob from './components/jobs/CreateJob'
 import Locations from './components/Locations'
 import Teams from './components/teams/Teams'
@@ -47,7 +48,8 @@ function App(props) {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/jobs" render={()=><Jobs/>}></Route>
-          <Route path="/createjob" component={CreateJob}></Route>
+          <Route path="/job" render={()=><Job/>}></Route>
+          <Route path="/createjob" render={()=><CreateJob/>}></Route>
           <Route path="/locations" component={Locations}></Route>
           <Route path="/teams" render={() => <Teams />}></Route>
           <Route path="/createteam" component={CreateTeam}></Route>

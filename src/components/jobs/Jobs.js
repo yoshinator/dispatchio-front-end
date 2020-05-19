@@ -10,7 +10,6 @@ import './Jobs.css'
 
 const YOANHelper = new YOANHelpers();
 
-
 class Jobs extends Component {
 state = {
   week: 0,
@@ -23,14 +22,13 @@ state = {
 
 
   handleClick = (id) => {
-    const job = this.props.jobs.filter(job => job.id === id)
+    const job = this.props.jobReducer.jobs.filter(job => job.id === id)
     this.props.editJob(job[0])
   }
 
   // Takes a day as a string in the form "1/25/1990" 
   renderJobsJsx = (day) => {
-    console.log(this.props.jobs)
-    const filteredJobs = this.props.jobs.filter(job => job.schedule_date === day)
+    const filteredJobs = this.props.jobReducer.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
       return (<>
         <div className="card-content"  key={job.id}>
@@ -58,10 +56,11 @@ state = {
   }
 
   renderMain = () => {
-    if (!this.props.jobs.jobForm){
+    console.log(this.props.jobReducer.jobForm)
+    if (!this.props.jobReducer.jobForm){
       return this.state.currentWeek.map(day => {
         return <div key={day} className="card">
-              <span>{day}{" "}</span>
+              <span>{day}</span>
               {this.renderJobsJsx(day)}
             </div>
       });
@@ -75,13 +74,14 @@ state = {
   }
 
   render() {
+    console.log("COUNT")
 
     if(this.props.user.location.id === 1 && this.props.user.user_type === "owner"){
       return <Redirect to="/createcompany"></Redirect>
     } else if (this.props.user.location.id === 1 && this.props.user.user_type === "manager"){
       return <Redirect to="/joincompany"></Redirect>
     }
-    if(this.props.jobs.createJobFlag){
+    if(this.props.jobReducer.createJobFlag){
       return <Redirect to="/createjob"></Redirect>
     } else {
     return (
@@ -100,7 +100,7 @@ state = {
 
 const mapStateToProps = (state) => {
   return {
-    jobs: state.jobReducer.jobs,
+    jobReducer: state.jobReducer, 
     user: state.loginReducer.user
   }
 }
