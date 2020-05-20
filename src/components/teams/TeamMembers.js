@@ -54,7 +54,7 @@ const TeamMembers = (props) =>  {
         </button>
         </main>
     )
-  } else if (props.teamMemberRedicer.createTeamMemberFlag) { 
+  } else if (props.teamMemberReducer.createTeamMemberFlag) { 
     return <Redirect to="/createteammember"></Redirect>
   }
     else {return <Redirect to="/editteammember"></Redirect>
