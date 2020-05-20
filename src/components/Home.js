@@ -16,7 +16,7 @@ function Home (props) {
 
   
   // props.addWeek(timeHelper.getWeek(0), props.user.location.id)
-  // props.getCustomers(props.user.location.id)
+  props.getCustomers(props.user.location.id)
   // props.getTeamMembers(props.user.location.id)
   // props.getTeams(props.user.location.id)
   switch(props.user.user_type){

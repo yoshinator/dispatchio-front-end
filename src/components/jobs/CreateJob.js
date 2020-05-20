@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
-import { createJobAction } from '../../actions/job'
+import { createJobAction } from '../../actions/job';
+import { getTeamsAction } from '../../actions/team';
 import YOANHelpers from "../../helpers/helpers";
 const timeHelper = new YOANHelpers();
 
@@ -26,6 +27,7 @@ class CreateJob extends Component {
   }
 
   componentDidMount() {
+    this.props.getTeams(this.props.user.location.id)
     this.setState({
       location_id: this.props.user.location.id,
       date: timeHelper.getDay()
@@ -57,15 +59,19 @@ class CreateJob extends Component {
   };
 
   getCustomerOptions = () => {
-    return this.props.customers.map(customer => {
-      return <option key={customer.id} value={customer.id}> {customer.name}, {customer.city}</option >
-    })
+    if (this.props.customers){
+      return this.props.customers.map(customer => {
+        return <option key={customer.id} value={customer.id}> {customer.name}, {customer.city}</option >
+      })
+    }
   }
 
   getTeamOptions = () => {
-    return this.props.teams.map(team => {
-      return <option key={team.id} value={team.id}> {team.name} </option>
-    })
+    if (this.props.teams){
+      return this.props.teams.map(team => {
+        return <option key={team.id} value={team.id}> {team.name} </option>
+      })
+  }
   }
 
   handleSubmit = (event) => {
@@ -203,6 +209,9 @@ export const mapDispatchToProps = (dispatch) => {
   return {
     createJob: (body) => {
       dispatch(createJobAction(body))
+    }, 
+    getTeams: (locationId) => {
+      dispatch(getTeamsAction(locationId))
     }
   }
 
