@@ -7,7 +7,7 @@ import withRoleManager from '../../hocs/withRoleManager'
 
 const TeamMembers = (props) =>  {
 
-  if (!props.teamMemberReducer.teams){
+  if (!props.teamMemberReducer.team_members){
     props.getTeamMembers(props.user.location.id)
   }
 

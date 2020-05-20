@@ -11,7 +11,7 @@ const mapStyles = {
   float: 'right'
 };
 
-const KEY = process.env.REACT_APP_GOOGLEMAPKEY
+const HASH = "AIzaSyCVbScyZcM_QToolUerrmHruVLhhw-V4eA"
 
 class GoogleMap extends Component {
 
@@ -82,4 +82,4 @@ const mapStateToProps = ({ teamMemberReducer: { team_member } }) => {
 }
 
 
-export default withRouter(withRoleManager(withAuth(connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({apiKey: KEY})(GoogleMap)))))
+export default withRouter(withRoleManager(withAuth(connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({apiKey: HASH})(GoogleMap)))))
