@@ -129,7 +129,8 @@ class Job extends Component {
 
 
   selectionOptionTeam = () => {
-    if (this.state.team){
+    console.log(this.props.teams)
+    if (this.state.team && this.props.teams){
       return this.props.teams.map(team => {
         if (team.id === this.state.team.id){
           return <option value={team.id} selected = "selected" >{team.name}</option>
