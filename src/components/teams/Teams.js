@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {
+  getTeamMembersAction,
   getTeamsAction,
   changeTeamCreateFlagAction,
   changeTeamEditFlagAction,
@@ -30,6 +31,7 @@ const Teams = (props) => {
   
   if (!props.teams){
     props.getTeams(props.user.location.id)
+    props.getTeamMembers(props.user.location.id)
   }
 
   const removeUser  = (userId, teamId ) => {
@@ -122,6 +124,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeTeamMemberFromTeam: (id, teamId ) => {
       dispatch(removeTeamMemberFromTeam(id, teamId));
+    },
+    getTeamMembers: (locationId) => {
+      dispatch(getTeamMembersAction(locationId))
     }
 
   }

@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import withAuth from '../../hocs/withAuth';
 import withRoleManager from '../../hocs/withRoleManager';
 import { addMemberToTeamAction } from "../../actions/team";
+import { relativeTimeThreshold } from 'moment';
 
 class EditTeam extends Component {
   state = {
@@ -27,9 +28,13 @@ class EditTeam extends Component {
   }
 
   getTeamMembers = () => {
-    return this.props.team_members.map(member => {
-      return <option key={member.id} value={member.id}> {member.f_name}, {member.l_name}</option>
-    })
+    console.log(this.props)
+    if (this.props.team_members){
+      return this.props.team_members.map(member => {
+        return <option key={member.id} value={member.id}> {member.f_name}, {member.l_name}</option>
+      })
+    } return null
+
   }
 
   handleSubmit = (e) => {
@@ -40,23 +45,23 @@ class EditTeam extends Component {
     if (this.props.editingTeam) {
 
       return (
-        <div>
+        <div className="container">
           <h2>
             Add Team Members to Team {this.props.team.name}
                 </h2>
-          <div>
-            <form onSubmit={this.handleSubmit}>
-              <div>
-                <label htmlFor="team-member-select">
-                  Choose Team Member to add.
-                      </label>
-                <select onChange={this.handleChange} name="user_id" id="user_id" >
-                  <option value=""></option>
-                  {this.getTeamMembers()}
-                  </select>
-                  </div>
-              <button type="submit">Create</button>
-            </form>
+          <div className="form-container">
+            <div className="form">
+              <form onSubmit={this.handleSubmit}>
+                  <label htmlFor="team-member-select">
+                    Choose Team Member to add.
+                        </label>
+                  <select onChange={this.handleChange} name="user_id" id="user_id" >
+                    <option value=""></option>
+                    {this.getTeamMembers()}
+                    </select>
+                <button className="button" type="submit">Add Team Member</button>
+              </form>
+            </div>
           </div>
         </div>
       )
