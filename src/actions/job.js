@@ -33,7 +33,6 @@ export const getEmployeeJobsAction = (day, id) => {
 
 // takes a week array [1/19/2018,'1/20/2018',...,x/x/2018] and a location_id only for MANAGER and OWNER view.
 export const addWeekAction = (week, location_id) => {
-  console.log("JOBS ACTIONS")
   return (dispatch) => {
   
     const body = {
@@ -51,7 +50,6 @@ export const addWeekAction = (week, location_id) => {
         }
       })
       .then(JSONResponse => {
-        console.log("JSON RESPONSE",JSONResponse, week)
         dispatch({ type: "GET_WEEK", payload: JSONResponse })
       })
   }

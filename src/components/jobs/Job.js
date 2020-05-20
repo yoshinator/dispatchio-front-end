@@ -33,13 +33,13 @@ class Job extends Component {
       date: timeHelper.dateTransform(this.props.job.editingJob.schedule_date),
       ...this.state,
       ...this.props.job.editingJob
-    },()=> console.log(this.state));
+    });
   } 
 
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
-    }, console.log(this.state));
+    });
   };
 
   handleDateChange = event => {
@@ -77,10 +77,6 @@ class Job extends Component {
     };
     this.props.updateJob(body, this.state.id);
   };
-
-  handleTimeChange = (event) => {
-    console.log("%cHANDLETIME", 'color:green', event.target.name, event.target.value);
-  }
 
   //PART OF FORM BUILDER RENDER RETURN
   selectionOptionStatus = () => {

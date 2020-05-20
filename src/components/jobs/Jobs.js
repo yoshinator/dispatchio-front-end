@@ -55,7 +55,6 @@ state = {
   }
 
   renderMain = () => {
-    console.log(this.props.jobReducer.jobForm)
     if (!this.props.jobReducer.jobForm){
       return this.state.currentWeek.map(day => {
         return <div key={day} className="card">
@@ -73,7 +72,6 @@ state = {
   }
 
   render() {
-    console.log("COUNT")
 
     if(this.props.user.location.id === 1 && this.props.user.user_type === "owner"){
       return <Redirect to="/createcompany"></Redirect>

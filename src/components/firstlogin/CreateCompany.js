@@ -26,7 +26,6 @@ class CreateCompany extends Component {
 
   handleChangeCompany = (event) => {
     event.persist()
-    console.log(this.props.user)
     this.setState(prevState => ({
       company: {...prevState.company, [event.target.name]: event.target.value}
     }))

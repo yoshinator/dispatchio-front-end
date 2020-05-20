@@ -76,15 +76,12 @@ export const fetchCurrentUser = () => {
     dispatch(authenticatingUser()) //tells the app we are fetching
     CURRENTUserAdapter.getAll()
       .then( response => {
-
-        console.log("ALREADY LOGGED IN BUT USER DATA = ", response)
         return  dispatch(setCurrentUser(response))
         })
   }
 }
 
 export const setCurrentUser = (userData) => {
-  console.log("SET CURRENT USER DISPATCH",userData)
   return {
     type: 'SET_CURRENT_USER',
     payload: userData

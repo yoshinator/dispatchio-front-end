@@ -6,7 +6,6 @@ import withRoleManager from "../../hocs/withRoleManager"
 import { editCustomerFlagAction, addCustomerToEditAction, createNewCustomerFlagAction, getCustomersAction } from "../../actions/customer";
 
 const Customers = (props) => {
-  console.log(props.customers)
   if (!props.customers){
     props.getCustomers(props.user.location.id)
   }
