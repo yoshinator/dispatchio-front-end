@@ -30,7 +30,7 @@ class CreateJob extends Component {
   componentDidMount() {
     this.props.getTeams(this.props.user.location.id)
     if (!this.props.customers){
-      getCustomers(this.props.user.location.id)
+      this.props.getCustomers(this.props.user.location.id)
     }
     this.setState({
       location_id: this.props.user.location.id,
