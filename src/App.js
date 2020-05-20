@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import React from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom'
 
 import Navbar from './components/navigation/Navbar'
@@ -12,18 +11,9 @@ import CreateJob from './components/jobs/CreateJob'
 import Locations from './components/Locations'
 import Teams from './components/teams/Teams'
 import TeamMembers from './components/teams/TeamMembers'
-import {
-  getTeamMembersAction,
-  getTeamsAction,
-  changeTeamCreateFlagAction,
-  changeTeamEditFlagAction,
-  setTeamAction,
-  removeTeamMemberFromTeam
-} from "./actions/team";
 import Customers from './components/customers/Customers'
 import GoogleMap from './components/GoogleMap'
 import NoMatch from './components/Nomatch'
-import { fetchCurrentUser } from './actions/user'
 import EditCustomer from './components/customers/EditCustomer';
 import CreateCustomer from './components/customers/CreateCustomer';
 import EditTeamMember from './components/teams/EditTeamMember';
@@ -35,10 +25,6 @@ import JoinCompany from './components/firstlogin/JoinCompany';
 import './css/styles.css'
 
 function App(props) {
-
-  props.user && props.user.location && props.user.location.id && props.getTeamMembers(props.user.location.id)
-
-  props.user && props.user.location && props.user.location.id && props.getTeams(props.user.location.id)
 
     return <>
         <Navbar />
@@ -70,20 +56,8 @@ function App(props) {
       </>;
 }
 
-  const mapsStateToProps = (state) => ({
-    user: state.loginReducer.user
-  })
 
-  const mapDispatchToProps = (dispatch) => {
-    return { 
-      fetchCurrentUser: () => dispatch(fetchCurrentUser()) ,
-      getTeamMembers: (location_id) => {
-        dispatch(getTeamMembersAction(location_id));
-      }, 
-      getTeams: (location_id) => dispatch(getTeamsAction(location_id))
-    }
-  }
 
 export default
-  withRouter(connect(mapsStateToProps,mapDispatchToProps)(App));
+  withRouter(App);
 

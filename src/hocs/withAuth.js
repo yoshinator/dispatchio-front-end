@@ -19,7 +19,8 @@ const withAuth = WrappedComponent => {
         return <WrappedComponent />;
       } else if (
         localStorage.getItem("jwt") &&
-        (this.props.authenticatingUser || !this.props.loggedIn)
+        (this.props.authenticatingUser)
+        // (this.props.authenticatingUser || !this.props.loggedIn)
       ) {
         //we're currently fetching, show a loading spinner
         return <div role="status">

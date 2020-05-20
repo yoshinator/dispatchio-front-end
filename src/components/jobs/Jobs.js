@@ -30,12 +30,11 @@ state = {
   renderJobsJsx = (day) => {
     const filteredJobs = this.props.jobReducer.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
-      return (<>
-        <div className="card-content"  key={job.id}>
+      return ( <div className="card-content"  key={job.id}>
           <p className="button" onClick={() => this.handleClick(job.id)} > {job.city} {job.customer.name} </p>
           <a className="button" href={`tel:+1${job.customer.phone}`}><i className="fas fa-mobile-alt"></i> {job.customer.phone}</a>
           </div>
-        </>
+        
       )
     })
   }

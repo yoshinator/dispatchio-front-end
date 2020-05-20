@@ -12,7 +12,7 @@ export const getCustomersAction =(locationId) => {
     }
     CUSTOMERSAdapter.createItem(body)
     .then(response => {
-      if (response.ok) {
+      if (response && response.ok) {
         return response.json()
       } else {
         throw response

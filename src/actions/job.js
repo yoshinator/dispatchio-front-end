@@ -19,7 +19,7 @@ export const getEmployeeJobsAction = (day, id) => {
 
     JOBAdapter.createItem(body)
       .then(response => {
-        if (response.ok) {
+        if (response && response.ok) {
           return response.json()
         } else {
           throw response
@@ -44,7 +44,7 @@ export const addWeekAction = (week, location_id) => {
     }
     JOBSAdapter.createItem(body)
       .then(response => {
-        if (response.ok) {
+        if (response && response.ok) {
           return response.json()
         } else {
           throw response

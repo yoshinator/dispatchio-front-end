@@ -1,16 +1,15 @@
 
 class JSONAPIAdapter {
-  constructor(endpoint) {
+  constructor(endpoint, token) {
     this.endpoint = `https://dispatch-io.herokuapp.com/${endpoint}`
-    this.headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${window.localStorage.getItem('jwt')}`
-    }
   }
   getAll() {
     return fetch(this.endpoint,{
-      headers: this.headers
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.localStorage.getItem('jwt')}`
+    },
     })
       .then(response => response.json())
   }
@@ -23,7 +22,11 @@ class JSONAPIAdapter {
   createItem(body) {
     return fetch(this.endpoint, {
       method: 'POST',
-      headers: this.headers,
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.localStorage.getItem('jwt')}`
+    },
       body: JSON.stringify(body)// { key: 'value', key: { key: 'value', key: 'value'} }
     })
   }
@@ -31,14 +34,22 @@ class JSONAPIAdapter {
   deleteItem(id) {
     return fetch(`${this.endpoint}/${id}`, {
       method: 'DELETE',
-      header: this.headers
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.localStorage.getItem('jwt')}`
+    },
     }).then(response => response.json())
   }
 
   updateItem(body, id) {
     return fetch(`${this.endpoint}/${id}`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${window.localStorage.getItem('jwt')}`
+    },
       body: JSON.stringify(body)
     })
   }

@@ -19,7 +19,7 @@ export const getTeamsAction =(locationId) => {
     }
     TeamLocationAdapter.createItem(body)
       .then(response => {
-        if (response.ok) {
+        if (response && response.ok) {
           return response.json()
         } else {
           throw response
@@ -40,7 +40,7 @@ export const getTeamMembersAction =(locationId) => {
     }
     TeamMemberAdapter.createItem(body)
       .then(response => {
-        if (response.ok) {
+        if (response && response.ok) {
           return response.json();
         } else {
           throw response;

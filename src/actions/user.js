@@ -20,9 +20,9 @@ export const loginAction = (email, password) => {
       })
       .then(JSONResponse => {
         window.localStorage.setItem('jwt', JSONResponse.jwt)
-        dispatch(setCurrentUser(JSONResponse.user));
+        return dispatch(setCurrentUser(JSONResponse.user));
       })
-      .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN MAKE SURE THE SERVER CAN BE REACHED', payload: e.message })))
+      .catch(r =>  dispatch({ type: 'FAILED LOGIN MAKE SURE THE SERVER CAN BE REACHED', payload: r.message }))
   }
 }
 
@@ -46,8 +46,7 @@ export const createUserAction = ({user_type, f_name, l_name, email, phone, passw
         dispatch(setCurrentUser(JSONResponse.user));
       })
       .catch(r =>
-        r
-          .json()
+        r.json()
           .then(e => dispatch({ type: "FAILED_LOGIN", payload: e.message }))
       );
   }
@@ -77,15 +76,20 @@ export const fetchCurrentUser = () => {
     dispatch(authenticatingUser()) //tells the app we are fetching
     CURRENTUserAdapter.getAll()
       .then( response => {
+
+        console.log("ALREADY LOGGED IN BUT USER DATA = ", response)
         return  dispatch(setCurrentUser(response))
         })
   }
 }
 
-export const setCurrentUser = (userData) => ({
-  type: 'SET_CURRENT_USER',
-  payload: userData
-})
+export const setCurrentUser = (userData) => {
+  console.log("SET CURRENT USER DISPATCH",userData)
+  return {
+    type: 'SET_CURRENT_USER',
+    payload: userData
+  }
+}
 
 export const failedLogin = (errorMsg) => {
   return ({
