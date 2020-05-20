@@ -6,6 +6,7 @@ import withRoleManager from '../../hocs/withRoleManager';
 import { createJobAction } from '../../actions/job';
 import { getTeamsAction } from '../../actions/team';
 import YOANHelpers from "../../helpers/helpers";
+import { getCustomersAction } from '../../actions/customer';
 const timeHelper = new YOANHelpers();
 
 class CreateJob extends Component {
@@ -28,6 +29,9 @@ class CreateJob extends Component {
 
   componentDidMount() {
     this.props.getTeams(this.props.user.location.id)
+    if (!this.props.customers){
+      getCustomers(this.props.user.location.id)
+    }
     this.setState({
       location_id: this.props.user.location.id,
       date: timeHelper.getDay()
@@ -212,6 +216,8 @@ export const mapDispatchToProps = (dispatch) => {
     }, 
     getTeams: (locationId) => {
       dispatch(getTeamsAction(locationId))
+    },getCustomers: locationId => {
+      dispatch(getCustomersAction(locationId))
     }
   }
 
