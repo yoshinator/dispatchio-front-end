@@ -27,11 +27,10 @@ const TeamUsers = ({ users, removeUser, teamId, getTeam, user}) => {
 }
 
 const Teams = (props) => {
-
+  
   if (!props.teams){
     props.getTeams(props.user.location.id)
   }
- 
 
   const removeUser  = (userId, teamId ) => {
     const body ={

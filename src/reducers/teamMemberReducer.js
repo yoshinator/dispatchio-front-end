@@ -8,7 +8,7 @@ import {
 } from "./types";
 
 const initialState = {
-  team_members: [],
+  team_members: null,
   team_member: {},
   teamMemberEditFlag: false,
   createTeamMemberFlag: false,

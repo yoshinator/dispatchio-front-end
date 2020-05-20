@@ -1,7 +1,7 @@
 import { GET_TEAMS, SET_TEAM, CHANGE_TEAM_EDIT_FLAG, EDIT_TEAM, CHANGE_TEAM_CREATE_FLAG, CREATE_TEAM } from './types'
 
 const initialState = {
- teams: [],
+ teams: null,
  team: {},
  editingTeam: false,
  creatingTeam: false, 

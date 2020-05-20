@@ -1,11 +1,15 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setTeamMemberAction, changeTeamMemberEditFlagAction, createNewTeamMemberFlagAction} from '../../actions/team';
+import { setTeamMemberAction, changeTeamMemberEditFlagAction, createNewTeamMemberFlagAction, getTeamMembersAction} from '../../actions/team';
 import withAuth from '../../hocs/withAuth'
 import withRoleManager from '../../hocs/withRoleManager'
 
 const TeamMembers = (props) =>  {
+
+  if (!props.teamMemberReducer.teams){
+    props.getTeamMembers(props.user.location.id)
+  }
 
   const handleClick =(teamMember) => {
     props.setTeamMemberAction(teamMember)
@@ -17,8 +21,8 @@ const TeamMembers = (props) =>  {
   }
 
   const teamMembersJsx = () => {
-    if (props.teamMembers.team_members && props.teamMembers.team_members.length > 0) {
-      return props.teamMembers.team_members.map(teamMember => {
+    if (props.teamMemberReducer.team_members) {
+      return props.teamMemberReducer.team_members.map(teamMember => {
         return <div key={Date.now()*Math.random()}>
             {" "}
             <p className= "card-content" key={teamMember.id}>
@@ -37,7 +41,7 @@ const TeamMembers = (props) =>  {
   }
 
 
-  if (!props.teamMembers.teamMemberEditFlag && !props.teamMembers.createTeamMemberFlag) {
+  if (!props.teamMemberReducer.teamMemberEditFlag && !props.teamMemberReducer.createTeamMemberFlag) {
     return (
         <main className="container">
           <div className="form-container">
@@ -50,7 +54,7 @@ const TeamMembers = (props) =>  {
         </button>
         </main>
     )
-  } else if (props.teamMembers.createTeamMemberFlag) { 
+  } else if (props.teamMemberRedicer.createTeamMemberFlag) { 
     return <Redirect to="/createteammember"></Redirect>
   }
     else {return <Redirect to="/editteammember"></Redirect>
@@ -61,7 +65,7 @@ const TeamMembers = (props) =>  {
 // PLEASE DESTRUCTURE THE STATE SO I DON'T HAVE TO  `props.teamMembers.team_members`
 const mapStateToProps = (state) => ({
   user: state.loginReducer.user,
-  teamMembers: state.teamMemberReducer
+  teamMemberReducer: state.teamMemberReducer
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -74,6 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     createNewTeamMemberFlag: () => {
       dispatch(createNewTeamMemberFlagAction())
+    },
+    getTeamMembers: (locationId) => {
+      dispatch(getTeamMembersAction(locationId))
     }
   };
 }
