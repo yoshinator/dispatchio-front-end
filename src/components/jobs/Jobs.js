@@ -31,7 +31,7 @@ state = {
     const filteredJobs = this.props.jobReducer.jobs.filter(job => job.schedule_date === day)
     return filteredJobs.map(job => {
       return ( <div className="card-content"  key={job.id}>
-          <p className="button" onClick={() => this.handleClick(job.id)} > {job.city} {job.customer.name} </p>
+          <p className="button" onClick={() => this.handleClick(job.id)} > {job.city} | {job.customer.name} | {job.status && job.status.slice(0,2)}</p>
           <a className="button" href={`tel:+1${job.customer.phone}`}><i className="fas fa-mobile-alt"></i> {job.customer.phone}</a>
           </div>
         

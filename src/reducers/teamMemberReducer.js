@@ -4,7 +4,8 @@ import {
   EDIT_TEAM_MEMBER,
   CHANGE_TEAM_MEMBER_EDIT_FLAG,
   CREATE_TEAM_MEMBER_FLAG,
-  CREATE_TEAM_MEMBER
+  CREATE_TEAM_MEMBER,
+  CREATE_EDIT_MEMBER_FALSE
 } from "./types";
 
 const initialState = {
@@ -24,6 +25,10 @@ const teamMemberReducer = (state = initialState, action) => {
 
     case CHANGE_TEAM_MEMBER_EDIT_FLAG: 
       return {...state, teamMemberEditFlag: true}
+
+
+    case CREATE_EDIT_MEMBER_FALSE:
+      return { ...state, teamMemberEditFlag: false, createTeamMemberFlag: false }
     
     case EDIT_TEAM_MEMBER:
       return {

@@ -2,6 +2,7 @@ import React from 'react'
 import {  Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logOutAction } from '../../actions/user'
+import { resetTeamMemberFlagsAction, resetTeamFlagsAction } from '../../actions/team'
 import './Navbar.css'
 
 function EmployeeNavBar(props){
@@ -17,16 +18,23 @@ function EmployeeNavBar(props){
 }
 
 function MainNavBar(props){
+  const handleTeamMemberClick = () => {
+    props.resetMemberFlags()
+  }
+
+  const handleTeamClick = () => {
+    props.resetTeamFlags()
+  }
   return <nav>
     <ul>
       <li>
         <Link to="/jobs">Jobs</Link>
       </li>
       <li>
-        <Link to="/teams">Teams</Link>
+        <Link onClick={handleTeamClick} to="/teams">Teams</Link>
       </li>
       <li>
-        <Link to="/teammembers">Team Members</Link>
+        <Link onClick={handleTeamMemberClick} to="/teammembers">Team Members</Link>
       </li>
       <li>
         <Link to="/customers">Customers</Link>
@@ -96,6 +104,12 @@ function mapDispatchToProps(dispatch) {
   return  {
     logout: () => {
     dispatch(logOutAction())
+    },
+    resetMemberFlags: () => {
+      dispatch(resetTeamMemberFlagsAction())
+    },
+    resetTeamFlags: () => {
+      dispatch(resetTeamFlagsAction())
     }
   }
 }

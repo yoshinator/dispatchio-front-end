@@ -38,8 +38,8 @@ function App(props) {
           <Route path="/createjob" render={()=><CreateJob/>}></Route>
           <Route path="/locations" component={Locations}></Route>
           <Route path="/teams" render={() => <Teams />}></Route>
-          <Route path="/createteam" component={CreateTeam}></Route>
-          <Route path="/editteam" component={EditTeam}></Route>
+          <Route path="/createteam" render={()=> <CreateTeam/>}></Route>
+          <Route path="/editteam" render={()=> <EditTeam/>}></Route>
           <Route path="/teammembers" render={()=><TeamMembers/>}></Route>
           <Route path="/editteammember" component={EditTeamMember}></Route>
           <Route path="/createteammember" component={CreateTeamMember}></Route>

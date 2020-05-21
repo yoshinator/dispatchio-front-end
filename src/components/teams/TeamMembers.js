@@ -40,29 +40,28 @@ const TeamMembers = (props) =>  {
     }
   }
 
-
   if (!props.teamMemberReducer.teamMemberEditFlag && !props.teamMemberReducer.createTeamMemberFlag) {
     return (
         <main className="container">
           <div className="form-container">
-          <div>          
-            <h2>Team Members</h2>
-            {teamMembersJsx()}</div>
-          </div>
-        <button className="button" onClick={props.createNewTeamMemberFlag} >
-          <span>Add Team Member</span>
-        </button>
+            <div>          
+              <h2>Team Members</h2>
+              {teamMembersJsx()}
+              </div>
+            </div>
+            <button className="button" onClick={props.createNewTeamMemberFlag} >
+              <span>Add Team Member</span>
+            </button>
         </main>
     )
   } else if (props.teamMemberReducer.createTeamMemberFlag) { 
     return <Redirect to="/createteammember"></Redirect>
-  }
-    else {return <Redirect to="/editteammember"></Redirect>
+  } else {
+    return <Redirect to="/editteammember"></Redirect>
   }
 
 } 
 
-// PLEASE DESTRUCTURE THE STATE SO I DON'T HAVE TO  `props.teamMembers.team_members`
 const mapStateToProps = (state) => ({
   user: state.loginReducer.user,
   teamMemberReducer: state.teamMemberReducer

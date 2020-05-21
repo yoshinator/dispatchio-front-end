@@ -116,10 +116,6 @@ export const createTeamAction = (team) => {
   }
 }
 
-export const changeTeamEditFlagAction = () => {
-  return ({type: "CHANGE_TEAM_EDIT_FLAG"})
-}
-
 export const addMemberToTeamAction =(body) => {
   return dispatch => {
     TEAMMEMBERAdapter.createItem(body)
@@ -159,3 +155,15 @@ export const removeTeamMemberFromTeam = (body) => {
   export const setTeamAction = (team) => {
     return ({type: "SET_TEAM", payload: team})
   }
+
+  export const changeTeamEditFlagAction = () => {
+    return ({ type: "CHANGE_TEAM_EDIT_FLAG" })
+  }
+
+export const resetTeamMemberFlagsAction = () => {
+  return ({ type: "CREATE_EDIT_MEMBER_FALSE" })
+}
+
+export const resetTeamFlagsAction = () => {
+  return ({type: "CREATE_EDIT_TEAM_FALSE"})
+}
